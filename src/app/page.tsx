@@ -272,48 +272,37 @@ export default function Home() {
       {/* Hero Section */}
       <section className="relative min-h-screen flex items-center justify-center px-4 sm:px-6 lg:px-8 overflow-hidden">
         
-        {/* Animated Background Patterns */}
+        {/* Animated Background Pattern */}
         <div className="absolute inset-0 z-0">
-          {/* Grid Pattern */}
-          <div className="absolute inset-0 opacity-10">
-            <div className="w-full h-full" style={{
+          {/* Grid Pattern with Gradient and Shining Center */}
+          <div className="absolute inset-0">
+            <div className="w-full h-full relative" style={{
               backgroundImage: `
-                linear-gradient(rgba(255,255,255,0.1) 1px, transparent 1px),
-                linear-gradient(90deg, rgba(255,255,255,0.1) 1px, transparent 1px)
+                linear-gradient(rgba(255,255,255,0.08) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(255,255,255,0.08) 1px, transparent 1px)
               `,
               backgroundSize: '50px 50px'
-            }}></div>
+            }}>
+              {/* Radial Gradient Overlay with Shining Center */}
+              <div className="absolute inset-0" style={{
+                background: `
+                  radial-gradient(circle at center, 
+                    rgba(255,255,255,0.15) 0%, 
+                    rgba(255,255,255,0.1) 20%, 
+                    rgba(255,255,255,0.05) 40%, 
+                    rgba(255,255,255,0.02) 60%, 
+                    transparent 80%
+                  )
+                `
+              }}></div>
+              
+              {/* Animated Pulse Effect */}
+              <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-96 h-96 rounded-full opacity-20 animate-pulse" style={{
+                background: 'radial-gradient(circle, rgba(255,255,255,0.3) 0%, rgba(255,255,255,0.1) 30%, transparent 70%)',
+                animationDuration: '4s'
+              }}></div>
+            </div>
           </div>
-          
-          {/* Floating Geometric Shapes */}
-          <div className="absolute inset-0">
-            {/* Large Circle */}
-            <div className="absolute top-20 left-10 w-32 h-32 rounded-full bg-gradient-to-r from-blue-500/20 to-purple-500/20 animate-pulse"></div>
-            
-            {/* Triangle */}
-            <div className="absolute top-40 right-20 w-0 h-0 border-l-16 border-r-16 border-b-28 border-l-transparent border-r-transparent border-b-green-500/20 animate-bounce" style={{
-              animationDuration: '3s',
-              borderLeftWidth: '30px',
-              borderRightWidth: '30px',
-              borderBottomWidth: '50px'
-            }}></div>
-            
-            {/* Square */}
-            <div className="absolute bottom-40 left-20 w-20 h-20 bg-gradient-to-r from-yellow-500/20 to-orange-500/20 rotate-45 animate-spin" style={{animationDuration: '8s'}}></div>
-            
-            {/* Small Circles */}
-            <div className="absolute top-60 right-40 w-8 h-8 rounded-full bg-pink-500/30 animate-ping"></div>
-            <div className="absolute bottom-60 right-10 w-12 h-12 rounded-full bg-cyan-500/20 animate-pulse" style={{animationDelay: '1s'}}></div>
-            
-            {/* Hexagon */}
-            <div className="absolute bottom-20 right-1/3 w-16 h-16 bg-purple-500/20 animate-pulse" style={{
-              clipPath: 'polygon(50% 0%, 100% 25%, 100% 75%, 50% 100%, 0% 75%, 0% 25%)',
-              animationDelay: '2s'
-            }}></div>
-          </div>
-          
-          {/* Gradient Overlay */}
-          <div className="absolute inset-0 bg-gradient-to-br from-blue-900/5 via-transparent to-purple-900/5"></div>
         </div>
         
         {/* Content */}
@@ -370,11 +359,11 @@ export default function Home() {
             </div>
           </div>
           
-          {/* Enhanced CTA Buttons */}
+          {/* Monochrome CTA Buttons */}
           <div className="flex flex-col sm:flex-row gap-6 justify-center">
             <button 
               onClick={() => document.getElementById('featured-work')?.scrollIntoView({ behavior: 'smooth' })}
-              className="group px-10 py-4 bg-gradient-to-r from-blue-600 to-purple-600 text-white font-semibold rounded-full hover:from-blue-500 hover:to-purple-500 transition-all duration-300 transform hover:scale-105 hover:shadow-lg hover:shadow-blue-500/25"
+              className="group px-10 py-4 bg-white text-black font-semibold rounded-full hover:bg-gray-200 transition-all duration-300 transform hover:scale-105 hover:shadow-lg hover:shadow-white/20"
             >
               <span className="flex items-center justify-center gap-2">
                 View My Work 
@@ -385,7 +374,7 @@ export default function Home() {
             </button>
             <button 
               onClick={() => document.getElementById('contact')?.scrollIntoView({ behavior: 'smooth' })}
-              className="group px-10 py-4 border-2 border-gray-400 text-gray-300 font-semibold rounded-full hover:border-white hover:text-white hover:bg-white/5 transition-all duration-300 transform hover:scale-105"
+              className="group px-10 py-4 border-2 border-white text-white font-semibold rounded-full hover:bg-white hover:text-black transition-all duration-300 transform hover:scale-105"
             >
               <span className="flex items-center justify-center gap-2">
                 Let's Connect

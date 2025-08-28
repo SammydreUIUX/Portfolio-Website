@@ -1,3 +1,7 @@
+'use client';
+
+import { useState } from 'react';
+
 export default function About() {
   const skills = [
     { 
@@ -32,122 +36,495 @@ export default function About() {
     }
   ];
 
+  // Photography portfolio data - you can update these paths with your actual images
+  const photographyImages = [
+    {
+      id: 1,
+      src: '/images/photography/photo1.jpg', // Update with your image paths
+      title: 'Urban Landscape',
+      camera: 'iPhone 15 Pro',
+      description: 'Captured the golden hour light streaming through city architecture',
+      settings: 'f/1.8 • 1/120s • ISO 100'
+    },
+    {
+      id: 2,
+      src: '/images/photography/photo2.jpg',
+      title: 'Nature Portrait',
+      camera: 'Professional DSLR',
+      description: 'A serene moment captured in natural lighting',
+      settings: 'f/2.8 • 1/200s • ISO 200'
+    },
+    {
+      id: 3,
+      src: '/images/photography/photo3.jpg',
+      title: 'Street Photography',
+      camera: 'iPhone 15 Pro',
+      description: 'Life in motion - a candid street scene',
+      settings: 'f/2.4 • 1/60s • ISO 320'
+    },
+    {
+      id: 4,
+      src: '/images/photography/photo4.jpg',
+      title: 'Macro Details',
+      camera: 'Professional DSLR',
+      description: 'Intricate details captured up close',
+      settings: 'f/5.6 • 1/250s • ISO 400'
+    },
+    {
+      id: 5,
+      src: '/images/photography/photo5.jpg',
+      title: 'Sunset Silhouette',
+      camera: 'iPhone 15 Pro',
+      description: 'Dramatic silhouette against vibrant sunset colors',
+      settings: 'f/1.8 • 1/500s • ISO 50'
+    },
+    {
+      id: 6,
+      src: '/images/photography/photo6.jpg',
+      title: 'Architecture Study',
+      camera: 'Professional DSLR',
+      description: 'Geometric patterns and shadows in modern architecture',
+      settings: 'f/8.0 • 1/125s • ISO 100'
+    }
+  ];
+
+  const [selectedCard, setSelectedCard] = useState<number | null>(null);
+  const [stackOrder, setStackOrder] = useState(photographyImages.map((_, index) => index));
+  const [isAnimating, setIsAnimating] = useState(false);
+
+  const handleCardClick = (index: number) => {
+    if (isAnimating) return; // Prevent clicks during animation
+    
+    if (selectedCard === index) {
+      // If clicking the selected card, slide it to back
+      setIsAnimating(true);
+      setSelectedCard(null);
+      
+      setTimeout(() => {
+        setStackOrder(prev => {
+          const newOrder = [...prev];
+          const cardIndex = newOrder.indexOf(index);
+          newOrder.splice(cardIndex, 1);
+          newOrder.unshift(index);
+          return newOrder;
+        });
+        setIsAnimating(false);
+      }, 300);
+    } else {
+      // Select the new card and bring to front
+      setSelectedCard(index);
+      setStackOrder(prev => {
+        const newOrder = [...prev];
+        const cardIndex = newOrder.indexOf(index);
+        newOrder.splice(cardIndex, 1);
+        newOrder.push(index);
+        return newOrder;
+      });
+    }
+  };
+
   return (
-    <div className="min-h-screen bg-gray-900">
+    <div className="min-h-screen text-white" style={{backgroundColor: '#131313'}}>
       {/* Hero Section */}
-      <section className="bg-gray-800 py-20">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center mb-16">
-            <h1 className="text-4xl lg:text-5xl font-bold text-white mb-6">
+      <section className="py-24 px-6 sm:px-8 lg:px-12">
+        <div className="max-w-7xl mx-auto">
+          <div className="text-center mb-20">
+            <h1 className="text-4xl lg:text-5xl font-bold text-white mb-8 font-righteous">
               About Me
             </h1>
-            <p className="text-xl text-gray-300 max-w-3xl mx-auto">
+            <p className="text-xl md:text-2xl text-gray-300 max-w-4xl mx-auto leading-relaxed">
               Product Designer with 5+ years in product design and 9+ years in visual design, 
-              based in Vancouver, crafting inclusive, human-centered digital experiences.
+              based in Vancouver 🇨🇦, crafting inclusive, human-centered digital experiences that make a difference.
             </p>
           </div>
 
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
             {/* Profile Image */}
-            <div className="relative">
-              <div className="w-full h-96 lg:h-[500px] bg-gradient-to-br from-blue-400 to-purple-600 rounded-2xl shadow-2xl">
-                <div className="absolute inset-0 bg-black/10 rounded-2xl"></div>
-                <div className="absolute inset-0 flex items-center justify-center">
-                  <div className="text-white text-center">
-                    <div className="w-32 h-32 lg:w-40 lg:h-40 bg-white/20 rounded-full flex items-center justify-center mx-auto mb-4">
-                      <svg className="w-16 h-16 lg:w-20 lg:h-20" fill="currentColor" viewBox="0 0 24 24">
-                        <path d="M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z"/>
-                      </svg>
-                    </div>
-                    <p className="text-lg font-semibold">Samuel Funmilayo</p>
-                    <p className="text-sm opacity-90">Product Designer</p>
+            <div className="relative order-2 lg:order-1">
+              <div className="relative w-full max-w-md mx-auto">
+                {/* Background decoration */}
+                <div className="absolute inset-0 rounded-3xl" style={{
+                  background: 'linear-gradient(135deg, rgba(255,255,255,0.1) 0%, rgba(255,255,255,0.05) 100%)',
+                  backdropFilter: 'blur(10px)',
+                  border: '1px solid rgba(255,255,255,0.1)'
+                }}></div>
+                
+                {/* Profile image container */}
+                <div className="relative h-96 lg:h-[500px] rounded-3xl overflow-hidden" style={{
+                  backgroundColor: '#1a1a1a',
+                  boxShadow: '20px 20px 40px rgba(0,0,0,0.3), -20px -20px 40px rgba(255,255,255,0.02)'
+                }}>
+                  {/* Profile Image */}
+                  <img 
+                    src="/images/samuel.jfif" 
+                    alt="Samuel Funmilayo - Product Designer" 
+                    className="w-full h-full object-cover"
+                    style={{
+                      objectPosition: 'center center'
+                    }}
+                  />
+                  
+                  {/* Overlay with gradient for better text readability */}
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent"></div>
+                  
+                  {/* Name and title overlay */}
+                  <div className="absolute bottom-6 left-6 right-6 text-center">
+                    <h3 className="text-xl font-semibold text-white mb-2 drop-shadow-lg">Samuel Funmilayo</h3>
+                    <p className="text-gray-200 drop-shadow-md">Product Designer & UX Specialist</p>
                   </div>
                 </div>
               </div>
             </div>
 
-                         {/* About Content */}
-             <div className="space-y-6">
-               <h2 className="text-2xl font-bold text-white">My Story</h2>
-               <p className="text-gray-300 leading-relaxed">
-                 I specialize in creating inclusive, user-centered digital experiences that transform how people interact with technology. 
-                 With over 5 years in product design and 9 years in visual design, I bring a unique perspective to every project.
-               </p>
-               <p className="text-gray-300 leading-relaxed">
-                 My approach combines thorough user research with innovative design solutions to solve complex problems. 
-                 I believe great design should be accessible, intuitive, and meaningful for all users.
-               </p>
-               <p className="text-gray-300 leading-relaxed">
-                 Based in Vancouver, I&apos;ve had the privilege of working with companies like AIRTEL, STARLING, ZONEAID, and INSPORHEALM, 
-                 helping them create digital products that make a real impact in people&apos;s lives.
-               </p>
-             </div>
+            {/* About Content */}
+            <div className="space-y-8 order-1 lg:order-2">
+              <div>
+                <h2 className="text-3xl lg:text-4xl font-bold text-white mb-6 font-righteous">My Story</h2>
+                <div className="w-16 h-1 bg-blue-400 mb-8"></div>
+              </div>
+              
+              <div className="space-y-6">
+                <p className="text-lg text-gray-300 leading-relaxed">
+                  I specialize in creating <span className="text-blue-400 font-medium">inclusive, user-centered digital experiences</span> that transform how people interact with technology. 
+                  With over 5 years in product design and 9 years in visual design, I bring a unique perspective to every project.
+                </p>
+                <p className="text-lg text-gray-300 leading-relaxed">
+                  My approach combines <span className="text-purple-400 font-medium">thorough user research</span> with innovative design solutions to solve complex problems. 
+                  I believe great design should be accessible, intuitive, and meaningful for all users.
+                </p>
+                <p className="text-lg text-gray-300 leading-relaxed">
+                  Based in Vancouver, I've had the privilege of working with companies like <span className="text-green-400 font-medium">AIRTEL, STARLING, ZONEAID, and INSPORHEALM</span>, 
+                  helping them create digital products that make a real impact in people's lives.
+                </p>
+              </div>
+              
+              {/* Key highlights */}
+              <div className="grid grid-cols-2 gap-6 pt-6">
+                <div className="text-center p-4 rounded-2xl" style={{backgroundColor: '#1a1a1a', border: '1px solid #333'}}>
+                  <div className="text-2xl font-bold text-blue-400 mb-2">5+</div>
+                  <div className="text-sm text-gray-400">Years Product Design</div>
+                </div>
+                <div className="text-center p-4 rounded-2xl" style={{backgroundColor: '#1a1a1a', border: '1px solid #333'}}>
+                  <div className="text-2xl font-bold text-purple-400 mb-2">9+</div>
+                  <div className="text-sm text-gray-400">Years Visual Design</div>
+                </div>
+              </div>
+            </div>
           </div>
         </div>
       </section>
 
-             {/* Skills Section */}
-       <section className="py-20 bg-gray-800">
-         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-           <div className="text-center mb-16">
-             <h2 className="text-3xl lg:text-4xl font-bold text-white mb-4">
-               Skills & Expertise
-             </h2>
-             <p className="text-lg text-gray-300 max-w-2xl mx-auto">
-               My toolkit for creating exceptional user experiences and digital products.
-             </p>
-           </div>
+      {/* Skills Section */}
+      <section className="py-24 px-6 sm:px-8 lg:px-12" style={{backgroundColor: '#0f0f0f'}}>
+        <div className="max-w-7xl mx-auto">
+          <div className="text-center mb-20">
+            <h2 className="text-3xl lg:text-4xl font-bold text-white mb-6 font-righteous">
+              Skills & Expertise
+            </h2>
+            <p className="text-lg text-gray-300 max-w-3xl mx-auto leading-relaxed">
+              My comprehensive toolkit for creating exceptional user experiences and digital products that solve real problems.
+            </p>
+          </div>
 
-           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-             {skills.map((skillGroup) => (
-               <div key={skillGroup.category} className="bg-gray-700 rounded-lg p-6">
-                 <h3 className="text-xl font-semibold text-white mb-4">
-                   {skillGroup.category}
-                 </h3>
-                 <div className="space-y-2">
-                   {skillGroup.items.map((skill) => (
-                     <div key={skill} className="flex items-center">
-                       <div className="w-2 h-2 bg-blue-400 rounded-full mr-3"></div>
-                       <span className="text-gray-300">{skill}</span>
-                     </div>
-                   ))}
-                 </div>
-               </div>
-             ))}
-           </div>
-         </div>
-       </section>
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+            {skills.map((skillGroup, index) => {
+              const colors = [
+                { bg: 'rgba(59, 130, 246, 0.1)', border: '#3B82F6', accent: '#60A5FA' },
+                { bg: 'rgba(168, 85, 247, 0.1)', border: '#A855F7', accent: '#C084FC' },
+                { bg: 'rgba(34, 197, 94, 0.1)', border: '#22C55E', accent: '#4ADE80' }
+              ];
+              const color = colors[index % colors.length];
+              
+              return (
+                <div 
+                  key={skillGroup.category} 
+                  className="rounded-2xl p-8 transition-all duration-300 hover:scale-105 group"
+                  style={{
+                    backgroundColor: color.bg,
+                    border: `1px solid ${color.border}20`,
+                    boxShadow: '10px 10px 20px rgba(0,0,0,0.3), -10px -10px 20px rgba(255,255,255,0.02)'
+                  }}
+                >
+                  <div className="mb-6">
+                    <h3 className="text-xl font-semibold text-white mb-3">
+                      {skillGroup.category}
+                    </h3>
+                    <div className="w-12 h-1 rounded-full" style={{backgroundColor: color.accent}}></div>
+                  </div>
+                  
+                  <div className="space-y-3">
+                    {skillGroup.items.map((skill) => (
+                      <div key={skill} className="flex items-center group-hover:translate-x-1 transition-transform duration-200">
+                        <div 
+                          className="w-2 h-2 rounded-full mr-4 flex-shrink-0"
+                          style={{backgroundColor: color.accent}}
+                        ></div>
+                        <span className="text-gray-300 group-hover:text-white transition-colors duration-200">{skill}</span>
+                      </div>
+                    ))}
+                  </div>
+                </div>
+              );
+            })}
+          </div>
+        </div>
+      </section>
 
-             {/* Testimonials Section */}
-       <section className="py-20 bg-gray-900">
-         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-           <div className="text-center mb-16">
-             <h2 className="text-3xl lg:text-4xl font-bold text-white mb-4">
-               What People Say
-             </h2>
-             <p className="text-lg text-gray-300 max-w-2xl mx-auto">
-               Feedback from clients and collaborators I&apos;ve worked with.
-             </p>
-           </div>
+      {/* Testimonials Section */}
+      <section className="py-24 px-6 sm:px-8 lg:px-12">
+        <div className="max-w-7xl mx-auto">
+          <div className="text-center mb-20">
+            <h2 className="text-3xl lg:text-4xl font-bold text-white mb-6 font-righteous">
+              What People Say
+            </h2>
+            <p className="text-lg text-gray-300 max-w-3xl mx-auto leading-relaxed">
+              Feedback from clients and collaborators I've worked with throughout my design journey.
+            </p>
+          </div>
 
-           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-             {testimonials.map((testimonial, index) => (
-               <div key={index} className="bg-gray-800 rounded-lg p-8 shadow-sm border border-gray-700">
-                 <div className="mb-6">
-                   <svg className="w-8 h-8 text-blue-400 mb-4" fill="currentColor" viewBox="0 0 32 32">
-                     <path d="M10 8c-3.3 0-6 2.7-6 6v10c0 1.1.9 2 2 2h4c1.1 0 2-.9 2-2v-6c0-1.1-.9-2-2-2H8c0-2.2 1.8-4 4-4V8zm16 0c-3.3 0-6 2.7-6 6v10c0 1.1.9 2 2 2h4c1.1 0 2-.9 2-2v-6c0-1.1-.9-2-2-2h-2c0-2.2 1.8-4 4-4V8z"/>
-                   </svg>
-                   <p className="text-gray-300 leading-relaxed italic">&ldquo;{testimonial.quote}&rdquo;</p>
-                 </div>
-                 <div>
-                   <p className="text-white font-semibold">{testimonial.author}</p>
-                   <p className="text-blue-400 text-sm">{testimonial.company}</p>
-                 </div>
-               </div>
-             ))}
-           </div>
-         </div>
-       </section>
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+            {testimonials.map((testimonial, index) => {
+              const colors = ['#3B82F6', '#A855F7', '#22C55E'];
+              const accentColor = colors[index % colors.length];
+              
+              return (
+                <div 
+                  key={index} 
+                  className="rounded-2xl p-8 transition-all duration-300 hover:scale-105 hover:-translate-y-2 group"
+                  style={{
+                    backgroundColor: '#1a1a1a',
+                    border: '1px solid #333',
+                    boxShadow: '15px 15px 30px rgba(0,0,0,0.3), -15px -15px 30px rgba(255,255,255,0.02)'
+                  }}
+                >
+                  <div className="mb-8">
+                    <div className="flex items-center mb-6">
+                      <svg 
+                        className="w-8 h-8 mr-3" 
+                        fill={accentColor} 
+                        viewBox="0 0 32 32"
+                      >
+                        <path d="M10 8c-3.3 0-6 2.7-6 6v10c0 1.1.9 2 2 2h4c1.1 0 2-.9 2-2v-6c0-1.1-.9-2-2-2H8c0-2.2 1.8-4 4-4V8zm16 0c-3.3 0-6 2.7-6 6v10c0 1.1.9 2 2 2h4c1.1 0 2-.9 2-2v-6c0-1.1-.9-2-2-2h-2c0-2.2 1.8-4 4-4V8z"/>
+                      </svg>
+                      <div className="w-12 h-1 rounded-full" style={{backgroundColor: accentColor}}></div>
+                    </div>
+                    <p className="text-gray-300 leading-relaxed text-lg italic group-hover:text-white transition-colors duration-300">
+                      "{testimonial.quote}"
+                    </p>
+                  </div>
+                  <div className="border-t border-gray-700 pt-6">
+                    <p className="text-white font-semibold mb-1">{testimonial.author}</p>
+                    <p className="text-sm" style={{color: accentColor}}>{testimonial.company}</p>
+                  </div>
+                </div>
+              );
+            })}
+          </div>
+        </div>
+      </section>
+
+      {/* Photography Portfolio Section */}
+      <section className="py-24 px-6 sm:px-8 lg:px-12" style={{backgroundColor: '#0f0f0f'}}>
+        <div className="max-w-7xl mx-auto">
+          <div className="text-center mb-20">
+            <h2 className="text-3xl lg:text-4xl font-bold text-white mb-6 font-righteous">
+              Photography Portfolio
+            </h2>
+            <p className="text-lg text-gray-300 max-w-3xl mx-auto leading-relaxed">
+              Beyond design, I'm passionate about capturing moments and stories through photography. 
+              Click the cards to explore my work with both professional cameras and mobile photography.
+            </p>
+          </div>
+
+          {/* Stacked Cards Container */}
+          <div className="flex justify-center">
+            <div className="relative w-80 h-96 lg:w-96 lg:h-[500px]">
+              {stackOrder.map((imageIndex, stackIndex) => {
+                const image = photographyImages[imageIndex];
+                const isSelected = selectedCard === imageIndex;
+                const isTopCard = stackIndex === stackOrder.length - 1;
+                const zIndex = stackIndex;
+                const rotation = (stackIndex - stackOrder.length / 2) * 1.5;
+                const offset = stackIndex * 3;
+                
+                return (
+                  <div
+                    key={image.id}
+                    className={`absolute inset-0 cursor-pointer transition-all duration-500 ease-out ${
+                      isSelected && isTopCard ? 'hover:scale-105' : ''
+                    }`}
+                    style={{
+                      zIndex: zIndex,
+                      transform: isSelected && isTopCard 
+                        ? `rotate(0deg) translateY(-20px) scale(1.05)` 
+                        : `rotate(${rotation}deg) translateY(${offset}px)`,
+                      transformOrigin: 'bottom center',
+                      transition: 'transform 0.5s cubic-bezier(0.4, 0, 0.2, 1)'
+                    }}
+                    onClick={() => handleCardClick(imageIndex)}
+                  >
+                    {/* Single card with overlay details */}
+                    <div className="relative w-full h-full rounded-2xl overflow-hidden" style={{
+                      boxShadow: isSelected && isTopCard 
+                        ? '0 25px 50px rgba(0,0,0,0.5), 0 15px 25px rgba(0,0,0,0.4)'
+                        : '0 20px 40px rgba(0,0,0,0.4), 0 10px 20px rgba(0,0,0,0.3)'
+                    }}>
+                      <img
+                        src={image.src}
+                        alt={image.title}
+                        className="w-full h-full object-cover"
+                        onError={(e) => {
+                          // Fallback to placeholder if image doesn't exist
+                          const target = e.target as HTMLImageElement;
+                          target.src = `https://picsum.photos/400/600?random=${image.id}`;
+                        }}
+                      />
+                      
+                      {/* Gradient overlay */}
+                      <div className={`absolute inset-0 transition-all duration-300 ${
+                        isSelected && isTopCard 
+                          ? 'bg-gradient-to-t from-black/70 via-black/20 to-transparent' 
+                          : 'bg-gradient-to-t from-black/60 via-transparent to-transparent'
+                      }`}></div>
+                      
+                      {/* Basic info - always visible */}
+                      <div className="absolute bottom-4 left-4 right-4">
+                        <h3 className="text-white font-semibold text-lg drop-shadow-lg">{image.title}</h3>
+                        <p className="text-gray-200 text-sm drop-shadow-md">{image.camera}</p>
+                      </div>
+                      
+                      {/* Detailed info - only visible when selected */}
+                      <div className={`absolute inset-x-4 bottom-20 transition-all duration-300 transform ${
+                        isSelected && isTopCard 
+                          ? 'opacity-100 translate-y-0' 
+                          : 'opacity-0 translate-y-4 pointer-events-none'
+                      }`}>
+                        <div className="bg-black/40 backdrop-blur-sm rounded-lg p-4 border border-white/10">
+                          <p className="text-gray-200 text-sm leading-relaxed mb-3">{image.description}</p>
+                          <div className="border-t border-white/20 pt-3">
+                            <p className="text-gray-300 text-xs font-mono">{image.settings}</p>
+                          </div>
+                        </div>
+                      </div>
+                      
+                      {/* Click indicator */}
+                      <div className="absolute top-4 right-4 w-8 h-8 bg-white/20 backdrop-blur-sm rounded-full flex items-center justify-center">
+                        <svg className="w-4 h-4 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                          {isSelected && isTopCard ? (
+                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 14l-7 7m0 0l-7-7m7 7V3" />
+                          ) : (
+                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+                          )}
+                        </svg>
+                      </div>
+                      
+                      {/* Selected card indicator */}
+                      {isSelected && isTopCard && (
+                        <div className="absolute top-4 left-4 w-8 h-8 bg-blue-400/30 backdrop-blur-sm rounded-full flex items-center justify-center">
+                          <div className="w-3 h-3 bg-blue-400 rounded-full"></div>
+                        </div>
+                      )}
+                    </div>
+                  </div>
+                );
+              })}
+            </div>
+          </div>
+
+          {/* Instructions */}
+          <div className="text-center mt-12">
+            <p className="text-gray-400 text-sm">
+              Click any card to see details • Click again to slide it to the back
+            </p>
+          </div>
+        </div>
+      </section>
+
+      {/* Experience Timeline Section */}
+      <section className="py-24 px-6 sm:px-8 lg:px-12" style={{backgroundColor: '#0f0f0f'}}>
+        <div className="max-w-4xl mx-auto">
+          <div className="text-center mb-20">
+            <h2 className="text-3xl lg:text-4xl font-bold text-white mb-6 font-righteous">
+              My Journey
+            </h2>
+            <p className="text-lg text-gray-300 max-w-2xl mx-auto leading-relaxed">
+              Key milestones and experiences that shaped my design career.
+            </p>
+          </div>
+
+          <div className="relative">
+            <div className="absolute left-8 top-0 bottom-0 w-px bg-gradient-to-b from-blue-400 via-purple-400 to-green-400"></div>
+            
+            <div className="space-y-12">
+              <div className="relative flex items-start">
+                <div className="flex-shrink-0 w-16 h-16 rounded-full flex items-center justify-center" style={{backgroundColor: '#1a1a1a', border: '3px solid #3B82F6'}}>
+                  <div className="w-3 h-3 rounded-full bg-blue-400"></div>
+                </div>
+                <div className="ml-8">
+                  <div className="flex items-center gap-4 mb-2">
+                    <h3 className="text-xl font-semibold text-white">Product Designer</h3>
+                    <span className="px-3 py-1 text-xs font-medium rounded-full bg-blue-400/20 text-blue-400 border border-blue-400/30">Current</span>
+                  </div>
+                  <p className="text-gray-400 mb-3">5+ years • Vancouver, Canada</p>
+                  <p className="text-gray-300 leading-relaxed">Creating inclusive digital experiences and leading design initiatives for innovative tech companies.</p>
+                </div>
+              </div>
+              
+              <div className="relative flex items-start">
+                <div className="flex-shrink-0 w-16 h-16 rounded-full flex items-center justify-center" style={{backgroundColor: '#1a1a1a', border: '3px solid #A855F7'}}>
+                  <div className="w-3 h-3 rounded-full bg-purple-400"></div>
+                </div>
+                <div className="ml-8">
+                  <h3 className="text-xl font-semibold text-white mb-2">Visual Designer</h3>
+                  <p className="text-gray-400 mb-3">9+ years • Multiple Industries</p>
+                  <p className="text-gray-300 leading-relaxed">Built strong foundation in visual design, branding, and creative problem-solving across diverse projects.</p>
+                </div>
+              </div>
+              
+              <div className="relative flex items-start">
+                <div className="flex-shrink-0 w-16 h-16 rounded-full flex items-center justify-center" style={{backgroundColor: '#1a1a1a', border: '3px solid #22C55E'}}>
+                  <div className="w-3 h-3 rounded-full bg-green-400"></div>
+                </div>
+                <div className="ml-8">
+                  <h3 className="text-xl font-semibold text-white mb-2">Design Career Began</h3>
+                  <p className="text-gray-400 mb-3">Starting Point • Creative Journey</p>
+                  <p className="text-gray-300 leading-relaxed">Discovered passion for design and began developing skills in creative problem-solving and visual communication.</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Call to Action Section */}
+      <section className="py-24 px-6 sm:px-8 lg:px-12">
+        <div className="max-w-4xl mx-auto text-center">
+          <h2 className="text-3xl lg:text-4xl font-bold text-white mb-6 font-righteous">
+            Let's Create Something Amazing
+          </h2>
+          <p className="text-xl text-gray-300 mb-12 leading-relaxed">
+            I'm always excited to collaborate on meaningful projects that make a difference. 
+            Let's discuss how we can bring your ideas to life.
+          </p>
+          
+          <div className="flex flex-col sm:flex-row gap-6 justify-center">
+            <a 
+              href="mailto:hello@samuelfunmilayo.com" 
+              className="px-10 py-4 bg-white text-black font-semibold rounded-full hover:bg-gray-200 transition-all duration-300 transform hover:scale-105 hover:shadow-lg hover:shadow-white/20"
+            >
+              Get In Touch
+            </a>
+            <a 
+              href="https://linkedin.com/in/samuel-funmilayo-0a9a11217" 
+              target="_blank" 
+              rel="noopener noreferrer"
+              className="px-10 py-4 border-2 border-white text-white font-semibold rounded-full hover:bg-white hover:text-black transition-all duration-300 transform hover:scale-105"
+            >
+              View LinkedIn
+            </a>
+          </div>
+        </div>
+      </section>
 
     </div>
   );

@@ -7,14 +7,14 @@ import ChatBox from './components/ChatBox';
 // Process Carousel Component
 function ProcessCarousel({ processSteps }: { processSteps: any[] }) {
   // Duplicate items for seamless infinite scroll
-  const duplicatedSteps = [...processSteps, ...processSteps, ...processSteps];
+  const duplicatedSteps = [...processSteps, ...processSteps, ...processSteps, ...processSteps];
 
   return (
-    <div className="relative overflow-hidden">
+    <div className="relative overflow-hidden w-full">
       {/* Continuous moving carousel */}
-      <div className="flex animate-scroll-left">
+      <div className="flex animate-scroll-left" style={{width: 'max-content'}}>
         {duplicatedSteps.map((step, index) => (
-          <div key={index} className="flex-shrink-0 w-80 mx-4 text-center group">
+          <div key={index} className="flex-shrink-0 w-72 sm:w-80 mx-2 sm:mx-4 text-center group">
             <div className="mb-6 flex justify-center transform group-hover:scale-110 transition-all duration-300 ease-out group-hover:rotate-3">
               <div className="p-4 rounded-2xl transition-all duration-300" style={{backgroundColor: '#131313', boxShadow: '5px 5px 10px rgba(0,0,0,0.5), -5px -5px 10px rgba(255,255,255,0.05)'}}>
                 {step.icon}
@@ -34,16 +34,16 @@ function ProcessCarousel({ processSteps }: { processSteps: any[] }) {
 // Tools Carousel Component
 function ToolsCarousel({ tools }: { tools: any[] }) {
   // Duplicate items for seamless infinite scroll
-  const duplicatedTools = [...tools, ...tools, ...tools];
+  const duplicatedTools = [...tools, ...tools, ...tools, ...tools];
 
   return (
-    <div className="relative overflow-hidden">
+    <div className="relative overflow-hidden w-full">
       {/* Continuous moving carousel */}
-      <div className="flex animate-scroll-right">
+      <div className="flex animate-scroll-right" style={{width: 'max-content'}}>
         {duplicatedTools.map((tool, index) => (
           <div 
             key={index} 
-            className="flex-shrink-0 w-48 mx-4 group relative rounded-2xl p-6 transition-all duration-300 hover:scale-105" 
+            className="flex-shrink-0 w-40 sm:w-48 mx-2 sm:mx-4 group relative rounded-2xl p-4 sm:p-6 transition-all duration-300 hover:scale-105" 
             style={{backgroundColor: '#131313', boxShadow: '8px 8px 16px rgba(0,0,0,0.5), -8px -8px 16px rgba(255,255,255,0.05)'}}
           >
             {/* Background gradient */}
@@ -465,7 +465,7 @@ export default function Home() {
   return (
     <div className="min-h-screen text-white" style={{backgroundColor: '#131313'}}>
       {/* Hero Section */}
-      <section className="relative min-h-screen flex items-center justify-center px-4 sm:px-6 lg:px-8 overflow-hidden">
+      <section className="relative min-h-screen flex items-center justify-center px-6 sm:px-8 lg:px-12 overflow-hidden py-20">
         
         {/* Animated Background Pattern */}
         <div className="absolute inset-0 z-0">
@@ -525,9 +525,9 @@ export default function Home() {
         </div>
         
         {/* Content */}
-        <div className="relative z-10 max-w-5xl mx-auto text-center">
+        <div className="relative z-10 max-w-6xl mx-auto text-center">
           {/* Main Title with Animation */}
-          <div className="mb-8">
+          <div className="mb-12">
             <h1 className="text-4xl md:text-6xl font-bold mb-4 tracking-tighter min-h-[3rem] md:min-h-[5rem] flex items-center justify-center text-white relative">
               <span className="transition-all duration-100 bg-gradient-to-r from-white via-gray-100 to-white bg-clip-text text-transparent" style={{fontFamily: 'var(--font-jetbrains-mono)'}}>
                 {currentText}
@@ -551,7 +551,7 @@ export default function Home() {
           </div>
           
           {/* Enhanced Description */}
-          <div className="mb-12 max-w-4xl mx-auto">
+          <div className="mb-16 max-w-4xl mx-auto">
             <p className="text-lg md:text-xl text-gray-300 leading-relaxed mb-6">
               Crafting inclusive, human-centered digital experiences through 
               <span className="text-blue-400 font-medium"> empathy-driven design</span> and 
@@ -576,7 +576,7 @@ export default function Home() {
           </div>
           
           {/* Monochrome CTA Buttons */}
-          <div className="flex flex-col sm:flex-row gap-6 justify-center">
+          <div className="flex flex-col sm:flex-row gap-8 justify-center mb-20">
             <button 
               onClick={() => document.getElementById('featured-work')?.scrollIntoView({ behavior: 'smooth' })}
               className="group px-10 py-4 bg-white text-black font-semibold rounded-full hover:bg-gray-200 transition-all duration-300 transform hover:scale-105 hover:shadow-lg hover:shadow-white/20"
@@ -678,17 +678,19 @@ export default function Home() {
       </section>
 
       {/* Process Section */}
-      <section className="py-24 px-4 sm:px-6 lg:px-8">
-        <div className="max-w-6xl mx-auto">
+      <section className="py-20 px-4 sm:px-6 lg:px-8">
+        <div className="max-w-7xl mx-auto">
           <h2 className="text-3xl md:text-4xl font-bold text-center mb-16 font-righteous">
             How Ideas Take Shape
           </h2>
-          <ProcessCarousel processSteps={processSteps} />
+          <div className="-mx-4 sm:-mx-6 lg:-mx-8">
+            <ProcessCarousel processSteps={processSteps} />
+          </div>
         </div>
       </section>
 
       {/* Tools Section */}
-      <section className="py-24 px-4 sm:px-6 lg:px-8">
+      <section className="py-20 px-4 sm:px-6 lg:px-8">
         <div className="max-w-7xl mx-auto">
           <div className="text-center mb-16">
             <h2 className="text-3xl md:text-4xl font-bold text-white mb-4 font-righteous">
@@ -699,7 +701,9 @@ export default function Home() {
             </p>
           </div>
           
-          <ToolsCarousel tools={tools} />
+          <div className="-mx-4 sm:-mx-6 lg:-mx-8">
+            <ToolsCarousel tools={tools} />
+          </div>
         </div>
       </section>
 

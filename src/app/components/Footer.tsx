@@ -4,64 +4,151 @@ export default function Footer() {
   const currentYear = new Date().getFullYear();
 
   const socialLinks = [
-    { href: 'https://github.com', label: 'GitHub', icon: 'github' },
-    { href: 'https://linkedin.com', label: 'LinkedIn', icon: 'linkedin' },
-    { href: 'https://twitter.com', label: 'Twitter', icon: 'twitter' },
+    { 
+      href: 'https://github.com/samuelfunmilayo', 
+      label: 'GitHub', 
+      icon: 'github' 
+    },
+    { 
+      href: 'https://linkedin.com/in/samuel-funmilayo-0a9a11217', 
+      label: 'LinkedIn', 
+      icon: 'linkedin' 
+    },
+    { 
+      href: 'https://twitter.com/samuelfunmilayo', 
+      label: 'Twitter', 
+      icon: 'twitter' 
+    },
   ];
 
   return (
-    <footer className="bg-black text-white">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-          {/* Brand Section */}
-          <div>
-            <h3 className="text-xl font-bold mb-4">Portfolio</h3>
-            <p className="text-gray-400 text-sm">
-              Creating innovative digital experiences with modern web technologies.
-            </p>
-          </div>
+    <footer className="relative text-white overflow-hidden" style={{backgroundColor: '#131313'}}>
+      {/* Background Effects */}
+      <div className="absolute inset-0">
+        {/* Subtle gradient overlay */}
+        <div className="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent"></div>
+        
+        {/* Floating orbs for ambient lighting */}
+        <div className="absolute top-20 left-1/4 w-32 h-32 bg-blue-500/10 rounded-full blur-3xl animate-pulse"></div>
+        <div className="absolute bottom-20 right-1/4 w-40 h-40 bg-purple-500/10 rounded-full blur-3xl animate-pulse" style={{animationDelay: '2s'}}></div>
+      </div>
 
+      {/* Large Background Name */}
+      <div className="absolute inset-0 flex items-center justify-center pointer-events-none overflow-hidden">
+        {/* Background name with soft glow and gradient */}
+        <div className="relative text-center">
+          {/* Multiple glow layers for soft effect */}
+          <div className="absolute inset-0 blur-3xl opacity-10">
+            <div className="flex flex-col items-center leading-[0.8]">
+              <h1 className="text-6xl sm:text-[8rem] md:text-[12rem] lg:text-[16rem] xl:text-[20rem] font-bold bg-gradient-to-br from-white via-gray-200 to-gray-400 bg-clip-text text-transparent select-none">
+                SAMUEL
+              </h1>
+              <h1 className="text-6xl sm:text-[8rem] md:text-[12rem] lg:text-[16rem] xl:text-[20rem] font-bold bg-gradient-to-br from-white via-gray-200 to-gray-400 bg-clip-text text-transparent select-none">
+                FUNMILAYO
+              </h1>
+            </div>
+          </div>
+          <div className="absolute inset-0 blur-2xl opacity-0">
+            <div className="flex flex-col items-center leading-[0.8]">
+              <h1 className="text-6xl sm:text-[8rem] md:text-[12rem] lg:text-[16rem] xl:text-[20rem] font-bold bg-gradient-to-br from-white via-gray-200 to-gray-400 bg-clip-text text-transparent select-none">
+                SAMUEL
+              </h1>
+              <h1 className="text-6xl sm:text-[8rem] md:text-[12rem] lg:text-[16rem] xl:text-[20rem] font-bold bg-gradient-to-br from-white via-gray-200 to-gray-400 bg-clip-text text-transparent select-none">
+                FUNMILAYO
+              </h1>
+            </div>
+          </div>
+          <div className="absolute inset-0 blur-xl opacity-0">
+            <div className="flex flex-col items-center leading-[0.8]">
+              <h1 className="text-6xl sm:text-[8rem] md:text-[12rem] lg:text-[16rem] xl:text-[20rem] font-bold bg-gradient-to-br from-white via-gray-200 to-gray-400 bg-clip-text text-transparent select-none">
+                SAMUEL
+              </h1>
+              <h1 className="text-6xl sm:text-[8rem] md:text-[12rem] lg:text-[16rem] xl:text-[20rem] font-bold bg-gradient-to-br from-white via-gray-200 to-gray-400 bg-clip-text text-transparent select-none">
+                FUNMILAYO
+              </h1>
+            </div>
+          </div>
+          
+          {/* Main background text with gradient */}
+          <div className="flex flex-col items-center leading-[0.8]">
+            <h1 className="text-6xl sm:text-[8rem] md:text-[12rem] lg:text-[16rem] xl:text-[20rem] font-bold bg-gradient-to-br from-white/4 via-gray-200/3 to-gray-400/2 bg-clip-text text-transparent select-none">
+              SAMUEL
+            </h1>
+            <h1 className="text-6xl sm:text-[8rem] md:text-[12rem] lg:text-[16rem] xl:text-[20rem] font-bold bg-gradient-to-br from-white/4 via-gray-200/3 to-gray-400/2 bg-clip-text text-transparent select-none">
+              FUNMILAYO
+            </h1>
+          </div>
+        </div>
+      </div>
+
+      <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
+        {/* Simple header */}
+        <div className="text-center mb-16">
+          <p className="text-2xl text-gray-300 mb-2">
+            Ready to work together?
+          </p>
+          <p className="text-lg text-gray-400">
+            Product Designer & UX Specialist
+          </p>
+        </div>
+
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-12 mb-12">
           {/* Quick Links */}
-          <div>
-            <h4 className="text-lg font-semibold mb-4">Quick Links</h4>
-            <ul className="space-y-2">
+          <div className="text-center md:text-left">
+            <h4 className="text-lg font-semibold mb-6 text-white">Quick Links</h4>
+            <ul className="space-y-3">
               <li>
-                <Link href="/" className="text-gray-400 hover:text-white transition-colors text-sm">
+                <Link href="/" className="text-gray-400 hover:text-white transition-colors duration-300 hover:translate-x-1 inline-block">
                   Home
                 </Link>
               </li>
               <li>
-                <Link href="/about" className="text-gray-400 hover:text-white transition-colors text-sm">
+                <Link href="/about" className="text-gray-400 hover:text-white transition-colors duration-300 hover:translate-x-1 inline-block">
                   About
                 </Link>
               </li>
               <li>
-                <Link href="/projects" className="text-gray-400 hover:text-white transition-colors text-sm">
+                <Link href="/projects" className="text-gray-400 hover:text-white transition-colors duration-300 hover:translate-x-1 inline-block">
                   Projects
                 </Link>
               </li>
               <li>
-                <Link href="/contact" className="text-gray-400 hover:text-white transition-colors text-sm">
+                <Link href="/contact" className="text-gray-400 hover:text-white transition-colors duration-300 hover:translate-x-1 inline-block">
                   Contact
                 </Link>
               </li>
             </ul>
           </div>
 
+          {/* Contact Info */}
+          <div className="text-center">
+            <h4 className="text-lg font-semibold mb-6 text-white">Get In Touch</h4>
+            <div className="space-y-3">
+              <p className="text-gray-400">Vancouver, Canada 🇨🇦</p>
+              <a 
+                href="mailto:hello@samuelfunmilayo.com" 
+                className="text-gray-400 hover:text-blue-400 transition-colors duration-300 block"
+              >
+                hello@samuelfunmilayo.com
+              </a>
+            </div>
+          </div>
+
           {/* Social Links */}
-          <div>
-            <h4 className="text-lg font-semibold mb-4">Connect</h4>
-            <div className="flex space-x-4">
+          <div className="text-center md:text-right">
+            <h4 className="text-lg font-semibold mb-6 text-white">Connect</h4>
+            <div className="flex justify-center md:justify-end space-x-6">
               {socialLinks.map((social) => (
                 <a
                   key={social.href}
                   href={social.href}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="text-gray-400 hover:text-white transition-colors"
+                  className="group p-3 rounded-full transition-all duration-300 hover:scale-110"
+                  style={{backgroundColor: '#131313', border: '1px solid #333'}}
                   aria-label={social.label}
                 >
-                  <svg className="h-6 w-6" fill="currentColor" viewBox="0 0 24 24">
+                  <svg className="h-6 w-6 text-gray-400 group-hover:text-white transition-colors duration-300" fill="currentColor" viewBox="0 0 24 24">
                     {social.icon === 'github' && (
                       <path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/>
                     )}
@@ -79,9 +166,9 @@ export default function Footer() {
         </div>
 
         {/* Copyright */}
-        <div className="border-t border-gray-800 mt-8 pt-8 text-center">
+        <div className="border-t border-gray-800 pt-8 text-center">
           <p className="text-gray-400 text-sm">
-            © {currentYear} Portfolio. All rights reserved.
+            © {currentYear} Samuel Funmilayo. All rights reserved.
           </p>
         </div>
       </div>

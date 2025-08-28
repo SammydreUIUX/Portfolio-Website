@@ -4,6 +4,170 @@ import Link from 'next/link';
 import { useState, useEffect } from 'react';
 import ChatBox from './components/ChatBox';
 
+// Process Carousel Component
+function ProcessCarousel({ processSteps }: { processSteps: any[] }) {
+  // Duplicate items for seamless infinite scroll
+  const duplicatedSteps = [...processSteps, ...processSteps, ...processSteps];
+
+  return (
+    <div className="relative overflow-hidden">
+      {/* Continuous moving carousel */}
+      <div className="flex animate-scroll-left">
+        {duplicatedSteps.map((step, index) => (
+          <div key={index} className="flex-shrink-0 w-80 mx-4 text-center group">
+            <div className="mb-6 flex justify-center transform group-hover:scale-110 transition-all duration-300 ease-out group-hover:rotate-3">
+              <div className="p-4 rounded-2xl transition-all duration-300" style={{backgroundColor: '#131313', boxShadow: '5px 5px 10px rgba(0,0,0,0.5), -5px -5px 10px rgba(255,255,255,0.05)'}}>
+                {step.icon}
+              </div>
+            </div>
+            <h3 className="text-lg font-semibold mb-3">{step.title}</h3>
+            <p className="text-gray-300 leading-relaxed">
+              {step.description}
+            </p>
+          </div>
+        ))}
+      </div>
+    </div>
+  );
+}
+
+// Tools Carousel Component
+function ToolsCarousel({ tools }: { tools: any[] }) {
+  // Duplicate items for seamless infinite scroll
+  const duplicatedTools = [...tools, ...tools, ...tools];
+
+  return (
+    <div className="relative overflow-hidden">
+      {/* Continuous moving carousel */}
+      <div className="flex animate-scroll-right">
+        {duplicatedTools.map((tool, index) => (
+          <div 
+            key={index} 
+            className="flex-shrink-0 w-48 mx-4 group relative rounded-2xl p-6 transition-all duration-300 hover:scale-105" 
+            style={{backgroundColor: '#131313', boxShadow: '8px 8px 16px rgba(0,0,0,0.5), -8px -8px 16px rgba(255,255,255,0.05)'}}
+          >
+            {/* Background gradient */}
+            <div className="absolute inset-0 opacity-5 group-hover:opacity-10 rounded-2xl transition-opacity duration-300" style={{backgroundColor: '#131313'}}></div>
+            
+            {/* Content */}
+            <div className="relative z-10 text-center">
+              {/* Icon */}
+              <div className="inline-flex items-center justify-center w-16 h-16 rounded-xl text-white mb-4 group-hover:scale-110 transition-transform duration-300 shadow-lg" style={{backgroundColor: '#131313', border: '1px solid #333'}}>
+                {tool.icon}
+              </div>
+              
+              {/* Tool name */}
+              <h3 className="text-base font-semibold text-white mb-2 transition-all duration-300">
+                {tool.name}
+              </h3>
+              
+              {/* Category */}
+              <p className="text-sm text-gray-400 group-hover:text-gray-300 transition-colors duration-300">
+                {tool.category}
+              </p>
+            </div>
+          </div>
+        ))}
+      </div>
+    </div>
+  );
+}
+
+// Testimonials Carousel Component
+function TestimonialsCarousel({ testimonials }: { testimonials: any[] }) {
+  const [currentSlide, setCurrentSlide] = useState(0);
+
+  const nextSlide = () => {
+    setCurrentSlide((prev) => (prev + 1) % testimonials.length);
+  };
+
+  const prevSlide = () => {
+    setCurrentSlide((prev) => (prev - 1 + testimonials.length) % testimonials.length);
+  };
+
+  // Auto-advance testimonials
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setCurrentSlide((prev) => (prev + 1) % testimonials.length);
+    }, 6000); // Change every 6 seconds
+
+    return () => clearInterval(interval);
+  }, [testimonials.length]);
+
+  return (
+    <div className="relative max-w-4xl mx-auto">
+      {/* Testimonial Container */}
+      <div className="overflow-hidden">
+        <div 
+          className="flex transition-transform duration-700 ease-in-out"
+          style={{ transform: `translateX(-${currentSlide * 100}%)` }}
+        >
+          {testimonials.map((testimonial, index) => (
+            <div key={index} className="w-full flex-shrink-0 px-8">
+              <div className="text-center">
+                {/* Avatar */}
+                <div className="w-20 h-20 rounded-full mx-auto mb-6 flex items-center justify-center text-xl font-bold text-white" 
+                     style={{
+                       backgroundColor: '#131313', 
+                       boxShadow: '8px 8px 16px rgba(0,0,0,0.5), -8px -8px 16px rgba(255,255,255,0.05)',
+                       border: '2px solid #333'
+                     }}>
+                  {testimonial.avatar}
+                </div>
+                
+                {/* Quote */}
+                <blockquote className="text-base md:text-lg text-gray-300 leading-relaxed mb-6 italic max-w-3xl mx-auto">
+                  "{testimonial.testimonial}"
+                </blockquote>
+                
+                {/* Author Info */}
+                <div className="space-y-1">
+                  <h3 className="text-lg font-semibold text-white">{testimonial.name}</h3>
+                  <p className="text-gray-400">{testimonial.role}</p>
+                  <p className="text-gray-500">{testimonial.company}</p>
+                </div>
+              </div>
+            </div>
+          ))}
+        </div>
+      </div>
+
+      {/* Navigation Arrows */}
+      <button
+        onClick={prevSlide}
+        className="absolute left-0 top-1/2 transform -translate-y-1/2 p-3 rounded-full transition-colors duration-300 hover:bg-white/10"
+        style={{backgroundColor: '#131313', border: '1px solid #333'}}
+      >
+        <svg className="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
+        </svg>
+      </button>
+      <button
+        onClick={nextSlide}
+        className="absolute right-0 top-1/2 transform -translate-y-1/2 p-3 rounded-full transition-colors duration-300 hover:bg-white/10"
+        style={{backgroundColor: '#131313', border: '1px solid #333'}}
+      >
+        <svg className="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+        </svg>
+      </button>
+
+      {/* Dots Indicator */}
+      <div className="flex justify-center mt-8 space-x-2">
+        {testimonials.map((_, index) => (
+          <button
+            key={index}
+            onClick={() => setCurrentSlide(index)}
+            className={`w-3 h-3 rounded-full transition-colors duration-300 ${
+              index === currentSlide ? 'bg-white' : 'bg-gray-600'
+            }`}
+          />
+        ))}
+      </div>
+    </div>
+  );
+}
+
 export default function Home() {
   const [currentTitle, setCurrentTitle] = useState(0);
   const [currentText, setCurrentText] = useState('');
@@ -261,10 +425,41 @@ export default function Home() {
   ];
 
   const testimonials = [
-    { name: 'Sarah Chen', role: 'Product Manager', company: 'TechCorp' },
-    { name: 'Marcus Rodriguez', role: 'UX Director', company: 'Design Studio' },
-    { name: 'Emily Watson', role: 'Founder', company: 'StartupXYZ' },
-    { name: 'David Kim', role: 'Engineering Lead', company: 'Innovation Labs' }
+    {
+      name: 'Sarah Chen',
+      role: 'Product Manager',
+      company: 'TechFlow',
+      testimonial: "Samuel's design approach completely transformed our user experience. His attention to detail and ability to translate complex requirements into intuitive interfaces is exceptional. Working with him was a game-changer for our product.",
+      avatar: 'SC'
+    },
+    {
+      name: 'Marcus Rodriguez',
+      role: 'UX Director',
+      company: 'InnovateLab',
+      testimonial: "I've worked with many designers, but Samuel's systematic approach to user research and design thinking sets him apart. He doesn't just create beautiful interfaces—he solves real problems for real people.",
+      avatar: 'MR'
+    },
+    {
+      name: 'Emily Watson',
+      role: 'CEO',
+      company: 'StartupForge',
+      testimonial: "Samuel helped us redesign our entire platform from the ground up. His insights into user behavior and modern design principles resulted in a 40% increase in user engagement. Highly recommended!",
+      avatar: 'EW'
+    },
+    {
+      name: 'David Kim',
+      role: 'Engineering Lead',
+      company: 'CloudTech',
+      testimonial: "Samuel bridges the gap between design and development beautifully. His designs are not only visually stunning but also technically feasible and user-centered. A true collaborative partner.",
+      avatar: 'DK'
+    },
+    {
+      name: 'Lisa Thompson',
+      role: 'Marketing Director',
+      company: 'BrandWorks',
+      testimonial: "The rebrand Samuel led for us exceeded all expectations. His strategic thinking combined with creative execution helped us connect with our audience in ways we never imagined possible.",
+      avatar: 'LT'
+    }
   ];
 
   return (
@@ -274,33 +469,57 @@ export default function Home() {
         
         {/* Animated Background Pattern */}
         <div className="absolute inset-0 z-0">
-          {/* Grid Pattern with Gradient and Shining Center */}
+          {/* Animated Mesh Gradient */}
           <div className="absolute inset-0">
-            <div className="w-full h-full relative" style={{
-              backgroundImage: `
-                linear-gradient(rgba(255,255,255,0.08) 1px, transparent 1px),
-                linear-gradient(90deg, rgba(255,255,255,0.08) 1px, transparent 1px)
-              `,
-              backgroundSize: '50px 50px'
-            }}>
-              {/* Radial Gradient Overlay with Shining Center */}
-              <div className="absolute inset-0" style={{
-                background: `
-                  radial-gradient(circle at center, 
-                    rgba(255,255,255,0.15) 0%, 
-                    rgba(255,255,255,0.1) 20%, 
-                    rgba(255,255,255,0.05) 40%, 
-                    rgba(255,255,255,0.02) 60%, 
-                    transparent 80%
-                  )
-                `
-              }}></div>
+            <div className="w-full h-full relative overflow-hidden">
+              {/* Moving Mesh Pattern */}
+              <div className="absolute inset-0 opacity-20">
+                <div className="w-full h-full" style={{
+                  backgroundImage: `
+                    radial-gradient(circle at 25% 25%, rgba(255,255,255,0.1) 0%, transparent 50%),
+                    radial-gradient(circle at 75% 25%, rgba(255,255,255,0.08) 0%, transparent 50%),
+                    radial-gradient(circle at 25% 75%, rgba(255,255,255,0.12) 0%, transparent 50%),
+                    radial-gradient(circle at 75% 75%, rgba(255,255,255,0.06) 0%, transparent 50%)
+                  `,
+                  backgroundSize: '400px 400px',
+                  animation: 'meshMove 20s ease-in-out infinite'
+                }}></div>
+              </div>
               
-              {/* Animated Pulse Effect */}
-              <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-96 h-96 rounded-full opacity-20 animate-pulse" style={{
-                background: 'radial-gradient(circle, rgba(255,255,255,0.3) 0%, rgba(255,255,255,0.1) 30%, transparent 70%)',
-                animationDuration: '4s'
-              }}></div>
+              {/* Floating Orbs */}
+              <div className="absolute inset-0">
+                <div className="absolute top-1/4 left-1/4 w-32 h-32 rounded-full opacity-10 animate-float-slow" style={{
+                  background: 'radial-gradient(circle, rgba(255,255,255,0.4) 0%, rgba(255,255,255,0.1) 40%, transparent 70%)',
+                  filter: 'blur(2px)'
+                }}></div>
+                <div className="absolute top-3/4 right-1/4 w-24 h-24 rounded-full opacity-15 animate-float-medium" style={{
+                  background: 'radial-gradient(circle, rgba(255,255,255,0.3) 0%, rgba(255,255,255,0.08) 50%, transparent 80%)',
+                  filter: 'blur(1px)'
+                }}></div>
+                <div className="absolute top-1/2 right-1/3 w-16 h-16 rounded-full opacity-20 animate-float-fast" style={{
+                  background: 'radial-gradient(circle, rgba(255,255,255,0.5) 0%, transparent 60%)',
+                  filter: 'blur(3px)'
+                }}></div>
+              </div>
+              
+              {/* Animated Lines */}
+              <div className="absolute inset-0">
+                <div className="absolute top-0 left-0 w-full h-px bg-gradient-to-r from-transparent via-white to-transparent opacity-20 animate-line-horizontal"></div>
+                <div className="absolute top-1/3 left-0 w-full h-px bg-gradient-to-r from-transparent via-white to-transparent opacity-15 animate-line-horizontal-delay"></div>
+                <div className="absolute top-2/3 left-0 w-full h-px bg-gradient-to-r from-transparent via-white to-transparent opacity-10 animate-line-horizontal-delay-2"></div>
+                
+                <div className="absolute top-0 left-0 h-full w-px bg-gradient-to-b from-transparent via-white to-transparent opacity-20 animate-line-vertical"></div>
+                <div className="absolute top-0 left-1/3 h-full w-px bg-gradient-to-b from-transparent via-white to-transparent opacity-15 animate-line-vertical-delay"></div>
+                <div className="absolute top-0 left-2/3 h-full w-px bg-gradient-to-b from-transparent via-white to-transparent opacity-10 animate-line-vertical-delay-2"></div>
+              </div>
+              
+              {/* Central Glow */}
+              <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2">
+                <div className="w-96 h-96 rounded-full opacity-10 animate-glow" style={{
+                  background: 'radial-gradient(circle, rgba(255,255,255,0.4) 0%, rgba(255,255,255,0.2) 30%, rgba(255,255,255,0.1) 60%, transparent 80%)',
+                  filter: 'blur(40px)'
+                }}></div>
+              </div>
             </div>
           </div>
         </div>
@@ -309,8 +528,8 @@ export default function Home() {
         <div className="relative z-10 max-w-5xl mx-auto text-center">
           {/* Main Title with Animation */}
           <div className="mb-8">
-            <h1 className="text-6xl md:text-8xl font-bold mb-4 tracking-tighter min-h-[5rem] md:min-h-[8rem] flex items-center justify-center text-white relative">
-              <span className="transition-all duration-100 font-mono bg-gradient-to-r from-white via-gray-100 to-white bg-clip-text text-transparent">
+            <h1 className="text-4xl md:text-6xl font-bold mb-4 tracking-tighter min-h-[3rem] md:min-h-[5rem] flex items-center justify-center text-white relative">
+              <span className="transition-all duration-100 bg-gradient-to-r from-white via-gray-100 to-white bg-clip-text text-transparent" style={{fontFamily: 'var(--font-jetbrains-mono)'}}>
                 {currentText}
                 <span className="animate-pulse text-blue-400">|</span>
               </span>
@@ -322,21 +541,18 @@ export default function Home() {
             
             {/* Subtitle */}
             <div className="relative">
-              <p className="text-2xl md:text-3xl text-gray-200 font-light mb-2">
+              <p className="text-xl md:text-2xl text-gray-200 font-light mb-2">
                 Product Designer & UX Specialist
               </p>
-              <p className="text-lg md:text-xl text-gray-400">
+              <p className="text-base md:text-lg text-gray-400">
                 Based in Vancouver 🇨🇦
               </p>
-              
-              {/* Decorative Line */}
-              <div className="w-24 h-1 bg-gradient-to-r from-blue-500 to-purple-500 mx-auto mt-6 rounded-full"></div>
             </div>
           </div>
           
           {/* Enhanced Description */}
           <div className="mb-12 max-w-4xl mx-auto">
-            <p className="text-xl md:text-2xl text-gray-300 leading-relaxed mb-6">
+            <p className="text-lg md:text-xl text-gray-300 leading-relaxed mb-6">
               Crafting inclusive, human-centered digital experiences through 
               <span className="text-blue-400 font-medium"> empathy-driven design</span> and 
               <span className="text-purple-400 font-medium"> innovative solutions</span>
@@ -397,268 +613,62 @@ export default function Home() {
         </div>
       </section>
 
-      {/* About Section */}
-      <section className="py-24 px-4 sm:px-6 lg:px-8">
-        <div className="max-w-4xl mx-auto">
-          <div className="text-center mb-16">
-            <h2 className="text-4xl md:text-5xl font-bold mb-6">About Me</h2>
-            <p className="text-xl text-gray-300">
-              Crafting digital experiences that put humans first
-            </p>
-          </div>
-          
-          <div className="grid lg:grid-cols-2 gap-16 items-center">
-            {/* Text Content */}
-            <div className="space-y-6">
-              <p className="text-lg text-gray-300 leading-relaxed">
-                Hi, I&apos;m Samuel Funmilayo — a Product Designer based in Vancouver with a passion for creating inclusive, human-centered digital experiences. With a background spanning UI/UX design, product research, and AI integration, I bring a holistic approach to solving complex design challenges.
-              </p>
-              
-              <p className="text-lg text-gray-300 leading-relaxed">
-                My journey in design is driven by empathy and curiosity. I believe the best products are born from deep user understanding and careful attention to the small details that make big differences in people&apos;s lives.
-              </p>
-              
-              <p className="text-lg text-gray-300 leading-relaxed">
-                When I&apos;m not designing, you&apos;ll find me exploring Vancouver&apos;s trails, experimenting with new AI tools, or diving into the latest design trends that push the boundaries of what&apos;s possible.
-              </p>
-
-              {/* Skills */}
-              <div className="pt-8">
-                <h3 className="text-xl font-semibold text-white mb-4">What I Do Best</h3>
-                <div className="grid md:grid-cols-2 gap-4">
-                  <div className="space-y-3">
-                    <div className="flex items-center">
-                      <div className="w-2 h-2 bg-blue-500 rounded-full mr-3"></div>
-                      <span className="text-gray-300">User Experience Design</span>
-                    </div>
-                    <div className="flex items-center">
-                      <div className="w-2 h-2 bg-purple-500 rounded-full mr-3"></div>
-                      <span className="text-gray-300">Product Strategy</span>
-                    </div>
-                    <div className="flex items-center">
-                      <div className="w-2 h-2 bg-green-500 rounded-full mr-3"></div>
-                      <span className="text-gray-300">User Research</span>
-                    </div>
-                  </div>
-                  <div className="space-y-3">
-                    <div className="flex items-center">
-                      <div className="w-2 h-2 bg-orange-500 rounded-full mr-3"></div>
-                      <span className="text-gray-300">Interface Design</span>
-                    </div>
-                    <div className="flex items-center">
-                      <div className="w-2 h-2 bg-red-500 rounded-full mr-3"></div>
-                      <span className="text-gray-300">Design Systems</span>
-                    </div>
-                    <div className="flex items-center">
-                      <div className="w-2 h-2 bg-teal-500 rounded-full mr-3"></div>
-                      <span className="text-gray-300">AI Integration</span>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-
-            {/* Visual/Stats Side */}
-            <div className="relative">
-              {/* Profile Card */}
-              <div className="rounded-2xl p-8" style={{backgroundColor: '#131313', boxShadow: '12px 12px 24px rgba(0,0,0,0.6), -12px -12px 24px rgba(255,255,255,0.08)'}}>
-                <div className="text-center mb-6">
-                  <div className="w-24 h-24 rounded-full mx-auto mb-4 overflow-hidden" style={{boxShadow: '6px 6px 12px rgba(0,0,0,0.5), -6px -6px 12px rgba(255,255,255,0.1), inset 2px 2px 4px rgba(0,0,0,0.3), inset -2px -2px 4px rgba(255,255,255,0.05)'}}>
-                    <img 
-                      src="/images/samuel.jfif" 
-                      alt="Samuel Funmilayo - Product Designer"
-                      className="w-full h-full object-cover"
-                    />
-                  </div>
-                  <h3 className="text-xl font-bold text-white mb-2">Samuel Funmilayo</h3>
-                  <p className="text-gray-400">Product Designer</p>
-                  <p className="text-sm text-gray-500">Vancouver, Canada 🇨🇦</p>
-                </div>
-
-                {/* Stats */}
-                <div className="grid grid-cols-2 gap-6 pt-6" style={{borderTop: '1px solid #333'}}>
-                  <div className="text-center">
-                    <div className="text-2xl font-bold text-gray-300 mb-1">5+</div>
-                    <p className="text-sm text-gray-400">Years Experience</p>
-                  </div>
-                  <div className="text-center">
-                    <div className="text-2xl font-bold text-gray-300 mb-1">20+</div>
-                    <p className="text-sm text-gray-400">Projects Completed</p>
-                  </div>
-                  <div className="text-center">
-                    <div className="text-2xl font-bold text-gray-300 mb-1">100+</div>
-                    <p className="text-sm text-gray-400">Users Researched</p>
-                  </div>
-                  <div className="text-center">
-                    <div className="text-2xl font-bold text-gray-300 mb-1">15+</div>
-                    <p className="text-sm text-gray-400">Happy Clients</p>
-                  </div>
-                </div>
-
-                {/* Tools */}
-                <div className="pt-6 border-t border-gray-700">
-                  <p className="text-sm text-gray-400 mb-3 text-center">Favorite Tools</p>
-                  <div className="flex flex-wrap gap-2 justify-center">
-                    <span className="px-3 py-1 text-gray-300 rounded-full text-xs" style={{backgroundColor: '#131313'}}>Figma</span>
-                    <span className="px-3 py-1 text-gray-300 rounded-full text-xs" style={{backgroundColor: '#131313'}}>Miro</span>
-                    <span className="px-3 py-1 text-gray-300 rounded-full text-xs" style={{backgroundColor: '#131313'}}>Framer</span>
-                    <span className="px-3 py-1 text-gray-300 rounded-full text-xs" style={{backgroundColor: '#131313'}}>Principle</span>
-                  </div>
-                </div>
-              </div>
-
-              {/* Floating Elements */}
-              <div className="absolute -top-4 -left-4 w-8 h-8 bg-blue-500 rounded-full opacity-20 animate-pulse"></div>
-              <div className="absolute -bottom-4 -right-4 w-6 h-6 bg-purple-500 rounded-full opacity-30 animate-pulse delay-1000"></div>
-              <div className="absolute top-1/2 -right-6 w-4 h-4 bg-green-500 rounded-full opacity-25 animate-pulse delay-500"></div>
-            </div>
-          </div>
-
-          {/* Call to Action */}
-          <div className="text-center mt-16">
-            <p className="text-lg text-gray-300 mb-6">
-              Curious about my process or want to collaborate?
-            </p>
-            <div className="flex flex-col sm:flex-row gap-4 justify-center">
-              <Link 
-                href="/about" 
-                className="px-8 py-3 bg-gradient-to-r from-blue-500 to-purple-500 text-white font-semibold rounded-lg hover:shadow-lg hover:shadow-blue-500/25 transition-all duration-300"
-              >
-                Learn More About Me
-              </Link>
-              <button 
-                onClick={() => document.getElementById('contact')?.scrollIntoView({ behavior: 'smooth' })}
-                className="px-8 py-3 border-2 border-gray-600 text-gray-300 font-semibold rounded-lg hover:bg-gray-600 hover:text-white transition-colors"
-              >
-                Let's Chat
-              </button>
-            </div>
-          </div>
-        </div>
-      </section>
 
       {/* Featured Work Section */}
       <section id="featured-work" className="py-24 px-4 sm:px-6 lg:px-8">
         <div className="max-w-7xl mx-auto">
-          <h2 className="text-4xl md:text-5xl font-bold text-center mb-16">
+          <h2 className="text-3xl md:text-4xl font-bold text-center mb-16 font-righteous">
             Featured Work
           </h2>
-          <div className="space-y-12">
+          <div className="space-y-8">
             {featuredProjects.map((project, index) => (
               <div 
                 key={project.id} 
-                className={`group relative rounded-3xl overflow-hidden transition-all duration-500 ease-out hover:scale-[1.02] ${
-                  index % 2 === 0 ? 'lg:flex-row' : 'lg:flex-row-reverse'
-                }`}
-                style={{backgroundColor: '#131313', boxShadow: 'inset 5px 5px 10px rgba(0,0,0,0.5), inset -5px -5px 10px rgba(255,255,255,0.05)'}}
+                className="group relative rounded-2xl overflow-hidden transition-all duration-300 hover:scale-[1.01]"
+                style={{backgroundColor: '#131313', border: '1px solid #333'}}
               >
-                {/* Gradient Background */}
-                <div className={`absolute inset-0 bg-gradient-to-r ${project.color} opacity-5 group-hover:opacity-10 transition-opacity duration-500`}></div>
-                
                 {/* Card Content */}
-                <div className="relative z-10 flex flex-col lg:flex-row min-h-[600px]">
+                <div className="relative z-10 flex flex-col lg:flex-row min-h-[400px]">
                   {/* Left Side - Text Content */}
-                  <div className="flex-1 p-8 lg:p-12 flex flex-col justify-center">
-                    {/* Category & Meta Info */}
-                    <div className="mb-6 space-y-3">
-                      <div className="flex flex-wrap gap-3 items-center">
-                        <span className={`inline-block px-4 py-2 text-sm font-medium rounded-full bg-gradient-to-r ${project.color} text-white`}>
-                          {project.category}
-                        </span>
-                        <span className="text-sm text-gray-400">{project.duration}</span>
-                        <span className="text-sm text-gray-400">•</span>
-                        <span className="text-sm text-gray-400">{project.team}</span>
-                      </div>
-                      <p className="text-sm text-gray-400 font-medium">{project.role}</p>
-                    </div>
-                    
-                    {/* Project Title & Subtitle */}
-                    <div className="mb-6">
-                      <h3 className="text-4xl lg:text-5xl font-bold mb-2 text-white group-hover:text-transparent group-hover:bg-clip-text group-hover:bg-gradient-to-r group-hover:from-blue-400 group-hover:to-purple-400 transition-all duration-300">
+                  <div className="flex-1 p-8 flex flex-col justify-center">
+                    {/* Project Title & Category */}
+                    <div className="mb-4">
+                      <span className="inline-block px-3 py-1 text-xs font-medium rounded-full text-gray-400 border border-gray-600 mb-3">
+                        {project.category}
+                      </span>
+                      <h3 className="text-2xl lg:text-3xl font-bold mb-2 text-white">
                         {project.title}
                       </h3>
-                      <p className="text-xl text-gray-300 font-medium">{project.subtitle}</p>
+                      <p className="text-base text-gray-400">{project.subtitle}</p>
                     </div>
                     
                     {/* Project Description */}
-                    <p className="text-gray-300 leading-relaxed mb-8 text-lg group-hover:text-gray-200 transition-colors duration-300">
+                    <p className="text-gray-300 leading-relaxed mb-6 text-sm">
                       {project.description}
                     </p>
                     
-                    {/* Key Features */}
-                    <div className="mb-8">
-                      <h4 className="text-white font-semibold mb-3">Key Features</h4>
-                      <div className="flex flex-wrap gap-2">
-                        {project.keyFeatures.map((feature, idx) => (
-                          <span key={idx} className="px-3 py-1 text-gray-300 rounded-full text-sm" style={{backgroundColor: '#131313', boxShadow: 'inset 2px 2px 5px rgba(0,0,0,0.5), inset -2px -2px 5px rgba(255,255,255,0.05)'}}>
-                            {feature}
-                          </span>
-                        ))}
-                      </div>
-                    </div>
-                    
-                    {/* Impact & Technologies */}
-                    <div className="mb-8 space-y-4">
-                      <div className="p-4 rounded-lg" style={{backgroundColor: '#131313', boxShadow: 'inset 3px 3px 6px rgba(0,0,0,0.5), inset -3px -3px 6px rgba(255,255,255,0.05)'}}>
-                        <p className="text-green-400 font-semibold text-sm">Impact</p>
-                        <p className="text-gray-300">{project.impact}</p>
-                      </div>
-                      <div>
-                        <p className="text-gray-400 text-sm mb-2">Technologies Used</p>
-                        <div className="flex flex-wrap gap-2">
-                          {project.technologies.map((tech, idx) => (
-                            <span key={idx} className="px-2 py-1 bg-blue-900/20 text-blue-300 rounded text-xs border border-blue-500/30">
-                              {tech}
-                            </span>
-                          ))}
-                        </div>
-                      </div>
-                    </div>
-                    
                     {/* Button */}
                     <div>
-                      <Link href={project.id === 1 ? '/projects/zoneaid' : project.id === 2 ? '/projects/starling' : '#'} className={`inline-flex items-center px-8 py-4 bg-gradient-to-r ${project.color} text-white font-semibold rounded-xl hover:shadow-lg hover:shadow-current/20 transition-all duration-300 group-hover:translate-x-2`}>
+                      <Link href={project.id === 1 ? '/projects/zoneaid' : project.id === 2 ? '/projects/starling' : '#'} className="inline-flex items-center px-6 py-3 text-white font-medium rounded-lg border border-gray-600 hover:border-gray-400 hover:bg-gray-800/20 transition-all duration-300">
                         View Case Study 
-                        <svg className="w-5 h-5 ml-2 group-hover:translate-x-1 transition-transform duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <svg className="w-4 h-4 ml-2 group-hover:translate-x-1 transition-transform duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                           <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" />
                         </svg>
                       </Link>
                     </div>
                   </div>
                   
-                  {/* Right Side - Visual Design */}
-                  <div className="flex-shrink-0 w-full lg:w-1/2 p-8 lg:p-12 flex items-center justify-center">
-                    {project.id === 1 ? (
-                      // ZoneAid - Emergency App Visual
-                      <div className="relative w-full max-w-md lg:max-w-lg">
-                        <img 
-                          src="/images/zoneaid/Overview.jpg" 
-                          alt="ZoneAid Emergency Safety App Screenshot"
-                          className="w-full h-80 object-cover rounded-2xl shadow-2xl"
-                        />
-                        <div className="absolute -top-2 -right-2 w-6 h-6 bg-purple-500 rounded-full animate-pulse"></div>
-                      </div>
-                    ) : project.id === 2 ? (
-                      // Starling - Hotel Booking Visual
-                      <div className="relative w-full max-w-md lg:max-w-lg">
-                        <img 
-                          src="/images/starling/starling-overview-updated.png" 
-                          alt="Starling Hospitality App Design - UX/UI Case Study"
-                          className="w-full h-80 object-cover rounded-2xl shadow-2xl"
-                        />
-                        <div className="absolute -top-2 -right-2 w-6 h-6 bg-green-500 rounded-full animate-pulse"></div>
-                      </div>
-                    ) : (
-                      // Airtel ODU - Research Visual
-                      <div className="relative w-full max-w-md lg:max-w-lg">
-                        <img 
-                          src="/images/960x0.webp" 
-                          alt="Nokia Routers - Airtel ODU Telecom Research Project"
-                          className="w-full h-80 object-cover rounded-2xl shadow-2xl"
-                        />
-                        <div className="absolute -top-2 -right-2 w-6 h-6 bg-red-500 rounded-full animate-pulse"></div>
-                      </div>
-                    )}
+                  {/* Right Side - Visual */}
+                  <div className="flex-shrink-0 w-full lg:w-2/5 p-8 flex items-center justify-center">
+                    <div className="relative w-full max-w-xs">
+                      <img 
+                        src={project.id === 1 ? "/images/zoneaid/Overview.jpg" : 
+                             project.id === 2 ? "/images/starling/starling-overview-updated.png" : 
+                             "/images/960x0.webp"} 
+                        alt={`${project.title} ${project.subtitle}`}
+                        className="w-full h-64 object-cover rounded-xl"
+                      />
+                    </div>
                   </div>
                 </div>
               </div>
@@ -670,24 +680,10 @@ export default function Home() {
       {/* Process Section */}
       <section className="py-24 px-4 sm:px-6 lg:px-8">
         <div className="max-w-6xl mx-auto">
-          <h2 className="text-4xl md:text-5xl font-bold text-center mb-16">
+          <h2 className="text-3xl md:text-4xl font-bold text-center mb-16 font-righteous">
             How Ideas Take Shape
           </h2>
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-            {processSteps.map((step, index) => (
-              <div key={index} className="text-center group">
-                <div className="mb-6 flex justify-center transform group-hover:scale-110 transition-all duration-300 ease-out group-hover:rotate-3">
-                  <div className="p-4 rounded-2xl transition-all duration-300" style={{backgroundColor: '#131313', boxShadow: '5px 5px 10px rgba(0,0,0,0.5), -5px -5px 10px rgba(255,255,255,0.05)'}}>
-                    {step.icon}
-                  </div>
-                </div>
-                <h3 className="text-xl font-semibold mb-3">{step.title}</h3>
-                <p className="text-gray-300 leading-relaxed">
-                  {step.description}
-                </p>
-              </div>
-            ))}
-          </div>
+          <ProcessCarousel processSteps={processSteps} />
         </div>
       </section>
 
@@ -695,85 +691,43 @@ export default function Home() {
       <section className="py-24 px-4 sm:px-6 lg:px-8">
         <div className="max-w-7xl mx-auto">
           <div className="text-center mb-16">
-            <h2 className="text-4xl md:text-5xl font-bold text-white mb-4">
+            <h2 className="text-3xl md:text-4xl font-bold text-white mb-4 font-righteous">
               My Toolkit
             </h2>
-            <p className="text-xl text-gray-300 max-w-3xl mx-auto">
+            <p className="text-lg text-gray-300 max-w-3xl mx-auto">
               The tools and technologies I use to bring ideas to life, from initial concept to polished product.
             </p>
           </div>
           
-          <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-6">
-            {tools.map((tool, index) => (
-              <div 
-                key={index} 
-                className="group relative rounded-2xl p-6 transition-all duration-300 hover:scale-105" style={{backgroundColor: '#131313', boxShadow: '8px 8px 16px rgba(0,0,0,0.5), -8px -8px 16px rgba(255,255,255,0.05)'}}
-              >
-                {/* Background gradient */}
-                <div className={`absolute inset-0 bg-gradient-to-br ${tool.color} opacity-5 group-hover:opacity-10 rounded-2xl transition-opacity duration-300`}></div>
-                
-                {/* Content */}
-                <div className="relative z-10 text-center">
-                  {/* Icon */}
-                  <div className={`inline-flex items-center justify-center w-16 h-16 rounded-xl bg-gradient-to-br ${tool.color} text-white mb-4 group-hover:scale-110 transition-transform duration-300 shadow-lg`}>
-                    {tool.icon}
-                  </div>
-                  
-                  {/* Tool name */}
-                  <h3 className="text-lg font-semibold text-white mb-2 group-hover:text-transparent group-hover:bg-clip-text group-hover:bg-gradient-to-r group-hover:from-blue-400 group-hover:to-purple-400 transition-all duration-300">
-                    {tool.name}
-                  </h3>
-                  
-                  {/* Category */}
-                  <p className="text-sm text-gray-400 group-hover:text-gray-300 transition-colors duration-300">
-                    {tool.category}
-                  </p>
-                </div>
-                
-                {/* Hover glow effect */}
-                <div className={`absolute inset-0 bg-gradient-to-br ${tool.color} opacity-0 group-hover:opacity-20 rounded-2xl blur-xl transition-opacity duration-300 -z-10`}></div>
-              </div>
-            ))}
-          </div>
+          <ToolsCarousel tools={tools} />
         </div>
       </section>
 
       {/* Testimonials Section */}
       <section className="py-24 px-4 sm:px-6 lg:px-8">
-        <div className="max-w-4xl mx-auto text-center">
-          <h2 className="text-4xl md:text-5xl font-bold mb-4">
+        <div className="max-w-6xl mx-auto text-center">
+          <h2 className="text-3xl md:text-4xl font-bold mb-4 font-righteous">
             Voices from My Journey
           </h2>
-          <p className="text-xl text-gray-300 mb-16">
+          <p className="text-lg text-gray-300 mb-16">
             A few kind words from the amazing people I've collaborated with.
           </p>
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-8">
-            {testimonials.map((person, index) => (
-              <div key={index} className="text-center">
-                <div className="w-20 h-20 rounded-full mx-auto mb-4 flex items-center justify-center" style={{backgroundColor: '#131313'}}>
-                  <span className="text-2xl">👤</span>
-                </div>
-                <h3 className="font-semibold mb-1">{person.name}</h3>
-                <p className="text-sm text-gray-400">{person.role}</p>
-                <p className="text-sm text-gray-500">{person.company}</p>
-              </div>
-            ))}
-          </div>
+          <TestimonialsCarousel testimonials={testimonials} />
         </div>
       </section>
 
       {/* Contact Section */}
       <section id="contact" className="py-24 px-4 sm:px-6 lg:px-8">
         <div className="max-w-4xl mx-auto text-center">
-          <h2 className="text-4xl md:text-5xl font-bold mb-4">
+          <h2 className="text-3xl md:text-4xl font-bold mb-4 font-righteous">
             Let's Create Something Amazing Together
           </h2>
-          <p className="text-xl text-gray-300 mb-12">
+          <p className="text-lg text-gray-300 mb-12">
             Ready to discuss your next project? I'd love to hear from you.
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
             <a 
-              href="https://linkedin.com" 
+              href="https://linkedin.com/in/samuel-funmilayo-0a9a11217" 
               target="_blank" 
               rel="noopener noreferrer"
               className="px-8 py-4 bg-white text-black font-semibold rounded-lg hover:bg-gray-200 transition-colors"

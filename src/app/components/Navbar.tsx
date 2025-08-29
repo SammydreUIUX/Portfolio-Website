@@ -20,7 +20,7 @@ export default function Navbar() {
           <Link href="/" className="flex items-center space-x-3 text-xl font-bold text-white hover:text-gray-300 transition-colors">
             {/* SF Logo */}
             <img 
-              src="/images/sf-logo.png" 
+              src="/images/sf-logo-new.png" 
               alt="SF Logo"
               className="h-8 w-auto object-contain"
             />

@@ -17,8 +17,8 @@ const righteous = Righteous({
 });
 
 export const metadata: Metadata = {
-  title: "Samuel Famuyiwa - Product Designer & UX Specialist",
-  description: "Professional portfolio showcasing UX/UI design projects and product design expertise by Samuel Famuyiwa",
+  title: "Samuel Funmilayo UIUX - Product Designer & UX Specialist",
+  description: "Professional portfolio showcasing UX/UI design projects and product design expertise by Samuel Funmilayo",
   icons: {
     icon: "/images/sf-logo.png",
     shortcut: "/images/sf-logo.png",

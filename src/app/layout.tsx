@@ -17,8 +17,13 @@ const righteous = Righteous({
 });
 
 export const metadata: Metadata = {
-  title: "Portfolio - Creative Developer",
-  description: "Professional portfolio showcasing web development projects and skills",
+  title: "Samuel Famuyiwa - Product Designer & UX Specialist",
+  description: "Professional portfolio showcasing UX/UI design projects and product design expertise by Samuel Famuyiwa",
+  icons: {
+    icon: "/images/sf-logo.png",
+    shortcut: "/images/sf-logo.png",
+    apple: "/images/sf-logo.png",
+  },
 };
 
 export default function RootLayout({

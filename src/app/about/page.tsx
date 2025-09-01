@@ -36,55 +36,63 @@ export default function About() {
     }
   ];
 
-  // Photography portfolio data - you can update these paths with your actual images
+  // Photography portfolio data - using your actual uploaded images
   const photographyImages = [
     {
       id: 1,
-      src: '/images/photography/photo1.jpg', // Update with your image paths
-      title: 'Urban Landscape',
-      camera: 'iPhone 15 Pro',
-      description: 'Captured the golden hour light streaming through city architecture',
-      settings: 'f/1.8 • 1/120s • ISO 100'
+      src: '/images/photography/photo1.JPG',
+      title: 'Artistic Portrait',
+      camera: 'Professional Camera',
+      description: 'Capturing personality and emotion in natural lighting',
+      settings: 'f/2.8 • 1/200s • ISO 200'
     },
     {
       id: 2,
-      src: '/images/photography/photo2.jpg',
-      title: 'Nature Portrait',
-      camera: 'Professional DSLR',
-      description: 'A serene moment captured in natural lighting',
-      settings: 'f/2.8 • 1/200s • ISO 200'
+      src: '/images/photography/photo2.JPG',
+      title: 'Creative Composition',
+      camera: 'Professional Camera',
+      description: 'Exploring angles and perspectives in photography',
+      settings: 'f/4.0 • 1/125s • ISO 400'
     },
     {
       id: 3,
       src: '/images/photography/photo3.jpg',
-      title: 'Street Photography',
-      camera: 'iPhone 15 Pro',
-      description: 'Life in motion - a candid street scene',
-      settings: 'f/2.4 • 1/60s • ISO 320'
+      title: 'Environmental Scene',
+      camera: 'Professional Camera',
+      description: 'Capturing the essence of place and moment',
+      settings: 'f/5.6 • 1/250s • ISO 100'
     },
     {
       id: 4,
-      src: '/images/photography/photo4.jpg',
-      title: 'Macro Details',
-      camera: 'Professional DSLR',
-      description: 'Intricate details captured up close',
-      settings: 'f/5.6 • 1/250s • ISO 400'
+      src: '/images/photography/photo4.JPG',
+      title: 'Visual Storytelling',
+      camera: 'Professional Camera',
+      description: 'Every frame tells a unique story',
+      settings: 'f/3.5 • 1/160s • ISO 320'
     },
     {
       id: 5,
       src: '/images/photography/photo5.jpg',
-      title: 'Sunset Silhouette',
-      camera: 'iPhone 15 Pro',
-      description: 'Dramatic silhouette against vibrant sunset colors',
-      settings: 'f/1.8 • 1/500s • ISO 50'
+      title: 'Light & Shadow',
+      camera: 'Professional Camera',
+      description: 'Playing with natural light and shadow patterns',
+      settings: 'f/2.2 • 1/300s • ISO 160'
     },
     {
       id: 6,
-      src: '/images/photography/photo6.jpg',
-      title: 'Architecture Study',
-      camera: 'Professional DSLR',
-      description: 'Geometric patterns and shadows in modern architecture',
-      settings: 'f/8.0 • 1/125s • ISO 100'
+      src: '/images/photography/photo6.JPG',
+      title: 'Moment Captured',
+      camera: 'Professional Camera',
+      description: 'Preserving fleeting moments in time',
+      settings: 'f/4.5 • 1/180s • ISO 250'
+    },
+    {
+      id: 7,
+      src: '/images/photography/photo7.JPG',
+      title: 'Artistic Expression',
+      camera: 'Professional Camera',
+      description: 'Photography as a form of creative expression',
+      settings: 'f/3.2 • 1/220s • ISO 200'
     }
   ];
 
@@ -373,11 +381,8 @@ export default function About() {
                         src={image.src}
                         alt={image.title}
                         className="w-full h-full object-cover"
-                        onError={(e) => {
-                          // Fallback to placeholder if image doesn't exist
-                          const target = e.target as HTMLImageElement;
-                          target.src = `https://picsum.photos/400/600?random=${image.id}`;
-                        }}
+                        loading="lazy"
+                        decoding="async"
                       />
                       
                       {/* Gradient overlay */}

@@ -2,10 +2,11 @@
 
 import Link from 'next/link';
 import { useState, useEffect, useCallback, useMemo } from 'react';
+import type { ReactNode } from 'react';
 import ChatBox from './components/ChatBox';
 
 // Process Carousel Component - Optimized for Chrome
-function ProcessCarousel({ processSteps }: { processSteps: any[] }) {
+function ProcessCarousel({ processSteps }: { processSteps: Array<{title: string, description: string, icon: ReactNode}> }) {
   // Memoize duplicated steps to prevent recreations
   const duplicatedSteps = useMemo(() => [...processSteps, ...processSteps], [processSteps]);
 
@@ -39,7 +40,7 @@ function ProcessCarousel({ processSteps }: { processSteps: any[] }) {
 }
 
 // Tools Carousel Component - Optimized for Chrome
-function ToolsCarousel({ tools }: { tools: any[] }) {
+function ToolsCarousel({ tools }: { tools: Array<{name: string, category: string, icon: ReactNode}> }) {
   // Memoize duplicated tools to prevent recreations
   const duplicatedTools = useMemo(() => [...tools, ...tools], [tools]);
 
@@ -88,7 +89,7 @@ function ToolsCarousel({ tools }: { tools: any[] }) {
 }
 
 // Testimonials Carousel Component - Optimized for Chrome
-function TestimonialsCarousel({ testimonials }: { testimonials: any[] }) {
+function TestimonialsCarousel({ testimonials }: { testimonials: Array<{name: string, role: string, company: string, testimonial: string, avatar: string}> }) {
   const [currentSlide, setCurrentSlide] = useState(0);
 
   const nextSlide = useCallback(() => {

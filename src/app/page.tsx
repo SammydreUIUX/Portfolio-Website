@@ -1,20 +1,27 @@
 'use client';
 
 import Link from 'next/link';
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useCallback, useMemo } from 'react';
 import ChatBox from './components/ChatBox';
 
-// Process Carousel Component
+// Process Carousel Component - Optimized for Chrome
 function ProcessCarousel({ processSteps }: { processSteps: any[] }) {
-  // Optimize duplicates for better performance
-  const duplicatedSteps = [...processSteps, ...processSteps];
+  // Memoize duplicated steps to prevent recreations
+  const duplicatedSteps = useMemo(() => [...processSteps, ...processSteps], [processSteps]);
 
   return (
-    <div className="relative overflow-hidden w-full">
+    <div className="relative overflow-hidden w-full" style={{contain: 'layout'}}>
       {/* Continuous moving carousel */}
-      <div className="flex animate-scroll-left" style={{width: 'max-content'}}>
+      <div 
+        className="flex animate-scroll-left" 
+        style={{
+          width: 'max-content',
+          willChange: 'transform',
+          transform: 'translateZ(0)'
+        }}
+      >
         {duplicatedSteps.map((step, index) => (
-          <div key={index} className="flex-shrink-0 w-72 sm:w-80 mx-2 sm:mx-4 text-center group">
+          <div key={`${step.title}-${index}`} className="flex-shrink-0 w-72 sm:w-80 mx-2 sm:mx-4 text-center group">
             <div className="mb-6 flex justify-center transform group-hover:scale-110 transition-all duration-300 ease-out group-hover:rotate-3">
               <div className="p-4 rounded-2xl transition-all duration-300" style={{backgroundColor: '#131313', boxShadow: '5px 5px 10px rgba(0,0,0,0.5), -5px -5px 10px rgba(255,255,255,0.05)'}}>
                 {step.icon}
@@ -31,18 +38,25 @@ function ProcessCarousel({ processSteps }: { processSteps: any[] }) {
   );
 }
 
-// Tools Carousel Component
+// Tools Carousel Component - Optimized for Chrome
 function ToolsCarousel({ tools }: { tools: any[] }) {
-  // Optimize duplicates for better performance
-  const duplicatedTools = [...tools, ...tools];
+  // Memoize duplicated tools to prevent recreations
+  const duplicatedTools = useMemo(() => [...tools, ...tools], [tools]);
 
   return (
-    <div className="relative overflow-hidden w-full">
+    <div className="relative overflow-hidden w-full" style={{contain: 'layout'}}>
       {/* Continuous moving carousel */}
-      <div className="flex animate-scroll-right" style={{width: 'max-content'}}>
+      <div 
+        className="flex animate-scroll-right" 
+        style={{
+          width: 'max-content',
+          willChange: 'transform',
+          transform: 'translateZ(0)'
+        }}
+      >
         {duplicatedTools.map((tool, index) => (
           <div 
-            key={index} 
+            key={`${tool.name}-${index}`}
             className="flex-shrink-0 w-40 sm:w-48 mx-2 sm:mx-4 group relative rounded-2xl p-4 sm:p-6 transition-all duration-300 hover:scale-105" 
             style={{backgroundColor: '#131313', boxShadow: '8px 8px 16px rgba(0,0,0,0.5), -8px -8px 16px rgba(255,255,255,0.05)'}}
           >
@@ -73,26 +87,23 @@ function ToolsCarousel({ tools }: { tools: any[] }) {
   );
 }
 
-// Testimonials Carousel Component
+// Testimonials Carousel Component - Optimized for Chrome
 function TestimonialsCarousel({ testimonials }: { testimonials: any[] }) {
   const [currentSlide, setCurrentSlide] = useState(0);
 
-  const nextSlide = () => {
+  const nextSlide = useCallback(() => {
     setCurrentSlide((prev) => (prev + 1) % testimonials.length);
-  };
-
-  const prevSlide = () => {
-    setCurrentSlide((prev) => (prev - 1 + testimonials.length) % testimonials.length);
-  };
-
-  // Auto-advance testimonials
-  useEffect(() => {
-    const interval = setInterval(() => {
-      setCurrentSlide((prev) => (prev + 1) % testimonials.length);
-    }, 6000); // Change every 6 seconds
-
-    return () => clearInterval(interval);
   }, [testimonials.length]);
+
+  const prevSlide = useCallback(() => {
+    setCurrentSlide((prev) => (prev - 1 + testimonials.length) % testimonials.length);
+  }, [testimonials.length]);
+
+  // Auto-advance testimonials with optimized performance
+  useEffect(() => {
+    const interval = setInterval(nextSlide, 6000); // Change every 6 seconds
+    return () => clearInterval(interval);
+  }, [nextSlide]);
 
   return (
     <div className="relative max-w-4xl mx-auto">
@@ -174,56 +185,55 @@ export default function Home() {
   const [isDeleting, setIsDeleting] = useState(false);
   const [isLoaded, setIsLoaded] = useState(false);
 
+  // Memoize titles array to prevent recreations
+  const titles = useMemo(() => [
+    "Hello, I'm Samuel Funmilayo.",
+    "Product Designer.",
+    "UX Specialist.",
+    "AI Enthusiast."
+  ], []);
+
   // Set loaded state after component mounts
   useEffect(() => {
-    setIsLoaded(true);
+    const timer = setTimeout(() => setIsLoaded(true), 50);
+    return () => clearTimeout(timer);
   }, []);
+
+  // Optimize typing animation with useCallback
+  const typeText = useCallback(() => {
+    const currentFullText = titles[currentTitle];
+    
+    if (!isDeleting) {
+      // Typing
+      if (currentText.length < currentFullText.length) {
+        setCurrentText(currentFullText.slice(0, currentText.length + 1));
+      } else {
+        // Finished typing, pause then start deleting
+        setTimeout(() => {
+          setIsDeleting(true);
+        }, 1500);
+        return;
+      }
+    } else {
+      // Deleting
+      if (currentText.length > 0) {
+        setCurrentText(currentText.slice(0, -1));
+      } else {
+        // Finished deleting, move to next title
+        setIsDeleting(false);
+        setCurrentTitle((prev) => (prev + 1) % titles.length);
+        return;
+      }
+    }
+  }, [currentText, isDeleting, currentTitle, titles]);
 
   useEffect(() => {
     if (!isLoaded) return;
     
-    const titles = [
-      "Hello, I'm Samuel Funmilayo.",
-      "Product Designer.",
-      "UX Specialist.",
-      "AI Enthusiast."
-    ];
-    const typingSpeed = isDeleting ? 30 : 60; // Faster when deleting
-    const deletingSpeed = 30;
-    const pauseTime = 1500; // Reduced pause time
-
-    const typeText = () => {
-      const currentFullText = titles[currentTitle];
-      
-      if (!isDeleting) {
-        // Typing
-        if (currentText.length < currentFullText.length) {
-          setTimeout(() => {
-            setCurrentText(currentFullText.slice(0, currentText.length + 1));
-          }, typingSpeed);
-        } else {
-          // Finished typing, pause then start deleting
-          setTimeout(() => {
-            setIsDeleting(true);
-          }, pauseTime);
-        }
-      } else {
-        // Deleting
-        if (currentText.length > 0) {
-          setTimeout(() => {
-            setCurrentText(currentText.slice(0, -1));
-          }, deletingSpeed);
-        } else {
-          // Finished deleting, move to next title
-          setIsDeleting(false);
-          setCurrentTitle((prev) => (prev + 1) % titles.length);
-        }
-      }
-    };
-
-    const timer = setTimeout(typeText, 100);
+    const typingSpeed = isDeleting ? 30 : 60;
+    const timer = setTimeout(typeText, typingSpeed);
     return () => clearTimeout(timer);
-  }, [currentText, isDeleting, currentTitle, isLoaded]);
+  }, [isLoaded, typeText, isDeleting]);
   const featuredProjects = [
     {
       id: 1,
@@ -706,6 +716,9 @@ export default function Home() {
                              "/images/960x0.webp"} 
                         alt={`${project.title} ${project.subtitle}`}
                         className="w-full h-64 object-cover rounded-xl"
+                        loading="lazy"
+                        decoding="async"
+                        style={{contentVisibility: 'auto'}}
                       />
                     </div>
                   </div>

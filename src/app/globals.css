@@ -14,6 +14,10 @@
   --font-righteous: var(--font-righteous);
 }
 
+html {
+  scroll-behavior: smooth;
+}
+
 body {
   background: var(--background);
   color: var(--foreground);
@@ -21,6 +25,9 @@ body {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   overflow-x: hidden;
+  /* Chrome-specific optimizations */
+  text-rendering: optimizeSpeed;
+  -webkit-text-size-adjust: 100%;
 }
 
 /* Typography System */
@@ -389,4 +396,41 @@ img {
   transform: translateZ(0);
   will-change: transform;
   backface-visibility: hidden;
+}
+
+/* Chrome-specific optimizations for content stability */
+@supports (-webkit-appearance: none) {
+  .content-section {
+    /* Promote to composite layer */
+    transform: translateZ(0);
+    /* Contain painting to prevent reflow */
+    contain: layout style paint;
+    /* Reduce repaints */
+    will-change: auto;
+  }
+  
+  /* Optimize text during scroll */
+  .text-content {
+    /* Prevent subpixel rendering issues */
+    -webkit-font-feature-settings: "kern" 1;
+    font-feature-settings: "kern" 1;
+    /* Force GPU acceleration for text */
+    transform: translateZ(0);
+  }
+  
+  /* Fix for disappearing animated elements */
+  .animate-scroll-left,
+  .animate-scroll-right {
+    /* Ensure composite layer */
+    isolation: isolate;
+    /* Optimize for animations */
+    contain: layout;
+    /* Prevent flickering */
+    -webkit-backface-visibility: hidden;
+  }
+  
+  /* Prevent layout thrashing on scroll */
+  section {
+    contain: layout;
+  }
 }

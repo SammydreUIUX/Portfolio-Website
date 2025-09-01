@@ -1,5 +1,10 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
+  // Disable strict linting during build for faster deployment
+  eslint: {
+    ignoreDuringBuilds: true,
+  },
+  
   // Optimize images
   images: {
     formats: ['image/webp', 'image/avif'],

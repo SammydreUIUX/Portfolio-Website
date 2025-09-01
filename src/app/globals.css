@@ -209,30 +209,18 @@ code, pre, .font-mono {
   animation: float-slow 8s ease-in-out infinite;
   will-change: transform;
   backface-visibility: hidden;
-  -webkit-backface-visibility: hidden;
-  transform: translateZ(0);
-  -webkit-transform: translateZ(0);
-  opacity: 1 !important;
 }
 
 .animate-float-medium {
   animation: float-medium 6s ease-in-out infinite;
   will-change: transform;
   backface-visibility: hidden;
-  -webkit-backface-visibility: hidden;
-  transform: translateZ(0);
-  -webkit-transform: translateZ(0);
-  opacity: 1 !important;
 }
 
 .animate-float-fast {
   animation: float-fast 4s ease-in-out infinite;
   will-change: transform;
   backface-visibility: hidden;
-  -webkit-backface-visibility: hidden;
-  transform: translateZ(0);
-  -webkit-transform: translateZ(0);
-  opacity: 1 !important;
 }
 
 .animate-line-horizontal {
@@ -290,22 +278,14 @@ code, pre, .font-mono {
   animation: scroll-left 20s linear infinite;
   will-change: transform;
   backface-visibility: hidden;
-  -webkit-backface-visibility: hidden;
   transform: translateZ(0);
-  -webkit-transform: translateZ(0);
-  opacity: 1 !important;
-  contain: layout;
 }
 
 .animate-scroll-right {
   animation: scroll-right 18s linear infinite;
   will-change: transform;
   backface-visibility: hidden;
-  -webkit-backface-visibility: hidden;
   transform: translateZ(0);
-  -webkit-transform: translateZ(0);
-  opacity: 1 !important;
-  contain: layout;
 }
 
 /* Footer Gradient Animation */
@@ -385,105 +365,28 @@ code, pre, .font-mono {
   box-sizing: border-box;
 }
 
-/* Force hardware acceleration and prevent disappearing content */
-html {
-  -webkit-transform: translateZ(0);
-  transform: translateZ(0);
-}
-
-/* Aggressive content stability optimizations */
+/* Prevent layout shifts and optimize rendering */
 .content-section {
   transform: translateZ(0);
-  -webkit-transform: translateZ(0);
   will-change: auto;
-  position: relative;
-  z-index: 1;
-  contain: layout style paint;
-  isolation: isolate;
 }
 
 /* Optimize image rendering */
 img {
   backface-visibility: hidden;
-  -webkit-backface-visibility: hidden;
   transform: translateZ(0);
-  -webkit-transform: translateZ(0);
-  will-change: auto;
 }
 
-/* Optimize text rendering and prevent disappearing */
+/* Optimize text rendering */
 .text-content {
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  transform: translateZ(0);
-  -webkit-transform: translateZ(0);
-  will-change: auto;
-  position: relative;
-  z-index: 1;
 }
 
-/* Prevent repaints during scroll with aggressive optimization */
+/* Prevent repaints during scroll */
 .scroll-optimized {
   transform: translateZ(0);
-  -webkit-transform: translateZ(0);
   will-change: transform;
   backface-visibility: hidden;
-  -webkit-backface-visibility: hidden;
-  contain: layout style paint;
-  isolation: isolate;
-  position: relative;
-  z-index: 0;
-}
-
-/* Fix for webkit browsers */
-section {
-  -webkit-transform: translateZ(0);
-  transform: translateZ(0);
-  will-change: auto;
-  position: relative;
-}
-
-/* Prevent content from disappearing during animations */
-.hero-content {
-  transform: translateZ(0);
-  -webkit-transform: translateZ(0);
-  backface-visibility: hidden;
-  -webkit-backface-visibility: hidden;
-  will-change: auto;
-  position: relative;
-  z-index: 10;
-}
-
-/* Fix animated elements */
-.animate-bounce,
-.animate-pulse {
-  transform: translateZ(0);
-  -webkit-transform: translateZ(0);
-  backface-visibility: hidden;
-  -webkit-backface-visibility: hidden;
-}
-
-/* Critical fix for WebKit content disappearing */
-@media screen and (-webkit-min-device-pixel-ratio:0) {
-  * {
-    -webkit-transform: translateZ(0);
-  }
-  
-  section, div, p, h1, h2, h3, h4, h5, h6 {
-    -webkit-transform: translateZ(0) !important;
-    transform: translateZ(0) !important;
-    -webkit-backface-visibility: hidden !important;
-    backface-visibility: hidden !important;
-    opacity: 1 !important;
-    visibility: visible !important;
-  }
-  
-  .hero-content * {
-    -webkit-transform: translateZ(0) !important;
-    transform: translateZ(0) !important;
-    -webkit-backface-visibility: hidden !important;
-    backface-visibility: hidden !important;
-    will-change: auto !important;
-  }
 }

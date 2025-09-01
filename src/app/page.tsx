@@ -507,12 +507,12 @@ export default function Home() {
       <section className="relative min-h-screen flex items-center justify-center px-6 sm:px-8 lg:px-12 overflow-hidden py-20 content-section">
         
         {/* Animated Background Pattern */}
-        <div className="absolute inset-0 z-0">
+        <div className="absolute inset-0 z-0" style={{transform: 'translateZ(0)', WebkitTransform: 'translateZ(0)'}}>
           {/* Animated Mesh Gradient */}
           <div className="absolute inset-0">
             <div className="w-full h-full relative overflow-hidden">
               {/* Moving Mesh Pattern */}
-              <div className="absolute inset-0 opacity-20">
+              <div className="absolute inset-0 opacity-20" style={{transform: 'translateZ(0)', WebkitTransform: 'translateZ(0)', backfaceVisibility: 'hidden', WebkitBackfaceVisibility: 'hidden'}}>
                 <div className="w-full h-full" style={{
                   backgroundImage: `
                     radial-gradient(circle at 25% 25%, rgba(255,255,255,0.1) 0%, transparent 50%),
@@ -521,7 +521,11 @@ export default function Home() {
                     radial-gradient(circle at 75% 75%, rgba(255,255,255,0.06) 0%, transparent 50%)
                   `,
                   backgroundSize: '400px 400px',
-                  animation: 'meshMove 20s ease-in-out infinite'
+                  animation: 'meshMove 20s ease-in-out infinite',
+                  transform: 'translateZ(0)',
+                  WebkitTransform: 'translateZ(0)',
+                  backfaceVisibility: 'hidden',
+                  WebkitBackfaceVisibility: 'hidden'
                 }}></div>
               </div>
               
@@ -564,7 +568,7 @@ export default function Home() {
         </div>
         
         {/* Content */}
-        <div className="relative z-10 max-w-6xl mx-auto text-center">
+        <div className="relative z-10 max-w-6xl mx-auto text-center hero-content">
           {/* Main Title with Animation */}
           <div className="mb-12">
             <h1 className="text-4xl md:text-6xl font-bold mb-4 tracking-tighter min-h-[3rem] md:min-h-[5rem] flex items-center justify-center text-white relative">

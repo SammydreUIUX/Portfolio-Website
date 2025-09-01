@@ -278,6 +278,52 @@ export default function Projects() {
             </p>
           </div>
 
+          {/* Main Interaction Process Video */}
+          <div className="mb-16">
+            <div 
+              className="group relative rounded-2xl overflow-hidden mx-auto max-w-4xl transition-all duration-500 hover:scale-[1.02]"
+              style={{ 
+                background: 'linear-gradient(135deg, rgba(255, 255, 255, 0.1) 0%, rgba(255, 255, 255, 0.05) 100%)',
+                backdropFilter: 'blur(15px)',
+                border: '1px solid rgba(255, 255, 255, 0.1)',
+                boxShadow: '0 8px 32px rgba(0, 0, 0, 0.2)'
+              }}
+            >
+              {/* Video Embed */}
+              <div className="relative aspect-video">
+                <iframe
+                  src="https://player.vimeo.com/video/1114935097?badge=0&autopause=0&player_id=0&app_id=58479"
+                  width="100%"
+                  height="100%"
+                  frameBorder="0"
+                  allow="autoplay; fullscreen; picture-in-picture; clipboard-write"
+                  title="Design Interaction Process"
+                  className="w-full h-full"
+                />
+              </div>
+              
+              {/* Video Content */}
+              <div className="p-8">
+                <h3 className="text-2xl font-righteous text-white mb-4 group-hover:text-transparent group-hover:bg-clip-text group-hover:bg-gradient-to-r group-hover:from-blue-400 group-hover:to-purple-400 transition-all duration-300">
+                  Inside Out 2: Interaction Design Concept
+                </h3>
+                <p className="text-gray-300 font-futura text-base leading-relaxed mb-4">
+                  A creative interaction design concept inspired by the beloved characters from Inside Out 2. 
+                  This experimental project explores how emotional storytelling can enhance user interfaces, 
+                  using familiar characters to create more empathetic and engaging digital experiences. 
+                  The design demonstrates innovative ways to incorporate personality and emotional depth into user interactions.
+                </p>
+                <div className="flex flex-wrap gap-3">
+                  {['Interaction Design', 'Character-Based UI', 'Emotional Design', 'Creative Concept', 'Storytelling'].map((tag, idx) => (
+                    <span key={idx} className="px-3 py-2 bg-blue-500/10 text-blue-300 font-futura rounded-lg text-sm border border-blue-500/30">
+                      {tag}
+                    </span>
+                  ))}
+                </div>
+              </div>
+            </div>
+          </div>
+
           <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
             {[
               {

@@ -6,8 +6,8 @@ import ChatBox from './components/ChatBox';
 
 // Process Carousel Component
 function ProcessCarousel({ processSteps }: { processSteps: any[] }) {
-  // Duplicate items for seamless infinite scroll
-  const duplicatedSteps = [...processSteps, ...processSteps, ...processSteps, ...processSteps];
+  // Optimize duplicates for better performance
+  const duplicatedSteps = [...processSteps, ...processSteps];
 
   return (
     <div className="relative overflow-hidden w-full">
@@ -33,8 +33,8 @@ function ProcessCarousel({ processSteps }: { processSteps: any[] }) {
 
 // Tools Carousel Component
 function ToolsCarousel({ tools }: { tools: any[] }) {
-  // Duplicate items for seamless infinite scroll
-  const duplicatedTools = [...tools, ...tools, ...tools, ...tools];
+  // Optimize duplicates for better performance
+  const duplicatedTools = [...tools, ...tools];
 
   return (
     <div className="relative overflow-hidden w-full">
@@ -172,8 +172,16 @@ export default function Home() {
   const [currentTitle, setCurrentTitle] = useState(0);
   const [currentText, setCurrentText] = useState('');
   const [isDeleting, setIsDeleting] = useState(false);
+  const [isLoaded, setIsLoaded] = useState(false);
+
+  // Set loaded state after component mounts
+  useEffect(() => {
+    setIsLoaded(true);
+  }, []);
 
   useEffect(() => {
+    if (!isLoaded) return;
+    
     const titles = [
       "Hello, I'm Samuel Funmilayo.",
       "Product Designer.",
@@ -215,7 +223,7 @@ export default function Home() {
 
     const timer = setTimeout(typeText, 100);
     return () => clearTimeout(timer);
-  }, [currentText, isDeleting, currentTitle]);
+  }, [currentText, isDeleting, currentTitle, isLoaded]);
   const featuredProjects = [
     {
       id: 1,
@@ -494,9 +502,9 @@ export default function Home() {
   ];
 
   return (
-    <div className="min-h-screen text-white" style={{backgroundColor: '#131313'}}>
+    <div className={`min-h-screen text-white scroll-optimized transition-opacity duration-500 ${isLoaded ? 'opacity-100' : 'opacity-0'}`} style={{backgroundColor: '#131313'}}>
       {/* Hero Section */}
-      <section className="relative min-h-screen flex items-center justify-center px-6 sm:px-8 lg:px-12 overflow-hidden py-20">
+      <section className="relative min-h-screen flex items-center justify-center px-6 sm:px-8 lg:px-12 overflow-hidden py-20 content-section">
         
         {/* Animated Background Pattern */}
         <div className="absolute inset-0 z-0">
@@ -583,7 +591,7 @@ export default function Home() {
           
           {/* Enhanced Description */}
           <div className="mb-16 max-w-4xl mx-auto">
-            <p className="text-lg md:text-xl text-gray-300 leading-relaxed mb-6">
+            <p className="text-lg md:text-xl text-gray-300 leading-relaxed mb-6 break-words">
               Crafting inclusive, human-centered digital experiences through 
               <span className="text-blue-400 font-medium"> empathy-driven design</span> and 
               <span className="text-purple-400 font-medium"> innovative solutions</span>
@@ -633,9 +641,9 @@ export default function Home() {
           </div>
           
           {/* Scroll Indicator */}
-          <div className="absolute bottom-8 left-1/2 transform -translate-x-1/2">
+          <div className="flex justify-center mt-16">
             <div className="flex flex-col items-center text-gray-400 animate-bounce">
-              <span className="text-sm mb-2">Scroll to explore</span>
+              <span className="text-sm mb-4 tracking-wide">Scroll to explore</span>
               <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 14l-7 7m0 0l-7-7m7 7V3" />
               </svg>
@@ -646,9 +654,9 @@ export default function Home() {
 
 
       {/* Featured Work Section */}
-      <section id="featured-work" className="py-24 px-4 sm:px-6 lg:px-8">
+      <section id="featured-work" className="py-24 px-4 sm:px-6 lg:px-8 content-section">
         <div className="max-w-7xl mx-auto">
-          <h2 className="text-3xl md:text-4xl font-bold text-center mb-16 font-righteous">
+          <h2 className="text-3xl md:text-4xl font-bold text-center mb-16 font-righteous text-content">
             Featured Work
           </h2>
           <div className="space-y-8">
@@ -709,9 +717,9 @@ export default function Home() {
       </section>
 
       {/* Process Section */}
-      <section className="py-20 px-4 sm:px-6 lg:px-8">
+      <section className="py-20 px-4 sm:px-6 lg:px-8 content-section">
         <div className="max-w-7xl mx-auto">
-          <h2 className="text-3xl md:text-4xl font-bold text-center mb-16 font-righteous">
+          <h2 className="text-3xl md:text-4xl font-bold text-center mb-16 font-righteous text-content">
             How Ideas Take Shape
           </h2>
           <div className="-mx-4 sm:-mx-6 lg:-mx-8">
@@ -721,10 +729,10 @@ export default function Home() {
       </section>
 
       {/* Tools Section */}
-      <section className="py-20 px-4 sm:px-6 lg:px-8">
+      <section className="py-20 px-4 sm:px-6 lg:px-8 content-section">
         <div className="max-w-7xl mx-auto">
           <div className="text-center mb-16">
-            <h2 className="text-3xl md:text-4xl font-bold text-white mb-4 font-righteous">
+            <h2 className="text-3xl md:text-4xl font-bold text-white mb-4 font-righteous text-content">
               My Toolkit
             </h2>
             <p className="text-lg text-gray-300 max-w-3xl mx-auto">
@@ -739,9 +747,9 @@ export default function Home() {
       </section>
 
       {/* Testimonials Section */}
-      <section className="py-24 px-4 sm:px-6 lg:px-8">
+      <section className="py-24 px-4 sm:px-6 lg:px-8 content-section">
         <div className="max-w-6xl mx-auto text-center">
-          <h2 className="text-3xl md:text-4xl font-bold mb-4 font-righteous">
+          <h2 className="text-3xl md:text-4xl font-bold mb-4 font-righteous text-content">
             Voices from My Journey
           </h2>
           <p className="text-lg text-gray-300 mb-16">
@@ -752,9 +760,9 @@ export default function Home() {
       </section>
 
       {/* Contact Section */}
-      <section id="contact" className="py-24 px-4 sm:px-6 lg:px-8">
+      <section id="contact" className="py-24 px-4 sm:px-6 lg:px-8 content-section">
         <div className="max-w-4xl mx-auto text-center">
-          <h2 className="text-3xl md:text-4xl font-bold mb-4 font-righteous">
+          <h2 className="text-3xl md:text-4xl font-bold mb-4 font-righteous text-content">
             Let's Create Something Amazing Together
           </h2>
           <p className="text-lg text-gray-300 mb-12">

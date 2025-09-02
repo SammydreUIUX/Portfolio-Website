@@ -809,6 +809,90 @@ export default function AirtelCaseStudy() {
             </div>
           </div>
 
+          {/* Smile SWOT Analysis */}
+          <div className="mt-16">
+            <div className="flex items-center justify-center mb-8 animate-on-scroll scale-in stagger-2">
+              <div className="w-12 h-12 bg-gradient-to-r from-purple-500 to-purple-600 rounded-full flex items-center justify-center mr-4 hover:scale-110 hover:rotate-12 transition-all duration-300">
+                <span className="text-white font-bold text-lg">S</span>
+              </div>
+              <h3 className="text-3xl font-bold text-gray-900">Smile</h3>
+            </div>
+            
+            <div className="grid lg:grid-cols-4 gap-6">
+              {/* Strengths */}
+              <div className="bg-green-50 border border-green-200 rounded-xl p-6 animate-on-scroll slide-up stagger-1 hover:scale-105 hover:shadow-lg transition-all duration-500">
+                <div className="flex items-center mb-4">
+                  <div className="w-8 h-8 bg-green-500 rounded-full flex items-center justify-center mr-3 hover:rotate-180 transition-transform duration-500">
+                    <svg className="w-4 h-4 text-white" fill="currentColor" viewBox="0 0 20 20">
+                      <path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clipRule="evenodd" />
+                    </svg>
+                  </div>
+                  <h4 className="font-bold text-green-700">Strengths</h4>
+                </div>
+                <ul className="space-y-2 text-sm text-gray-700">
+                  <li>• Superior 4G/5G network speeds in urban areas</li>
+                  <li>• Excellent technical infrastructure and reliability</li>
+                  <li>• Premium service quality and customer support</li>
+                  <li>• Strong brand positioning in high-end market</li>
+                </ul>
+              </div>
+
+              {/* Weaknesses */}
+              <div className="bg-red-50 border border-red-200 rounded-xl p-6 animate-on-scroll slide-up stagger-2 hover:scale-105 hover:shadow-lg transition-all duration-500">
+                <div className="flex items-center mb-4">
+                  <div className="w-8 h-8 bg-red-500 rounded-full flex items-center justify-center mr-3 hover:rotate-180 transition-transform duration-500">
+                    <svg className="w-4 h-4 text-white" fill="currentColor" viewBox="0 0 20 20">
+                      <path fillRule="evenodd" d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z" clipRule="evenodd" />
+                    </svg>
+                  </div>
+                  <h4 className="font-bold text-red-700">Weaknesses</h4>
+                </div>
+                <ul className="space-y-2 text-sm text-gray-700">
+                  <li>• Premium pricing excludes price-sensitive customers</li>
+                  <li>• Very limited rural and remote area coverage</li>
+                  <li>• Smaller market share compared to major players</li>
+                  <li>• High barrier to entry for average consumers</li>
+                </ul>
+              </div>
+
+              {/* Opportunities */}
+              <div className="bg-blue-50 border border-blue-200 rounded-xl p-6 animate-on-scroll slide-up stagger-3 hover:scale-105 hover:shadow-lg transition-all duration-500">
+                <div className="flex items-center mb-4">
+                  <div className="w-8 h-8 bg-blue-500 rounded-full flex items-center justify-center mr-3 hover:rotate-180 transition-transform duration-500">
+                    <svg className="w-4 h-4 text-white" fill="currentColor" viewBox="0 0 20 20">
+                      <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-8.293l-3-3a1 1 0 00-1.414 1.414L10.586 9.5 9.293 8.207a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4a1 1 0 00-1.414-1.414L11.414 9.5z" clipRule="evenodd" />
+                    </svg>
+                  </div>
+                  <h4 className="font-bold text-blue-700">Opportunities</h4>
+                </div>
+                <ul className="space-y-2 text-sm text-gray-700">
+                  <li>• Expand 5G network coverage to more cities</li>
+                  <li>• Introduce affordable tiers to capture broader market</li>
+                  <li>• Partner with enterprises for B2B solutions</li>
+                  <li>• Develop rural connectivity solutions like ODU alternatives</li>
+                </ul>
+              </div>
+
+              {/* Threats */}
+              <div className="bg-orange-50 border border-orange-200 rounded-xl p-6 animate-on-scroll slide-up stagger-4 hover:scale-105 hover:shadow-lg transition-all duration-500">
+                <div className="flex items-center mb-4">
+                  <div className="w-8 h-8 bg-orange-500 rounded-full flex items-center justify-center mr-3 hover:rotate-180 transition-transform duration-500">
+                    <svg className="w-4 h-4 text-white" fill="currentColor" viewBox="0 0 20 20">
+                      <path fillRule="evenodd" d="M8.257 3.099c.765-1.36 2.722-1.36 3.486 0l5.58 9.92c.75 1.334-.213 2.98-1.742 2.98H4.42c-1.53 0-2.493-1.646-1.743-2.98l5.58-9.92zM11 13a1 1 0 11-2 0 1 1 0 012 0zm-1-8a1 1 0 00-1 1v3a1 1 0 002 0V6a1 1 0 00-1-1z" clipRule="evenodd" />
+                    </svg>
+                  </div>
+                  <h4 className="font-bold text-orange-700">Threats</h4>
+                </div>
+                <ul className="space-y-2 text-sm text-gray-700">
+                  <li>• Airtel ODU and similar solutions targeting rural gaps</li>
+                  <li>• MTN's aggressive expansion into premium segments</li>
+                  <li>• Economic downturns reducing premium service demand</li>
+                  <li>• Regulatory changes affecting spectrum allocation</li>
+                </ul>
+              </div>
+            </div>
+          </div>
+
           {/* Summary Positioning */}
           <div className="mt-16 bg-gradient-to-r from-gray-50 to-gray-100 rounded-2xl p-8 border border-gray-200">
             <h3 className="text-2xl font-bold text-center text-gray-900 mb-8">Market Positioning Summary</h3>

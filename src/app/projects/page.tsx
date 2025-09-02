@@ -330,8 +330,6 @@ export default function Projects() {
             </div>
           </div>
 
-          </div>
-
           {/* Interactive Demo Showcase */}
           <div className="mt-20 text-center">
             <div className="inline-block p-8 rounded-3xl"

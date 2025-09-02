@@ -249,7 +249,7 @@ export default function AirtelCaseStudy() {
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z" />
                   </svg>
                 ),
-                title: "Competitor Analysis",
+                title: "Competitor Analysis", 
                 description: "Analysis of MTN, Glo, and Smile 4G devices and market positioning"
               },
               {
@@ -583,7 +583,7 @@ export default function AirtelCaseStudy() {
         <div className="max-w-6xl mx-auto">
           <h2 className="text-4xl font-bold text-center mb-16 text-gray-900 animate-on-scroll slide-up">Comparative SWOT Analysis</h2>
           <p className="text-center text-gray-600 mb-12 max-w-3xl mx-auto animate-on-scroll fade-in stagger-1">
-            Understanding our competitive landscape and positioning Airtel ODU against MTN and Glo solutions
+            Understanding our competitive landscape and positioning Airtel ODU against MTN, Glo, and Smile solutions
           </p>
           
           {/* Airtel ODU SWOT */}
@@ -672,7 +672,7 @@ export default function AirtelCaseStudy() {
           </div>
 
           {/* Competitors Analysis */}
-          <div className="grid lg:grid-cols-2 gap-12">
+          <div className="grid lg:grid-cols-3 gap-8">
             {/* MTN Analysis */}
             <div className="bg-white rounded-2xl shadow-xl border border-gray-200 overflow-hidden">
               <div className="bg-gradient-to-r from-yellow-500 to-yellow-600 p-6 text-white">
@@ -762,12 +762,57 @@ export default function AirtelCaseStudy() {
                 </div>
               </div>
             </div>
+
+            {/* Smile Analysis */}
+            <div className="bg-white rounded-2xl shadow-xl border border-gray-200 overflow-hidden">
+              <div className="bg-gradient-to-r from-purple-500 to-purple-600 p-6 text-white">
+                <div className="flex items-center">
+                  <div className="w-12 h-12 bg-white/20 rounded-full flex items-center justify-center mr-4">
+                    <span className="text-white font-bold text-lg">S</span>
+                  </div>
+                  <h3 className="text-2xl font-bold">Smile</h3>
+                </div>
+                <p className="text-purple-100 mt-2">High-speed urban focus, premium positioning</p>
+              </div>
+              <div className="p-6 space-y-6">
+                <div>
+                  <h4 className="font-bold text-green-600 mb-3 flex items-center">
+                    <svg className="w-4 h-4 mr-2" fill="currentColor" viewBox="0 0 20 20">
+                      <path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clipRule="evenodd" />
+                    </svg>
+                    Strengths
+                  </h4>
+                  <ul className="text-sm text-gray-700 space-y-1">
+                    <li>• High-speed 4G/5G networks in urban areas</li>
+                    <li>• Reliable performance in major cities</li>
+                    <li>• Strong technical infrastructure</li>
+                  </ul>
+                </div>
+                <div>
+                  <h4 className="font-bold text-red-600 mb-3 flex items-center">
+                    <svg className="w-4 h-4 mr-2" fill="currentColor" viewBox="0 0 20 20">
+                      <path fillRule="evenodd" d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z" clipRule="evenodd" />
+                    </svg>
+                    Weaknesses
+                  </h4>
+                  <ul className="text-sm text-gray-700 space-y-1">
+                    <li>• Premium pricing limits accessibility</li>
+                    <li>• Limited rural coverage and penetration</li>
+                    <li>• Smaller market share compared to MTN/Airtel</li>
+                  </ul>
+                </div>
+                <div className="bg-purple-50 p-4 rounded-lg">
+                  <h5 className="font-semibold text-purple-700 mb-2">Competitive Position:</h5>
+                  <p className="text-sm text-gray-700">Strong in premium urban segment but vulnerable to rural-focused solutions like ODU</p>
+                </div>
+              </div>
+            </div>
           </div>
 
           {/* Summary Positioning */}
           <div className="mt-16 bg-gradient-to-r from-gray-50 to-gray-100 rounded-2xl p-8 border border-gray-200">
             <h3 className="text-2xl font-bold text-center text-gray-900 mb-8">Market Positioning Summary</h3>
-            <div className="grid lg:grid-cols-3 gap-6">
+            <div className="grid lg:grid-cols-4 gap-6">
               <div className="text-center p-6 bg-white rounded-xl shadow-md">
                 <div className="w-12 h-12 bg-white rounded-full flex items-center justify-center mx-auto mb-4 p-2 border border-gray-200">
                   <img 
@@ -792,6 +837,13 @@ export default function AirtelCaseStudy() {
                 </div>
                 <h4 className="font-bold text-gray-900 mb-2">Glo</h4>
                 <p className="text-sm text-gray-600">Competitive on price, but struggles with reliability and infrastructure limitations.</p>
+              </div>
+              <div className="text-center p-6 bg-white rounded-xl shadow-md">
+                <div className="w-12 h-12 bg-gradient-to-r from-purple-500 to-purple-600 rounded-full flex items-center justify-center mx-auto mb-4">
+                  <span className="text-white font-bold">S</span>
+                </div>
+                <h4 className="font-bold text-gray-900 mb-2">Smile</h4>
+                <p className="text-sm text-gray-600">Premium urban provider with high speeds but limited rural reach and higher costs.</p>
               </div>
             </div>
           </div>

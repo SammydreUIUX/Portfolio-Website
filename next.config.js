@@ -55,6 +55,17 @@ const nextConfig = {
       },
     ]
   },
+
+  // Redirect all traffic to new domain
+  // async redirects() {
+  //   return [
+  //     {
+  //       source: '/(.*)',
+  //       destination: 'https://www.samuelfunmilayo.space/$1',
+  //       permanent: true,
+  //     },
+  //   ]
+  // },
 }
 
 module.exports = nextConfig

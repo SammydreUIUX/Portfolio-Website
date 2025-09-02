@@ -165,7 +165,12 @@ export default function Projects() {
 
                   {/* View Case Study Button */}
                   <Link
-                    href={project.id === 1 ? '/projects/zoneaid' : '#'}
+                    href={
+                      project.id === 1 ? '/projects/zoneaid' : 
+                      project.id === 2 ? '/projects/starling' : 
+                      project.id === 3 ? '/projects/airtel' : 
+                      '#'
+                    }
                     className={`inline-flex items-center justify-center w-full px-8 py-5 bg-gradient-to-r ${project.color} text-white font-futura font-bold rounded-2xl hover:shadow-xl hover:shadow-current/30 transition-all duration-500 group-hover:translate-y-2 group-hover:scale-[1.02] text-lg relative overflow-hidden`}
                     style={{
                       boxShadow: '0 10px 25px rgba(0, 0, 0, 0.2)'

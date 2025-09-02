@@ -1,8 +1,10 @@
 'use client';
 
 import Link from 'next/link';
+import { useState } from 'react';
 
 export default function Projects() {
+  const [selectedImage, setSelectedImage] = useState(null);
   const caseStudies = [
     {
       id: 1,
@@ -200,19 +202,22 @@ export default function Projects() {
            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
              {[
                {
-                 title: 'E-Commerce Platform',
-                 category: 'Full-Stack',
-                 description: 'Modern e-commerce solution with real-time inventory and secure payments.'
+                 title: 'BAANDI Creative Platform',
+                 category: 'UI/UX Design',
+                 description: 'Creative platform connecting artists and music lovers with immersive experiences.',
+                 image: '/images/dribbble-post.jpg'
                },
                {
-                 title: 'Task Management App',
+                 title: 'ZenPay Global Payroll',
                  category: 'Product Design',
-                 description: 'Collaborative task management with drag-and-drop functionality.'
+                 description: 'Comprehensive payroll solution for global teams with advanced compliance features.',
+                 image: '/images/zenPay.jpg'
                },
                {
-                 title: 'Weather Dashboard',
-                 category: 'Frontend',
-                 description: 'Beautiful weather dashboard with real-time data visualization.'
+                 title: 'LEX Legal Services',
+                 category: 'Web Design',
+                 description: 'Professional law firm website with modern design and client-focused experience.',
+                 image: '/images/lex-landing.jpg'
                }
              ].map((project, index) => (
                <div 
@@ -225,16 +230,23 @@ export default function Projects() {
                  }}
                >
                 {/* Project Image */}
-                <div className="relative h-48 bg-gradient-to-br from-green-500 to-blue-600">
-                  <div className="absolute inset-0 bg-black/20"></div>
-                  <div className="absolute inset-0 flex items-center justify-center">
-                    <div className="text-white text-center">
-                      <div className="w-16 h-16 bg-white/20 rounded-full flex items-center justify-center mx-auto mb-3">
-                        <svg className="w-8 h-8" fill="currentColor" viewBox="0 0 24 24">
-                          <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/>
-                        </svg>
-                      </div>
-                      <p className="text-sm font-futura font-semibold">{project.title}</p>
+                <div 
+                  className="relative h-48 overflow-hidden cursor-pointer group/image"
+                  onClick={() => setSelectedImage(project)}
+                >
+                  <img 
+                    src={project.image} 
+                    alt={project.title}
+                    className="w-full h-full object-cover transition-transform duration-300 hover:scale-110"
+                  />
+                  <div className="absolute inset-0 bg-black/20 hover:bg-black/10 transition-colors duration-300"></div>
+                  
+                  {/* Click overlay with expand icon */}
+                  <div className="absolute inset-0 flex items-center justify-center opacity-0 group-hover/image:opacity-100 transition-opacity duration-300 bg-black/30">
+                    <div className="bg-white/20 backdrop-blur-sm rounded-full p-3 transform scale-75 group-hover/image:scale-100 transition-transform duration-300">
+                      <svg className="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0zM10 7v3m0 0v3m0-3h3m-3 0H7" />
+                      </svg>
                     </div>
                   </div>
                 </div>
@@ -248,17 +260,9 @@ export default function Projects() {
                    </div>
                    
                    <h3 className="text-lg font-righteous text-white mb-3">{project.title}</h3>
-                   <p className="text-gray-300 font-futura text-sm leading-relaxed mb-4">
+                   <p className="text-gray-300 font-futura text-sm leading-relaxed">
                      {project.description}
                    </p>
-
-                   {/* View Project Button */}
-                   <Link
-                     href="#"
-                     className="inline-flex items-center justify-center w-full px-4 py-2 bg-white/10 text-white text-sm font-futura font-medium rounded hover:bg-white/20 transition-colors border border-white/20"
-                   >
-                     View Project
-                   </Link>
                  </div>
               </div>
             ))}
@@ -292,13 +296,15 @@ export default function Projects() {
               {/* Video Embed */}
               <div className="relative aspect-video">
                 <iframe
-                  src="https://player.vimeo.com/video/1114935097?badge=0&autopause=0&player_id=0&app_id=58479"
+                  src="https://player.vimeo.com/video/1114935097?autoplay=1&loop=1&badge=0&autopause=0&player_id=0&app_id=58479&muted=1&controls=0"
                   width="100%"
                   height="100%"
                   frameBorder="0"
                   allow="autoplay; fullscreen; picture-in-picture; clipboard-write"
                   title="Design Interaction Process"
                   className="w-full h-full"
+                  onError={(e) => console.error('Video failed to load:', e)}
+                  onLoad={() => console.log('Video loaded successfully')}
                 />
               </div>
               
@@ -324,64 +330,6 @@ export default function Projects() {
             </div>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-            {[
-              {
-                title: 'Button Hover Animation',
-                description: 'Smooth scale and color transitions on interactive buttons'
-              },
-              {
-                title: 'Loading State Animation',
-                description: 'Engaging skeleton loaders and progress indicators'
-              },
-              {
-                title: 'Form Field Interactions',
-                description: 'Real-time validation feedback and input animations'
-              },
-              {
-                title: 'Navigation Transitions',
-                description: 'Seamless page transitions and menu animations'
-              }
-            ].map((video, index) => (
-              <div 
-                key={index} 
-                className="group relative rounded-2xl overflow-hidden transition-all duration-500 hover:scale-[1.02]"
-                style={{ 
-                  background: 'linear-gradient(135deg, rgba(255, 255, 255, 0.1) 0%, rgba(255, 255, 255, 0.05) 100%)',
-                  backdropFilter: 'blur(15px)',
-                  border: '1px solid rgba(255, 255, 255, 0.1)',
-                  boxShadow: '0 8px 32px rgba(0, 0, 0, 0.2)'
-                }}
-              >
-                {/* Video Placeholder */}
-                <div className="relative h-64 bg-gradient-to-br from-gray-800 to-gray-900 flex items-center justify-center">
-                  {/* Play Button */}
-                  <div className="w-20 h-20 rounded-full bg-white/20 flex items-center justify-center cursor-pointer hover:bg-white/30 transition-all duration-300 hover:scale-110">
-                    <svg className="w-8 h-8 text-white ml-1" fill="currentColor" viewBox="0 0 24 24">
-                      <path d="M8 5v14l11-7z"/>
-                    </svg>
-                  </div>
-                  
-                  {/* Video Overlay */}
-                  <div className="absolute inset-0 bg-black/20"></div>
-                  
-                  {/* Duration Badge */}
-                  <div className="absolute bottom-4 right-4 bg-black/70 text-white text-xs font-futura px-2 py-1 rounded">
-                    0:{(15 + index * 5).toString().padStart(2, '0')}
-                  </div>
-                </div>
-                
-                {/* Content */}
-                <div className="p-6">
-                  <h3 className="text-lg font-righteous text-white mb-3 group-hover:text-transparent group-hover:bg-clip-text group-hover:bg-gradient-to-r group-hover:from-blue-400 group-hover:to-purple-400 transition-all duration-300">
-                    {video.title}
-                  </h3>
-                  <p className="text-gray-300 font-futura text-sm leading-relaxed">
-                    {video.description}
-                  </p>
-                </div>
-              </div>
-            ))}
           </div>
 
           {/* Interactive Demo Showcase */}
@@ -437,6 +385,58 @@ export default function Projects() {
           </Link>
         </div>
       </section>
+
+      {/* Fullscreen Modal */}
+      {selectedImage && (
+        <div 
+          className="fixed inset-0 bg-black/90 backdrop-blur-sm z-50 flex items-center justify-center p-4"
+          onClick={() => setSelectedImage(null)}
+        >
+          <div className="relative max-w-7xl max-h-full w-full h-full flex items-center justify-center">
+            {/* Close button */}
+            <button
+              onClick={() => setSelectedImage(null)}
+              className="absolute top-4 right-4 z-10 bg-black/50 hover:bg-black/70 text-white rounded-full p-2 transition-colors duration-200"
+            >
+              <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
+              </svg>
+            </button>
+
+            {/* Modal content */}
+            <div 
+              className="relative max-w-full max-h-full bg-white/5 backdrop-blur-md rounded-2xl border border-white/10 overflow-hidden"
+              onClick={(e) => e.stopPropagation()}
+            >
+              <img 
+                src={selectedImage.image} 
+                alt={selectedImage.title}
+                className="max-w-full max-h-[90vh] object-contain"
+              />
+              
+              {/* Image info */}
+              <div className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black/80 to-transparent p-6">
+                <div className="text-center">
+                  <div className="mb-2">
+                    <span className="inline-block bg-white/20 text-green-300 text-sm font-futura font-medium px-3 py-1 rounded-full border border-green-500/30">
+                      {selectedImage.category}
+                    </span>
+                  </div>
+                  <h3 className="text-2xl font-righteous text-white mb-2">{selectedImage.title}</h3>
+                  <p className="text-gray-300 font-futura max-w-2xl mx-auto">
+                    {selectedImage.description}
+                  </p>
+                </div>
+              </div>
+            </div>
+
+            {/* Navigation hint */}
+            <div className="absolute bottom-4 left-1/2 transform -translate-x-1/2 text-gray-400 font-futura text-sm">
+              Click anywhere outside to close
+            </div>
+          </div>
+        </div>
+      )}
     </div>
   );
 }

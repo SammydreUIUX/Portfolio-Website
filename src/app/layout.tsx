@@ -20,8 +20,11 @@ export const metadata: Metadata = {
   title: "Samuel Funmilayo UIUX - Product Designer & UX Specialist",
   description: "Professional portfolio showcasing UX/UI design projects and product design expertise by Samuel Funmilayo",
   icons: {
-    icon: '/icon.png',
-    shortcut: '/icon.png',
+    icon: [
+      { url: '/favicon.ico' },
+      { url: '/icon.png', type: 'image/png' },
+    ],
+    shortcut: '/favicon.ico',
     apple: '/icon.png',
   },
 };

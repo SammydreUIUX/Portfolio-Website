@@ -38,6 +38,21 @@ export default function Projects() {
     },
     {
       id: 3,
+      title: 'Google Calendar',
+      subtitle: 'Productivity App Redesign',
+      description: 'Redesigned Google Calendar with AI-powered scheduling and focus management. Created smart scheduling assistant, focus mode, and enhanced accessibility features.',
+      category: 'UI/UX Design',
+      role: 'UX/UI Designer',
+      duration: '3 weeks',
+      team: 'Individual Project',
+      keyFeatures: ['Smart scheduling', 'Focus mode', 'AI suggestions', 'Accessibility'],
+      impact: 'Reduced scheduling time by 40%',
+      technologies: ['Figma', 'Prototyping', 'User Research', 'AI Integration'],
+      color: 'from-blue-500 to-indigo-500',
+      featured: true
+    },
+    {
+      id: 4,
       title: 'Airtel ODU',
       subtitle: 'Telecom Research Project',
       description: 'Led comprehensive user research initiative to enhance customer experience in telecommunications through stakeholder interviews, usability testing, and journey mapping.',
@@ -168,7 +183,8 @@ export default function Projects() {
                     href={
                       project.id === 1 ? '/projects/zoneaid' : 
                       project.id === 2 ? '/projects/starling' : 
-                      project.id === 3 ? '/projects/airtel' : 
+                      project.id === 3 ? '/projects/google-calendar' : 
+                      project.id === 4 ? '/projects/airtel' : 
                       '#'
                     }
                     className={`inline-flex items-center justify-center w-full px-8 py-5 bg-gradient-to-r ${project.color} text-white font-futura font-bold rounded-2xl hover:shadow-xl hover:shadow-current/30 transition-all duration-500 group-hover:translate-y-2 group-hover:scale-[1.02] text-lg relative overflow-hidden`}

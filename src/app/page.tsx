@@ -252,6 +252,21 @@ export default function Home() {
     },
     {
       id: 2,
+      title: 'Google Calendar',
+      subtitle: 'Productivity App Redesign',
+      description: 'Redesigned Google Calendar with AI-powered scheduling and focus management. Created smart scheduling assistant, focus mode, and enhanced accessibility features.',
+      category: 'UI/UX Design',
+      role: 'UX/UI Designer',
+      duration: '3 weeks',
+      team: 'Individual Project',
+      keyFeatures: ['Smart scheduling', 'Focus mode', 'AI suggestions', 'Accessibility'],
+      impact: 'Reduced scheduling time by 40%',
+      technologies: ['Figma', 'Prototyping', 'User Research', 'AI Integration'],
+      color: 'from-blue-500 to-indigo-700',
+      isWorkInProgress: true
+    },
+    {
+      id: 3,
       title: 'Starling',
       subtitle: 'Hospitality Booking Platform',
       description: 'Created an intuitive hospitality platform that transforms the hotel booking experience with seamless room previews, instant booking, and personalized guest support.',
@@ -265,7 +280,7 @@ export default function Home() {
       color: 'from-green-500 to-green-700'
     },
     {
-      id: 3,
+      id: 4,
       title: 'Airtel ODU',
       subtitle: 'Telecom Research Project',
       description: 'Led comprehensive user research initiative to enhance customer experience in telecommunications through stakeholder interviews, usability testing, and journey mapping.',
@@ -683,9 +698,16 @@ export default function Home() {
                   <div className="flex-1 p-8 flex flex-col justify-center">
                     {/* Project Title & Category */}
                     <div className="mb-4">
-                      <span className="inline-block px-3 py-1 text-xs font-medium rounded-full text-gray-400 border border-gray-600 mb-3">
-                        {project.category}
-                      </span>
+                      <div className="flex items-center gap-3 mb-3">
+                        <span className="inline-block px-3 py-1 text-xs font-medium rounded-full text-gray-400 border border-gray-600">
+                          {project.category}
+                        </span>
+                        {project.isWorkInProgress && (
+                          <span className="inline-block px-3 py-1 text-xs font-medium rounded-full bg-orange-100 text-orange-800 border border-orange-200">
+                            Work in Progress
+                          </span>
+                        )}
+                      </div>
                       <h3 className="text-2xl lg:text-3xl font-bold mb-2 text-white">
                         {project.title}
                       </h3>
@@ -701,8 +723,9 @@ export default function Home() {
                     <div>
                       <Link href={
                         project.id === 1 ? '/projects/zoneaid' : 
-                        project.id === 2 ? '/projects/starling' : 
-                        project.id === 3 ? '/projects/airtel' : 
+                        project.id === 2 ? '/projects/google-calendar' : 
+                        project.id === 3 ? '/projects/starling' : 
+                        project.id === 4 ? '/projects/airtel' : 
                         '#'
                       } className="inline-flex items-center px-6 py-3 text-white font-medium rounded-lg border border-gray-600 hover:border-gray-400 hover:bg-gray-800/20 transition-all duration-300">
                         View Case Study 
@@ -718,7 +741,8 @@ export default function Home() {
                     <div className="relative w-full max-w-xs">
                       <img 
                         src={project.id === 1 ? "/images/zoneaid/Overview.jpg" : 
-                             project.id === 2 ? "/images/starling/starling-overview-updated.png" : 
+                             project.id === 2 ? "/images/google-calendar/calendar-preview.png" : 
+                             project.id === 3 ? "/images/starling/starling-overview-updated.png" : 
                              "/images/960x0.webp"} 
                         alt={`${project.title} ${project.subtitle}`}
                         className="w-full h-64 object-cover rounded-xl"

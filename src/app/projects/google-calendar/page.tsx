@@ -237,11 +237,11 @@ export default function GoogleCalendarCaseStudy() {
               </svg>
               <div>
                 <h3 className="text-2xl font-bold text-red-800 mb-4">
-                  Current Google Calendar Flow: 14 Interactions to Schedule One Meeting
+                  The Timezone Puzzle: When "3 o'clock" Means 3 Different Times
                 </h3>
                 <p className="text-red-700 text-lg leading-relaxed">
-                  Scheduling a simple 30-minute sync with 2 teammates across different time zones 
-                  requires extensive manual coordination, context switching, and mental time zone calculations.
+                  Scheduling with friends or teammates across time zones turns into a mental math nightmare. 
+                  When you say "Let's meet at 3 PM," that's 8 PM for your friend in Nigeria and 12:30 AM for your colleague in India.
                 </p>
               </div>
             </div>
@@ -249,10 +249,29 @@ export default function GoogleCalendarCaseStudy() {
 
           {/* Scenario */}
           <div className="bg-blue-50 p-8 rounded-lg mb-12 animate-on-scroll slide-up stagger-1">
-            <h3 className="text-xl font-bold text-blue-800 mb-4">Scenario</h3>
-            <p className="text-lg text-blue-700">
-              <strong>Goal:</strong> Book a 30-minute sync with 2 teammates in different time zones. Everyone is busy.
-            </p>
+            <h3 className="text-xl font-bold text-blue-800 mb-4">The Problem in Action</h3>
+            <div className="space-y-4">
+              <p className="text-lg text-blue-700">
+                <strong>Imagine:</strong> You want to schedule a game night with two friends
+              </p>
+              <div className="grid md:grid-cols-3 gap-4 text-sm">
+                <div className="bg-white p-4 rounded-lg border border-blue-200">
+                  <div className="font-semibold text-blue-800">🇨🇦 You (Canada)</div>
+                  <div className="text-gray-700">3:00 PM - Perfect afternoon time</div>
+                </div>
+                <div className="bg-white p-4 rounded-lg border border-blue-200">
+                  <div className="font-semibold text-blue-800">🇳🇬 Friend (Nigeria)</div>
+                  <div className="text-gray-700">8:00 PM - Getting late, dinner time</div>
+                </div>
+                <div className="bg-white p-4 rounded-lg border border-blue-200">
+                  <div className="font-semibold text-blue-800">🇮🇳 Friend (India)</div>
+                  <div className="text-red-700">12:30 AM - Already asleep!</div>
+                </div>
+              </div>
+              <p className="text-blue-600 text-sm italic">
+                Result: Endless back-and-forth messages, mental timezone math, and frustrated friends
+              </p>
+            </div>
           </div>
 
           {/* Current UI Screenshots */}
@@ -285,34 +304,98 @@ export default function GoogleCalendarCaseStudy() {
 
           {/* Step-by-Step Flow */}
           <div className="mb-12 animate-on-scroll slide-up stagger-3">
-            <h3 className="text-2xl font-bold text-gray-900 mb-8">Current Flow: 14 Interaction Steps</h3>
-            <div className="space-y-4">
-              {[
-                { step: 1, action: "Open Google Calendar", detail: "Load weekly view, scan visually for free spots." },
-                { step: 2, action: "Create Event (Click +)", detail: "Opens event dialog." },
-                { step: 3, action: "Add Title + Basic Info", detail: "Manual typing (e.g., \"Weekly Sync\")." },
-                { step: 4, action: "Add Attendees", detail: "Type names/emails." },
-                { step: 5, action: "Click \"Find a Time\" tab", detail: "Switches to availability view." },
-                { step: 6, action: "Scroll through each attendee's schedule", detail: "Check overlaps manually." },
-                { step: 7, action: "Translate across time zones", detail: "Mentally calculate local times (no smart help)." },
-                { step: 8, action: "Guess a candidate time slot", detail: "Pick what looks like an overlap." },
-                { step: 9, action: "Send Invitation", detail: "Click \"Save\" → \"Send.\"" },
-                { step: 10, action: "Wait for RSVP responses", detail: "Notifications trickle in (1 accepts, 1 declines)." },
-                { step: 11, action: "Reopen Calendar", detail: "Go back to the event." },
-                { step: 12, action: "Propose Alternative Time", detail: "Re-check \"Find a Time,\" repeat mental scanning." },
-                { step: 13, action: "Send Updated Invite", detail: "Click \"Save changes\" → resend notifications." },
-                { step: 14, action: "Confirm with Attendees via Email/Chat", detail: "\"Does this time work better?\" back-and-forth continues." }
-              ].map((item) => (
-                <div key={item.step} className="flex items-start p-6 bg-white rounded-lg shadow-sm border border-gray-200 hover:shadow-md transition-shadow">
-                  <div className="bg-blue-600 text-white rounded-full w-10 h-10 flex items-center justify-center text-sm font-bold mr-4 flex-shrink-0">
-                    {item.step}
+            <h3 className="text-2xl font-bold text-gray-900 mb-6">The Timezone Coordination Nightmare</h3>
+            <p className="text-gray-600 mb-6">Here's what happens when you try to schedule that game night with your friends across time zones:</p>
+            
+            <div className="grid md:grid-cols-2 gap-4">
+              {/* Before: Current Flow */}
+              <div className="bg-red-50 p-6 rounded-xl border border-red-200">
+                <h4 className="font-bold text-red-800 mb-4 flex items-center">
+                  <span className="bg-red-600 text-white rounded-full w-6 h-6 flex items-center justify-center text-xs mr-2">❌</span>
+                  Current Flow: 8+ Back-and-Forth Messages
+                </h4>
+                <div className="space-y-3 text-sm">
+                  <div className="flex items-start">
+                    <span className="text-red-600 font-bold mr-2 text-xs">1.</span>
+                    <div className="min-w-0">
+                      <div className="font-medium text-gray-900">Send initial message</div>
+                      <div className="text-gray-600 text-xs">"Hey, game night Saturday at 3 PM?"</div>
+                    </div>
                   </div>
-                  <div>
-                    <h4 className="font-semibold text-gray-900 mb-2">{item.action}</h4>
-                    <p className="text-gray-600">{item.detail}</p>
+                  <div className="flex items-start">
+                    <span className="text-red-600 font-bold mr-2 text-xs">2.</span>
+                    <div className="min-w-0">
+                      <div className="font-medium text-gray-900">Friend from Nigeria responds</div>
+                      <div className="text-gray-600 text-xs">"That's 8 PM for me, bit late..."</div>
+                    </div>
+                  </div>
+                  <div className="flex items-start">
+                    <span className="text-red-600 font-bold mr-2 text-xs">3.</span>
+                    <div className="min-w-0">
+                      <div className="font-medium text-gray-900">Friend from India responds</div>
+                      <div className="text-gray-600 text-xs">"12:30 AM? I'll be sleeping 😴"</div>
+                    </div>
+                  </div>
+                  <div className="flex items-start">
+                    <span className="text-red-600 font-bold mr-2 text-xs">4.</span>
+                    <div className="min-w-0">
+                      <div className="font-medium text-gray-900">You do mental math</div>
+                      <div className="text-gray-600 text-xs">"Let me think... what about 11 AM my time?"</div>
+                    </div>
+                  </div>
+                  <div className="flex items-start">
+                    <span className="text-red-600 font-bold mr-2 text-xs">5.</span>
+                    <div className="min-w-0">
+                      <div className="font-medium text-gray-900">More confusion</div>
+                      <div className="text-gray-600 text-xs">"Wait, what time is that for me again?"</div>
+                    </div>
+                  </div>
+                  <div className="text-center mt-4 p-2 bg-red-100 rounded text-red-700 text-xs font-medium">
+                    🕐 15+ minutes of confusion, frustration, and mental math
                   </div>
                 </div>
-              ))}
+              </div>
+
+              {/* After: Smart Solution */}
+              <div className="bg-green-50 p-6 rounded-xl border border-green-200">
+                <h4 className="font-bold text-green-800 mb-4 flex items-center">
+                  <span className="bg-green-600 text-white rounded-full w-6 h-6 flex items-center justify-center text-xs mr-2">✅</span>
+                  Smart Helper Solution: 1 Simple Action
+                </h4>
+                <div className="space-y-3 text-sm">
+                  <div className="flex items-start">
+                    <span className="text-green-600 font-bold mr-2 text-xs">1.</span>
+                    <div className="min-w-0">
+                      <div className="font-medium text-gray-900">Tell your smart helper</div>
+                      <div className="text-gray-600 text-xs">"Find a time for game night with Sarah and Raj"</div>
+                    </div>
+                  </div>
+                  <div className="flex items-start">
+                    <span className="text-green-600 font-bold mr-2 text-xs">2.</span>
+                    <div className="min-w-0">
+                      <div className="font-medium text-gray-900">AI analyzes all schedules</div>
+                      <div className="text-gray-600 text-xs">Considers work hours, sleep times, and preferences</div>
+                    </div>
+                  </div>
+                  <div className="flex items-start">
+                    <span className="text-green-600 font-bold mr-2 text-xs">3.</span>
+                    <div className="min-w-0">
+                      <div className="font-medium text-gray-900">Perfect suggestion appears</div>
+                      <div className="text-gray-600 text-xs">"Best time: Saturday 10 AM (Canada) = 3 PM (Nigeria) = 7:30 PM (India)"</div>
+                    </div>
+                  </div>
+                  <div className="flex items-start">
+                    <span className="text-green-600 font-bold mr-2 text-xs">4.</span>
+                    <div className="min-w-0">
+                      <div className="font-medium text-gray-900">One-click invite sent</div>
+                      <div className="text-gray-600 text-xs">Everyone sees their local time, no confusion</div>
+                    </div>
+                  </div>
+                  <div className="text-center mt-4 p-2 bg-green-100 rounded text-green-700 text-xs font-medium">
+                    🚀 30 seconds total, zero mental math, happy friends
+                  </div>
+                </div>
+              </div>
             </div>
           </div>
 
@@ -370,25 +453,117 @@ export default function GoogleCalendarCaseStudy() {
             </div>
           </div>
 
+          {/* Visual Timezone Comparison */}
+          <div className="mb-12 animate-on-scroll slide-up stagger-4">
+            <h3 className="text-2xl font-bold text-gray-900 mb-8 text-center">The Visual Problem</h3>
+            <div className="grid lg:grid-cols-2 gap-8">
+              {/* Before Visual */}
+              <div className="bg-red-50 p-6 rounded-2xl border border-red-200">
+                <h4 className="text-lg font-bold text-red-800 mb-4 text-center">❌ Before: Timezone Confusion</h4>
+                <div className="bg-white p-4 rounded-lg shadow-sm">
+                  <div className="text-center mb-4">
+                    <div className="text-lg font-bold text-gray-900">"Let's meet at 3 o'clock"</div>
+                    <div className="text-sm text-gray-600">But what does this actually mean?</div>
+                  </div>
+                  <div className="space-y-3">
+                    <div className="flex justify-between items-center p-3 bg-gray-100 rounded">
+                      <div className="flex items-center">
+                        <span className="text-lg mr-2">🇨🇦</span>
+                        <span className="font-medium">Canada</span>
+                      </div>
+                      <div className="text-right">
+                        <div className="font-bold text-green-600">3:00 PM</div>
+                        <div className="text-xs text-gray-600">Perfect!</div>
+                      </div>
+                    </div>
+                    <div className="flex justify-between items-center p-3 bg-gray-100 rounded">
+                      <div className="flex items-center">
+                        <span className="text-lg mr-2">🇳🇬</span>
+                        <span className="font-medium">Nigeria</span>
+                      </div>
+                      <div className="text-right">
+                        <div className="font-bold text-orange-600">8:00 PM</div>
+                        <div className="text-xs text-gray-600">Getting late...</div>
+                      </div>
+                    </div>
+                    <div className="flex justify-between items-center p-3 bg-gray-100 rounded">
+                      <div className="flex items-center">
+                        <span className="text-lg mr-2">🇮🇳</span>
+                        <span className="font-medium">India</span>
+                      </div>
+                      <div className="text-right">
+                        <div className="font-bold text-red-600">12:30 AM</div>
+                        <div className="text-xs text-red-600">Sleeping! 😴</div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              {/* After Visual */}
+              <div className="bg-green-50 p-6 rounded-2xl border border-green-200">
+                <h4 className="text-lg font-bold text-green-800 mb-4 text-center">✅ After: Smart Time Finding</h4>
+                <div className="bg-white p-4 rounded-lg shadow-sm">
+                  <div className="text-center mb-4">
+                    <div className="text-lg font-bold text-gray-900">AI finds the perfect overlap</div>
+                    <div className="text-sm text-gray-600">Everyone's awake and available!</div>
+                  </div>
+                  <div className="space-y-3">
+                    <div className="flex justify-between items-center p-3 bg-green-50 rounded border border-green-200">
+                      <div className="flex items-center">
+                        <span className="text-lg mr-2">🇨🇦</span>
+                        <span className="font-medium">Canada</span>
+                      </div>
+                      <div className="text-right">
+                        <div className="font-bold text-green-600">10:00 AM</div>
+                        <div className="text-xs text-green-600">Saturday morning ✓</div>
+                      </div>
+                    </div>
+                    <div className="flex justify-between items-center p-3 bg-green-50 rounded border border-green-200">
+                      <div className="flex items-center">
+                        <span className="text-lg mr-2">🇳🇬</span>
+                        <span className="font-medium">Nigeria</span>
+                      </div>
+                      <div className="text-right">
+                        <div className="font-bold text-green-600">3:00 PM</div>
+                        <div className="text-xs text-green-600">Perfect afternoon ✓</div>
+                      </div>
+                    </div>
+                    <div className="flex justify-between items-center p-3 bg-green-50 rounded border border-green-200">
+                      <div className="flex items-center">
+                        <span className="text-lg mr-2">🇮🇳</span>
+                        <span className="font-medium">India</span>
+                      </div>
+                      <div className="text-right">
+                        <div className="font-bold text-green-600">7:30 PM</div>
+                        <div className="text-xs text-green-600">Evening free time ✓</div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
           {/* Key Insights */}
           <div className="bg-blue-50 p-8 rounded-2xl border border-blue-200 animate-on-scroll slide-up stagger-5">
-            <h3 className="text-2xl font-bold text-gray-900 mb-6 text-center">Key Insights</h3>
+            <h3 className="text-2xl font-bold text-gray-900 mb-6 text-center">Why This Matters</h3>
             <div className="space-y-4">
               <div className="flex items-start">
                 <span className="w-3 h-3 bg-blue-600 rounded-full mt-2 mr-4 flex-shrink-0"></span>
-                <span className="text-gray-700">The current flow requires <strong>14 separate interactions</strong> for a simple 3-person meeting</span>
+                <span className="text-gray-700">When you say <strong>"3 o'clock"</strong> to friends across time zones, it means 3 completely different times</span>
               </div>
               <div className="flex items-start">
                 <span className="w-3 h-3 bg-blue-600 rounded-full mt-2 mr-4 flex-shrink-0"></span>
-                <span className="text-gray-700">Time zone coordination relies entirely on <strong>manual mental calculations</strong></span>
+                <span className="text-gray-700">People waste <strong>15+ minutes</strong> doing mental timezone math and sending confused messages back and forth</span>
               </div>
               <div className="flex items-start">
                 <span className="w-3 h-3 bg-blue-600 rounded-full mt-2 mr-4 flex-shrink-0"></span>
-                <span className="text-gray-700">Multiple context switches break user focus and <strong>increase cognitive load</strong></span>
+                <span className="text-gray-700">A smart scheduling helper could find the perfect overlap in <strong>30 seconds</strong> instead of 15 minutes</span>
               </div>
               <div className="flex items-start">
                 <span className="w-3 h-3 bg-blue-600 rounded-full mt-2 mr-4 flex-shrink-0"></span>
-                <span className="text-gray-700">No intelligent suggestions for optimal meeting times based on <strong>actual availability patterns</strong></span>
+                <span className="text-gray-700">This simple improvement would make <strong>global collaboration</strong> feel effortless instead of exhausting</span>
               </div>
             </div>
           </div>
@@ -558,57 +733,41 @@ export default function GoogleCalendarCaseStudy() {
           <h2 className="text-4xl font-bold text-center mb-16 text-gray-900">Ideation & Design Solutions</h2>
           <div className="grid lg:grid-cols-2 gap-16 items-center">
             <div>
-              <h3 className="text-2xl font-bold mb-6 text-gray-900">Core Design Concepts</h3>
+              <h3 className="text-2xl font-bold mb-6 text-gray-900">The Smart Helper Solution</h3>
               <p className="text-gray-700 leading-relaxed mb-8">
-                I translated my wireframes into high-fidelity mockups in Figma for both desktop and mobile, focusing on four main concepts that emerged from user research.
+                Instead of forcing users to do mental timezone math, I designed an AI-powered scheduling assistant that makes global coordination feel as simple as texting a friend down the street.
               </p>
               
               <div className="space-y-6">
                 <div className="flex items-start">
-                  <div className="w-8 h-8 bg-blue-500 rounded-full flex items-center justify-center text-white text-sm font-bold mr-4 mt-1">
-                    <svg className="w-4 h-4" fill="currentColor" viewBox="0 0 20 20">
-                      <path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clipRule="evenodd" />
-                    </svg>
-                  </div>
+                  <div className="w-8 h-8 bg-blue-500 rounded-full flex items-center justify-center text-white text-sm font-bold mr-4 mt-1">🧠</div>
                   <div>
-                    <h4 className="font-semibold text-gray-900 mb-1">Smart Scheduling Assistant</h4>
-                    <p className="text-gray-600 text-sm">AI that suggests optimal meeting slots based on preferences and availability</p>
+                    <h4 className="font-semibold text-gray-900 mb-1">Smart Timezone Helper</h4>
+                    <p className="text-gray-600 text-sm">AI that instantly finds the perfect meeting time across any number of time zones</p>
                   </div>
                 </div>
 
                 <div className="flex items-start">
-                  <div className="w-8 h-8 bg-green-500 rounded-full flex items-center justify-center text-white text-sm font-bold mr-4 mt-1">
-                    <svg className="w-4 h-4" fill="currentColor" viewBox="0 0 20 20">
-                      <path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clipRule="evenodd" />
-                    </svg>
-                  </div>
+                  <div className="w-8 h-8 bg-green-500 rounded-full flex items-center justify-center text-white text-sm font-bold mr-4 mt-1">🎯</div>
                   <div>
-                    <h4 className="font-semibold text-gray-900 mb-1">Focus Mode</h4>
-                    <p className="text-gray-600 text-sm">Blocks and protects deep work hours with intelligent meeting deflection</p>
+                    <h4 className="font-semibold text-gray-900 mb-1">One-Click Scheduling</h4>
+                    <p className="text-gray-600 text-sm">Tell your calendar who to meet with, and it handles all the timezone math for you</p>
                   </div>
                 </div>
 
                 <div className="flex items-start">
-                  <div className="w-8 h-8 bg-purple-500 rounded-full flex items-center justify-center text-white text-sm font-bold mr-4 mt-1">
-                    <svg className="w-4 h-4" fill="currentColor" viewBox="0 0 20 20">
-                      <path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clipRule="evenodd" />
-                    </svg>
-                  </div>
+                  <div className="w-8 h-8 bg-purple-500 rounded-full flex items-center justify-center text-white text-sm font-bold mr-4 mt-1">🌍</div>
                   <div>
-                    <h4 className="font-semibold text-gray-900 mb-1">Team Availability View</h4>
-                    <p className="text-gray-600 text-sm">Clear, shared calendar with color-coded availability insights</p>
+                    <h4 className="font-semibold text-gray-900 mb-1">Global Time View</h4>
+                    <p className="text-gray-600 text-sm">See everyone's local time at a glance—no more mental calculations</p>
                   </div>
                 </div>
 
                 <div className="flex items-start">
-                  <div className="w-8 h-8 bg-orange-500 rounded-full flex items-center justify-center text-white text-sm font-bold mr-4 mt-1">
-                    <svg className="w-4 h-4" fill="currentColor" viewBox="0 0 20 20">
-                      <path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clipRule="evenodd" />
-                    </svg>
-                  </div>
+                  <div className="w-8 h-8 bg-orange-500 rounded-full flex items-center justify-center text-white text-sm font-bold mr-4 mt-1">💬</div>
                   <div>
-                    <h4 className="font-semibold text-gray-900 mb-1">Accessibility Enhancements</h4>
-                    <p className="text-gray-600 text-sm">Voice commands, high-contrast mode, and improved keyboard shortcuts</p>
+                    <h4 className="font-semibold text-gray-900 mb-1">Smart Invites</h4>
+                    <p className="text-gray-600 text-sm">Invitations automatically show each person's local time—no confusion</p>
                   </div>
                 </div>
               </div>
@@ -617,30 +776,28 @@ export default function GoogleCalendarCaseStudy() {
             <div className="relative">
               <div className="relative z-10 bg-white p-8 rounded-2xl shadow-xl">
                 <div className="text-center">
-                  <div className="w-20 h-20 bg-gradient-to-r from-blue-600 to-indigo-600 rounded-full flex items-center justify-center mx-auto mb-6">
-                    <svg className="w-10 h-10 text-white" fill="currentColor" viewBox="0 0 24 24">
-                      <path d="M19 3h-1V1h-2v2H8V1H6v2H5c-1.11 0-1.99.9-1.99 2L3 19c0 1.1.89 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm0 16H5V8h14v11zM7 10h5v5H7z"/>
-                    </svg>
+                  <div className="w-20 h-20 bg-gradient-to-r from-blue-600 to-indigo-600 rounded-full flex items-center justify-center mx-auto mb-6 text-3xl">
+                    🌍
                   </div>
-                  <h3 className="text-2xl font-bold text-gray-900 mb-4">Smart Calendar</h3>
-                  <p className="text-gray-600 mb-6">AI-powered productivity partner for modern professionals</p>
+                  <h3 className="text-2xl font-bold text-gray-900 mb-4">Global Schedule Helper</h3>
+                  <p className="text-gray-600 mb-6">Your AI assistant for effortless timezone coordination</p>
                   
                   <div className="grid grid-cols-2 gap-4 text-sm">
                     <div className="p-3 bg-gray-50 rounded-lg">
-                      <div className="font-bold text-blue-600 text-lg">40%</div>
-                      <div className="text-gray-600">Faster scheduling</div>
+                      <div className="font-bold text-blue-600 text-lg">30sec</div>
+                      <div className="text-gray-600">Instead of 15min</div>
                     </div>
                     <div className="p-3 bg-gray-50 rounded-lg">
-                      <div className="font-bold text-green-600 text-lg">2hrs</div>
-                      <div className="text-gray-600">Extra focus time/week</div>
+                      <div className="font-bold text-green-600 text-lg">Zero</div>
+                      <div className="text-gray-600">Mental math required</div>
                     </div>
                     <div className="p-3 bg-gray-50 rounded-lg">
-                      <div className="font-bold text-purple-600 text-lg">25%</div>
-                      <div className="text-gray-600">Fewer navigation steps</div>
+                      <div className="font-bold text-purple-600 text-lg">1-click</div>
+                      <div className="text-gray-600">Perfect time found</div>
                     </div>
                     <div className="p-3 bg-gray-50 rounded-lg">
-                      <div className="font-bold text-orange-600 text-lg">100%</div>
-                      <div className="text-gray-600">Cross-platform sync</div>
+                      <div className="font-bold text-orange-600 text-lg">Happy</div>
+                      <div className="text-gray-600">Global friends</div>
                     </div>
                   </div>
                 </div>

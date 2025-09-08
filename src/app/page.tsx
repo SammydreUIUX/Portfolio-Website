@@ -821,7 +821,7 @@ export default function Home() {
               Connect with me on LinkedIn
             </a>
             <a 
-              href="mailto:hello@samuelfunmilayo.com" 
+              href="mailto:sdamilare72@gmail.com" 
               className="px-8 py-4 border-2 border-white text-white font-semibold rounded-lg hover:bg-white hover:text-black transition-colors"
             >
               Send Email

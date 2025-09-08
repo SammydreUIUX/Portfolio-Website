@@ -532,7 +532,7 @@ export default function About() {
           
           <div className="flex flex-col sm:flex-row gap-6 justify-center">
             <a 
-              href="mailto:hello@samuelfunmilayo.com" 
+              href="mailto:sdamilare72@gmail.com" 
               className="px-10 py-4 bg-white text-black font-semibold rounded-full hover:bg-gray-200 transition-all duration-300 transform hover:scale-105 hover:shadow-lg hover:shadow-white/20"
             >
               Get In Touch

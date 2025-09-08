@@ -5,7 +5,7 @@ export default function Footer() {
 
   const socialLinks = [
     { 
-      href: 'https://github.com/samuelfunmilayo', 
+      href: 'https://github.com/SammydreUIUX', 
       label: 'GitHub', 
       icon: 'github' 
     },
@@ -126,10 +126,10 @@ export default function Footer() {
             <div className="space-y-3">
               <p className="text-gray-400">Vancouver, Canada 🇨🇦</p>
               <a 
-                href="mailto:hello@samuelfunmilayo.com" 
+                href="mailto:sdamilare72@gmail.com" 
                 className="text-gray-400 hover:text-blue-400 transition-colors duration-300 block"
               >
-                hello@samuelfunmilayo.com
+                sdamilare72@gmail.com
               </a>
             </div>
           </div>

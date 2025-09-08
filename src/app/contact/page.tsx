@@ -26,12 +26,23 @@ export default function Contact() {
     setIsSubmitting(true);
     setSubmitStatus('idle');
 
-    // Simulate form submission
     try {
-      await new Promise(resolve => setTimeout(resolve, 2000));
-      setSubmitStatus('success');
-      setFormData({ name: '', email: '', subject: '', message: '' });
-    } catch {
+      const response = await fetch('/api/contact', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(formData),
+      });
+
+      if (response.ok) {
+        setSubmitStatus('success');
+        setFormData({ name: '', email: '', subject: '', message: '' });
+      } else {
+        setSubmitStatus('error');
+      }
+    } catch (error) {
+      console.error('Form submission error:', error);
       setSubmitStatus('error');
     } finally {
       setIsSubmitting(false);
@@ -42,19 +53,19 @@ export default function Contact() {
     {
       icon: 'email',
       title: 'Email',
-      value: 'hello@johndoe.com',
-      link: 'mailto:hello@johndoe.com'
+      value: 'sdamilare72@gmail.com',
+      link: 'mailto:sdamilare72@gmail.com'
     },
     {
       icon: 'phone',
       title: 'Phone',
-      value: '+1 (555) 123-4567',
-      link: 'tel:+15551234567'
+      value: '+1 (604) 512-0715',
+      link: 'tel:+16045120715'
     },
     {
       icon: 'location',
       title: 'Location',
-      value: 'San Francisco, CA',
+      value: 'Vancouver, BC, Canada',
       link: '#'
     }
   ];
@@ -66,9 +77,9 @@ export default function Contact() {
   ];
 
   return (
-    <div className="min-h-screen bg-gray-900">
+    <div className="min-h-screen" style={{backgroundColor: '#131313'}}>
       {/* Hero Section */}
-      <section className="bg-gray-800 py-20">
+      <section className="py-20" style={{backgroundColor: '#131313'}}>
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-16">
             <h1 className="text-4xl lg:text-5xl font-bold text-white mb-6">
@@ -83,11 +94,11 @@ export default function Contact() {
       </section>
 
       {/* Contact Form & Info */}
-      <section className="py-20 bg-gray-900">
+      <section className="py-20" style={{backgroundColor: '#131313'}}>
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-12">
             {/* Contact Form */}
-            <div className="bg-gray-800 rounded-2xl shadow-lg p-8">
+            <div className="rounded-2xl shadow-lg p-8" style={{backgroundColor: '#1a1a1a'}}>
               <h2 className="text-2xl font-bold text-white mb-6">Send a Message</h2>
               
               {submitStatus === 'success' && (
@@ -115,7 +126,7 @@ export default function Contact() {
                        value={formData.name}
                        onChange={handleInputChange}
                        required
-                       className="w-full px-4 py-3 border border-gray-600 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent bg-gray-700 text-white placeholder-gray-400"
+                       className="w-full px-4 py-3 border border-gray-600 rounded-lg focus:ring-2 focus:ring-red-500 focus:border-transparent bg-gray-700 text-white placeholder-gray-400"
                        placeholder="Your name"
                      />
                    </div>
@@ -130,7 +141,7 @@ export default function Contact() {
                        value={formData.email}
                        onChange={handleInputChange}
                        required
-                       className="w-full px-4 py-3 border border-gray-600 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent bg-gray-700 text-white placeholder-gray-400"
+                       className="w-full px-4 py-3 border border-gray-600 rounded-lg focus:ring-2 focus:ring-red-500 focus:border-transparent bg-gray-700 text-white placeholder-gray-400"
                        placeholder="your.email@example.com"
                      />
                    </div>
@@ -146,7 +157,7 @@ export default function Contact() {
                      value={formData.subject}
                      onChange={handleInputChange}
                      required
-                     className="w-full px-4 py-3 border border-gray-600 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent bg-gray-700 text-white"
+                     className="w-full px-4 py-3 border border-gray-600 rounded-lg focus:ring-2 focus:ring-red-500 focus:border-transparent bg-gray-700 text-white"
                    >
                     <option value="">Select a subject</option>
                     <option value="project">Project Inquiry</option>
@@ -175,7 +186,7 @@ export default function Contact() {
                 <button
                   type="submit"
                   disabled={isSubmitting}
-                  className="w-full bg-blue-600 text-white font-semibold py-3 px-6 rounded-lg hover:bg-blue-700 transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
+                  className="w-full bg-red-600 text-white font-semibold py-3 px-6 rounded-lg hover:bg-red-700 transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
                 >
                   {isSubmitting ? 'Sending...' : 'Send Message'}
                 </button>
@@ -185,13 +196,13 @@ export default function Contact() {
                          {/* Contact Information */}
              <div className="space-y-8">
                {/* Contact Info */}
-               <div className="bg-gray-800 rounded-2xl shadow-lg p-8">
+               <div className="rounded-2xl shadow-lg p-8" style={{backgroundColor: '#1a1a1a'}}>
                  <h2 className="text-2xl font-bold text-white mb-6">Contact Information</h2>
                  <div className="space-y-6">
                    {contactInfo.map((info) => (
                      <div key={info.title} className="flex items-center">
-                       <div className="w-12 h-12 bg-blue-900 rounded-lg flex items-center justify-center mr-4">
-                         <svg className="w-6 h-6 text-blue-400" fill="currentColor" viewBox="0 0 24 24">
+                       <div className="w-12 h-12 bg-gray-700 rounded-lg flex items-center justify-center mr-4">
+                         <svg className="w-6 h-6 text-gray-300" fill="currentColor" viewBox="0 0 24 24">
                           {info.icon === 'email' && (
                             <path d="M20 4H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"/>
                           )}
@@ -207,7 +218,7 @@ export default function Contact() {
                          <h3 className="text-lg font-semibold text-white">{info.title}</h3>
                          <a
                            href={info.link}
-                           className="text-blue-400 hover:text-blue-300 transition-colors"
+                           className="text-red-400 hover:text-red-300 transition-colors"
                          >
                            {info.value}
                          </a>
@@ -218,7 +229,7 @@ export default function Contact() {
               </div>
 
                              {/* Social Links */}
-               <div className="bg-gray-800 rounded-2xl shadow-lg p-8">
+               <div className="rounded-2xl shadow-lg p-8" style={{backgroundColor: '#1a1a1a'}}>
                  <h2 className="text-2xl font-bold text-white mb-6">Follow Me</h2>
                  <div className="flex space-x-4">
                    {socialLinks.map((social) => (
@@ -247,7 +258,7 @@ export default function Contact() {
               </div>
 
                              {/* Availability */}
-               <div className="bg-gray-800 rounded-2xl shadow-lg p-8">
+               <div className="rounded-2xl shadow-lg p-8" style={{backgroundColor: '#1a1a1a'}}>
                  <h2 className="text-2xl font-bold text-white mb-6">Availability</h2>
                  <div className="space-y-4">
                    <div className="flex items-center justify-between">

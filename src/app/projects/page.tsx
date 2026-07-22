@@ -22,6 +22,21 @@ export default function Projects() {
       featured: true
     },
     {
+      id: 5,
+      title: 'PayPal Transaction Assistant',
+      subtitle: 'AI-Powered Fintech Redesign',
+      description: 'Redesigned PayPal’s transaction experience with an AI-powered assistant that explains payment status in plain language, reducing anxiety without compromising security.',
+      category: 'Product Design',
+      role: 'Senior Staff Product Designer',
+      duration: 'Concept Sprint',
+      team: 'Cross-functional',
+      keyFeatures: ['AI transaction timeline', 'Risk meter', 'Failure assistant', 'Help before support'],
+      impact: 'Projected 35% fewer support tickets',
+      technologies: ['Figma', 'Design Systems', 'AI/UX', 'Accessibility'],
+      color: 'from-sky-500 to-blue-700',
+      featured: true
+    },
+    {
       id: 2,
       title: 'Starling',
       subtitle: 'Hospitality Booking Platform',
@@ -181,10 +196,11 @@ export default function Projects() {
                   {/* View Case Study Button */}
                   <Link
                     href={
-                      project.id === 1 ? '/projects/zoneaid' : 
-                      project.id === 2 ? '/projects/starling' : 
-                      project.id === 3 ? '/projects/google-calendar' : 
-                      project.id === 4 ? '/projects/airtel' : 
+                      project.id === 1 ? '/projects/zoneaid' :
+                      project.id === 2 ? '/projects/starling' :
+                      project.id === 3 ? '/projects/google-calendar' :
+                      project.id === 4 ? '/projects/airtel' :
+                      project.id === 5 ? '/projects/paypal-transaction-assistant' :
                       '#'
                     }
                     className={`inline-flex items-center justify-center w-full px-8 py-5 bg-gradient-to-r ${project.color} text-white font-futura font-bold rounded-2xl hover:shadow-xl hover:shadow-current/30 transition-all duration-500 group-hover:translate-y-2 group-hover:scale-[1.02] text-lg relative overflow-hidden`}

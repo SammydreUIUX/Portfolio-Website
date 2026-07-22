@@ -8,9 +8,13 @@ export default function About() {
       category: 'Core Specialties', 
       items: ['UI/UX Design', 'User Research', 'Prototyping', 'Design Systems', 'Mobile Apps', 'Web Applications'] 
     },
-    { 
-      category: 'Tools & Technologies', 
-      items: ['Figma', 'Photoshop', 'Illustrator', 'ProtoPie', 'Miro', 'Framer', 'Jira', 'JavaScript'] 
+    {
+      category: 'Tools & Technologies',
+      items: ['Figma', 'Photoshop', 'Illustrator', 'ProtoPie', 'Miro', 'Framer', 'Jira', 'JavaScript']
+    },
+    {
+      category: 'AI-Augmented Design',
+      items: ['Figma AI', 'Google Stitch', 'Claude Code', 'Claude', 'ChatGPT']
     },
     { 
       category: 'Companies Worked With', 
@@ -201,8 +205,11 @@ export default function About() {
                   I believe great design should be accessible, intuitive, and meaningful for all users.
                 </p>
                 <p className="text-lg text-gray-300 leading-relaxed">
-                  Based in Vancouver, I've had the privilege of working with companies like <span className="text-green-400 font-medium">AIRTEL, STARLING, ZONEAID, and INSPORHEALM</span>, 
+                  Based in Vancouver, I've had the privilege of working with companies like <span className="text-green-400 font-medium">AIRTEL, STARLING, ZONEAID, and INSPORHEALM</span>,
                   helping them create digital products that make a real impact in people's lives.
+                </p>
+                <p className="text-lg text-gray-300 leading-relaxed">
+                  I also treat AI as a core part of my toolkit, not a shortcut — using <span className="text-yellow-400 font-medium">Figma AI, Google Stitch, Claude Code, Claude, and ChatGPT</span> to prototype faster and refine products with sharper, more informed decisions.
                 </p>
               </div>
               
@@ -234,12 +241,13 @@ export default function About() {
             </p>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
             {skills.map((skillGroup, index) => {
               const colors = [
                 { bg: 'rgba(59, 130, 246, 0.1)', border: '#3B82F6', accent: '#60A5FA' },
                 { bg: 'rgba(168, 85, 247, 0.1)', border: '#A855F7', accent: '#C084FC' },
-                { bg: 'rgba(34, 197, 94, 0.1)', border: '#22C55E', accent: '#4ADE80' }
+                { bg: 'rgba(34, 197, 94, 0.1)', border: '#22C55E', accent: '#4ADE80' },
+                { bg: 'rgba(236, 72, 153, 0.1)', border: '#EC4899', accent: '#F472B6' }
               ];
               const color = colors[index % colors.length];
               

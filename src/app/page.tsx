@@ -251,6 +251,21 @@ export default function Home() {
       color: 'from-purple-500 to-purple-700'
     },
     {
+      id: 5,
+      title: 'PayPal Transaction Assistant',
+      subtitle: 'AI-Powered Fintech Redesign',
+      description: 'Redesigned PayPal\'s transaction experience with an AI-powered assistant that explains payment status in plain language, predicts completion time, and reduces anxiety without compromising security.',
+      category: 'Product Design',
+      role: 'Senior Staff Product Designer',
+      duration: 'Concept Sprint',
+      team: 'Cross-functional',
+      keyFeatures: ['AI transaction timeline', 'Risk meter', 'Failure assistant', 'Help before support'],
+      impact: 'Projected 35% fewer support tickets',
+      technologies: ['Figma', 'Design Systems', 'AI/UX', 'Accessibility'],
+      color: 'from-sky-500 to-blue-700',
+      isConcept: true
+    },
+    {
       id: 2,
       title: 'Google Calendar',
       subtitle: 'Productivity App Redesign',
@@ -617,15 +632,19 @@ export default function Home() {
           
           {/* Enhanced Description */}
           <div className="mb-16 max-w-4xl mx-auto">
-            <p className="text-lg md:text-xl text-gray-300 leading-relaxed mb-6 break-words">
-              Crafting inclusive, human-centered digital experiences through 
-              <span className="text-blue-400 font-medium"> empathy-driven design</span> and 
+            <p className="text-lg md:text-xl text-gray-300 leading-relaxed mb-4 break-words">
+              Crafting inclusive, human-centered digital experiences through
+              <span className="text-blue-400 font-medium"> empathy-driven design</span> and
               <span className="text-purple-400 font-medium"> innovative solutions</span>
             </p>
-            
+
+            <p className="text-sm md:text-base text-gray-400 mb-8">
+              AI is part of how I work, not a replacement for craft — I use <span className="text-white font-medium">Figma AI, Google Stitch, Claude Code, Claude, and ChatGPT</span> to prototype faster and refine products with sharper decisions.
+            </p>
+
             {/* Key Skills */}
             <div className="flex flex-wrap justify-center gap-3 mb-8">
-              {['UI/UX Design', 'Product Strategy', 'User Research', 'AI Integration'].map((skill, index) => (
+              {['UI/UX Design', 'Product Strategy', 'User Research', 'AI-Augmented Design'].map((skill, index) => (
                 <span 
                   key={skill}
                   className="px-4 py-2 rounded-full text-sm font-medium border border-gray-600 text-gray-300 hover:border-blue-500 hover:text-blue-400 transition-all duration-300"
@@ -707,6 +726,11 @@ export default function Home() {
                             Work in Progress
                           </span>
                         )}
+                        {project.isConcept && (
+                          <span className="inline-block px-3 py-1 text-xs font-medium rounded-full bg-blue-100 text-blue-800 border border-blue-200">
+                            Concept Proposal
+                          </span>
+                        )}
                       </div>
                       <h3 className="text-2xl lg:text-3xl font-bold mb-2 text-white">
                         {project.title}
@@ -722,10 +746,11 @@ export default function Home() {
                     {/* Button */}
                     <div>
                       <Link href={
-                        project.id === 1 ? '/projects/zoneaid' : 
-                        project.id === 2 ? '/projects/google-calendar' : 
-                        project.id === 3 ? '/projects/starling' : 
-                        project.id === 4 ? '/projects/airtel' : 
+                        project.id === 1 ? '/projects/zoneaid' :
+                        project.id === 2 ? '/projects/google-calendar' :
+                        project.id === 3 ? '/projects/starling' :
+                        project.id === 4 ? '/projects/airtel' :
+                        project.id === 5 ? '/projects/paypal-transaction-assistant' :
                         '#'
                       } className="inline-flex items-center px-6 py-3 text-white font-medium rounded-lg border border-gray-600 hover:border-gray-400 hover:bg-gray-800/20 transition-all duration-300">
                         View Case Study 
@@ -739,11 +764,12 @@ export default function Home() {
                   {/* Right Side - Visual */}
                   <div className="flex-shrink-0 w-full lg:w-2/5 p-8 flex items-center justify-center">
                     <div className="relative w-full max-w-xs">
-                      <img 
-                        src={project.id === 1 ? "/images/zoneaid/Overview.jpg" : 
-                             project.id === 2 ? "/images/google-calendar/calendar-preview.png" : 
-                             project.id === 3 ? "/images/starling/starling-overview-updated.png" : 
-                             "/images/960x0.webp"} 
+                      <img
+                        src={project.id === 1 ? "/images/zoneaid/Overview.jpg" :
+                             project.id === 2 ? "/images/google-calendar/calendar-preview.png" :
+                             project.id === 3 ? "/images/starling/starling-overview-updated.png" :
+                             project.id === 5 ? "/images/paypal-transaction-assistant/preview.png" :
+                             "/images/960x0.webp"}
                         alt={`${project.title} ${project.subtitle}`}
                         className="w-full h-64 object-cover rounded-xl"
                         loading="lazy"

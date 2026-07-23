@@ -266,6 +266,21 @@ export default function Home() {
       isConcept: true
     },
     {
+      id: 6,
+      title: 'Fintra',
+      subtitle: 'Reimagining SaaS Billing for Growing Teams',
+      description: 'A concept product exploring how billing, subscriptions, and payment recovery can become more transparent for SaaS administrators managing growing teams.',
+      category: 'Product Design',
+      role: 'Product Designer',
+      duration: '3 weeks',
+      team: 'Individual Project',
+      keyFeatures: ['Live cost preview', 'Payment failure recovery', 'Invoice history', 'Design system'],
+      impact: 'Projected 42% fewer billing support tickets',
+      technologies: ['Figma', 'FigJam', 'AI-assisted research', 'Design Systems'],
+      color: 'from-indigo-500 to-violet-700',
+      isConcept: true
+    },
+    {
       id: 2,
       title: 'Google Calendar',
       subtitle: 'Productivity App Redesign',
@@ -751,6 +766,7 @@ export default function Home() {
                         project.id === 3 ? '/projects/starling' :
                         project.id === 4 ? '/projects/airtel' :
                         project.id === 5 ? '/projects/paypal-transaction-assistant' :
+                        project.id === 6 ? '/projects/fintra' :
                         '#'
                       } className="inline-flex items-center px-6 py-3 text-white font-medium rounded-lg border border-gray-600 hover:border-gray-400 hover:bg-gray-800/20 transition-all duration-300">
                         View Case Study 
@@ -769,6 +785,7 @@ export default function Home() {
                              project.id === 2 ? "/images/google-calendar/calendar-preview.png" :
                              project.id === 3 ? "/images/starling/starling-overview-updated.png" :
                              project.id === 5 ? "/images/paypal-transaction-assistant/preview.png" :
+                             project.id === 6 ? "/images/fintra/preview.png" :
                              "/images/960x0.webp"}
                         alt={`${project.title} ${project.subtitle}`}
                         className="w-full h-64 object-cover rounded-xl"

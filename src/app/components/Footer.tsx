@@ -108,8 +108,8 @@ export default function Footer() {
                 </Link>
               </li>
               <li>
-                <Link href="/projects" className="text-gray-400 hover:text-white transition-colors duration-300 hover:translate-x-1 inline-block">
-                  Projects
+                <Link href="/#featured-work" className="text-gray-400 hover:text-white transition-colors duration-300 hover:translate-x-1 inline-block">
+                  Design Lab
                 </Link>
               </li>
               <li>

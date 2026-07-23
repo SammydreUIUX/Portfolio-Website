@@ -107,7 +107,7 @@ export default function AirtelCaseStudy() {
         <div className="absolute inset-0 bg-gradient-to-br from-green-100/60 to-teal-100/60"></div>
         <div className="relative z-10 max-w-4xl mx-auto text-center">
           <div className="mb-8 animate-on-scroll fade-in">
-            <Link href="/projects" className="inline-flex items-center text-gray-600 hover:text-gray-900 transition-colors">
+            <Link href="/#featured-work" className="inline-flex items-center text-gray-600 hover:text-gray-900 transition-colors">
               <svg className="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 19l-7-7m0 0l7-7m-7 7h18" />
               </svg>
@@ -962,7 +962,7 @@ export default function AirtelCaseStudy() {
             </p>
           </div>
 
-          <Link href="/projects" className="inline-flex items-center px-8 py-3 bg-gradient-to-r from-green-600 to-teal-600 text-white font-semibold rounded-lg hover:shadow-lg hover:shadow-green-500/20 hover:scale-105 transition-all duration-300 animate-on-scroll slide-up stagger-3">
+          <Link href="/#featured-work" className="inline-flex items-center px-8 py-3 bg-gradient-to-r from-green-600 to-teal-600 text-white font-semibold rounded-lg hover:shadow-lg hover:shadow-green-500/20 hover:scale-105 transition-all duration-300 animate-on-scroll slide-up stagger-3">
             <svg className="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 19l-7-7m0 0l7-7m-7 7h18" />
             </svg>

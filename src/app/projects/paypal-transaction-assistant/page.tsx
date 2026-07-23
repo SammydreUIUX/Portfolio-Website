@@ -340,7 +340,7 @@ export default function PayPalCaseStudy() {
       <section className="relative overflow-hidden px-4 py-28 sm:px-6 lg:px-8" style={{ background: `linear-gradient(180deg, ${PP_BG} 0%, #FFFFFF 100%)` }}>
         <div className="relative z-10 mx-auto max-w-4xl text-center">
           <div className="mb-8 animate-on-scroll fade-in">
-            <Link href="/projects" className="inline-flex items-center text-gray-500 transition-colors hover:text-gray-900">
+            <Link href="/#featured-work" className="inline-flex items-center text-gray-500 transition-colors hover:text-gray-900">
               <Icon path={ICONS.arrowLeft} className="mr-2 h-5 w-5" />
               Back to Projects
             </Link>
@@ -1376,7 +1376,7 @@ export default function PayPalCaseStudy() {
             </p>
           </div>
           <Link
-            href="/projects"
+            href="/#featured-work"
             className="inline-flex items-center rounded-full px-8 py-3 font-semibold text-white shadow-lg transition-all duration-300 hover:scale-105"
             style={{ background: PP_BLUE }}
           >

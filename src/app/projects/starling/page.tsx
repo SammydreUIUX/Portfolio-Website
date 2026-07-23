@@ -1075,7 +1075,7 @@ export default function StarlingCaseStudy() {
               ← Back to Home
             </a>
             <a 
-              href="/projects" 
+              href="/#featured-work" 
               className="px-8 py-3 text-green-600 font-semibold rounded-lg hover:bg-green-600 hover:text-white hover:scale-105 hover:shadow-lg transition-all duration-300 transform"
             >
               View All Projects

@@ -49,6 +49,17 @@ const ICONS = {
 };
 
 /* ------------------------------------------------------------------ */
+/*  PayPal glyph (official brand mark)                                 */
+/* ------------------------------------------------------------------ */
+function PayPalLogo({ className = 'w-10 h-10', color = '#FFFFFF' }: { className?: string; color?: string }) {
+  return (
+    <svg className={className} viewBox="0 0 24 24" fill={color} xmlns="http://www.w3.org/2000/svg">
+      <path d="M15.607 4.653H8.941L6.645 19.251H1.82L4.862 0h7.995c3.754 0 6.375 2.294 6.473 5.513-.648-.478-2.105-.86-3.722-.86m6.57 5.546c0 3.41-3.01 6.853-6.958 6.853h-2.493L11.595 24H6.74l1.845-11.538h3.592c4.208 0 7.346-3.634 7.153-6.949a5.24 5.24 0 0 1 2.848 4.686M9.653 5.546h6.408c.907 0 1.942.222 2.363.541-.195 2.741-2.655 5.483-6.441 5.483H8.714Z" />
+    </svg>
+  );
+}
+
+/* ------------------------------------------------------------------ */
 /*  AI avatar                                                          */
 /* ------------------------------------------------------------------ */
 function AIAvatar({ size = 'md' }: { size?: 'sm' | 'md' | 'lg' }) {
@@ -337,7 +348,7 @@ export default function PayPalCaseStudy() {
 
           <div className="mb-8 flex items-center justify-center gap-3 animate-on-scroll scale-in stagger-1">
             <div className="flex h-20 w-20 items-center justify-center rounded-3xl shadow-xl" style={{ background: `linear-gradient(135deg, ${PP_LIGHT}, ${PP_DARK})` }}>
-              <span className="text-3xl font-bold text-white">P</span>
+              <PayPalLogo className="h-10 w-10" color="#FFFFFF" />
             </div>
           </div>
 

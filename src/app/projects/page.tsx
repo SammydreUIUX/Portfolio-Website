@@ -37,6 +37,21 @@ export default function Projects() {
       featured: true
     },
     {
+      id: 6,
+      title: 'Fintra',
+      subtitle: 'Reimagining SaaS Billing for Growing Teams',
+      description: 'A concept product exploring how billing, subscriptions, and payment recovery can become more transparent for SaaS administrators managing growing teams.',
+      category: 'Product Design',
+      role: 'Product Designer',
+      duration: '3 weeks',
+      team: 'Individual Project',
+      keyFeatures: ['Live cost preview', 'Payment failure recovery', 'Invoice history', 'Design system'],
+      impact: 'Projected 42% fewer billing support tickets',
+      technologies: ['Figma', 'FigJam', 'AI-assisted research', 'Design Systems'],
+      color: 'from-indigo-500 to-violet-700',
+      featured: true
+    },
+    {
       id: 2,
       title: 'Starling',
       subtitle: 'Hospitality Booking Platform',
@@ -201,6 +216,7 @@ export default function Projects() {
                       project.id === 3 ? '/projects/google-calendar' :
                       project.id === 4 ? '/projects/airtel' :
                       project.id === 5 ? '/projects/paypal-transaction-assistant' :
+                      project.id === 6 ? '/projects/fintra' :
                       '#'
                     }
                     className={`inline-flex items-center justify-center w-full px-8 py-5 bg-gradient-to-r ${project.color} text-white font-futura font-bold rounded-2xl hover:shadow-xl hover:shadow-current/30 transition-all duration-500 group-hover:translate-y-2 group-hover:scale-[1.02] text-lg relative overflow-hidden`}

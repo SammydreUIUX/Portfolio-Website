@@ -9,7 +9,7 @@ export default function Navbar() {
   const navItems = [
     { href: '/', label: 'Home' },
     { href: '/about', label: 'About' },
-    { href: '/#featured-work', label: 'Design Lab' },
+    { href: '/design-lab', label: 'Design Lab' },
   ];
 
   return (

@@ -108,7 +108,7 @@ export default function Footer() {
                 </Link>
               </li>
               <li>
-                <Link href="/#featured-work" className="text-gray-400 hover:text-white transition-colors duration-300 hover:translate-x-1 inline-block">
+                <Link href="/design-lab" className="text-gray-400 hover:text-white transition-colors duration-300 hover:translate-x-1 inline-block">
                   Design Lab
                 </Link>
               </li>

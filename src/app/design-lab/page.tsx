@@ -44,8 +44,51 @@ export default function DesignLab() {
         </div>
       </section>
 
-      {/* UI Designs Section */}
+      {/* Articles Section */}
       <section className="py-20" style={{ backgroundColor: '#0f0f0f' }}>
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="text-center mb-16">
+            <h2 className="text-3xl lg:text-4xl font-righteous text-white mb-4">
+              Articles
+            </h2>
+            <p className="text-lg text-gray-300 font-futura max-w-2xl mx-auto">
+              Notes, experiments, and honest takes on design tools, written for other designers.
+            </p>
+          </div>
+
+          <Link
+            href="/design-lab/ai-design-system"
+            className="group block max-w-3xl mx-auto rounded-2xl p-8 transition-all duration-300 hover:-translate-y-1"
+            style={{
+              background: 'rgba(255, 255, 255, 0.05)',
+              backdropFilter: 'blur(10px)',
+              border: '1px solid rgba(255, 255, 255, 0.1)'
+            }}
+          >
+            <div className="mb-4 flex flex-wrap items-center gap-3 text-sm font-futura text-gray-400">
+              <span className="px-3 py-1 rounded-full border border-gray-700 text-gray-300">Article</span>
+              <span>&middot;</span>
+              <span>6 min read</span>
+            </div>
+            <h3 className="text-2xl lg:text-3xl font-righteous text-white mb-4 group-hover:text-transparent group-hover:bg-clip-text group-hover:bg-gradient-to-r group-hover:from-blue-400 group-hover:to-purple-400 transition-all duration-300">
+              Can AI Build a Production-Ready Design System?
+            </h3>
+            <p className="text-gray-300 font-futura leading-relaxed mb-6">
+              I challenged Figma Make to generate an enterprise design system inspired by Linear &mdash; then spent
+              an afternoon figuring out exactly where it held up, and where it didn&apos;t.
+            </p>
+            <span className="inline-flex items-center text-white font-futura font-semibold">
+              Read Article
+              <svg className="w-4 h-4 ml-2 group-hover:translate-x-1 transition-transform duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" />
+              </svg>
+            </span>
+          </Link>
+        </div>
+      </section>
+
+      {/* UI Designs Section */}
+      <section className="py-20" style={{ backgroundColor: '#131313' }}>
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-16">
             <h2 className="text-3xl lg:text-4xl font-righteous text-white mb-4">

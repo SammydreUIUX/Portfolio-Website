@@ -129,7 +129,7 @@ export default function ChatBox() {
       {/* Chat Toggle Button */}
       <button
         onClick={() => setIsOpen(!isOpen)}
-        className="fixed bottom-6 right-6 z-50 bg-blue-600 hover:bg-blue-700 text-white rounded-full p-4 shadow-lg transition-all duration-300"
+        className="fixed bottom-6 right-6 z-50 bg-black hover:bg-white hover:text-black border border-black text-white p-4 shadow-lg transition-all duration-300"
         aria-label="Toggle chat"
       >
         {isOpen ? (
@@ -145,16 +145,16 @@ export default function ChatBox() {
 
       {/* Chat Window */}
       {isOpen && (
-        <div className="fixed bottom-20 right-6 z-40 w-80 h-96 bg-gray-900 rounded-lg shadow-2xl border border-gray-700 flex flex-col">
+        <div className="fixed bottom-20 right-6 z-40 w-80 h-96 bg-white shadow-2xl border border-black flex flex-col">
           {/* Header */}
-          <div className="bg-gray-800 px-4 py-3 rounded-t-lg border-b border-gray-700">
+          <div className="bg-black px-4 py-3 border-b border-black">
             <div className="flex items-center">
-              <div className="w-8 h-8 bg-blue-600 rounded-full flex items-center justify-center mr-3">
-                <span className="text-white text-sm font-bold">S</span>
+              <div className="w-8 h-8 bg-white border border-white flex items-center justify-center mr-3">
+                <span className="text-black text-sm font-bold">S</span>
               </div>
               <div>
                 <h3 className="text-white font-semibold">Samuel&apos;s AI Assistant</h3>
-                <p className="text-gray-400 text-xs">Online</p>
+                <p className="text-gray-400 text-xs sw-label">Online</p>
               </div>
             </div>
           </div>
@@ -167,27 +167,27 @@ export default function ChatBox() {
                 className={`flex ${message.sender === 'user' ? 'justify-end' : 'justify-start'}`}
               >
                 <div
-                  className={`max-w-xs px-4 py-2 rounded-lg ${
+                  className={`max-w-xs px-4 py-2 border ${
                     message.sender === 'user'
-                      ? 'bg-blue-600 text-white'
-                      : 'bg-gray-700 text-gray-100'
+                      ? 'bg-black text-white border-black'
+                      : 'bg-[#F5F3EE] text-black border-black/10'
                   }`}
                 >
                   <p className="text-sm">{message.text}</p>
-                  <p className="text-xs opacity-70 mt-1">
+                  <p className="text-xs opacity-60 mt-1">
                     {message.timestamp.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })}
                   </p>
                 </div>
               </div>
             ))}
-            
+
             {isTyping && (
               <div className="flex justify-start">
-                <div className="bg-gray-700 text-gray-100 px-4 py-2 rounded-lg">
+                <div className="bg-[#F5F3EE] text-black px-4 py-2 border border-black/10">
                   <div className="flex space-x-1">
-                    <div className="w-2 h-2 bg-gray-400 rounded-full animate-bounce"></div>
-                    <div className="w-2 h-2 bg-gray-400 rounded-full animate-bounce" style={{ animationDelay: '0.1s' }}></div>
-                    <div className="w-2 h-2 bg-gray-400 rounded-full animate-bounce" style={{ animationDelay: '0.2s' }}></div>
+                    <div className="w-2 h-2 bg-black rounded-full animate-bounce"></div>
+                    <div className="w-2 h-2 bg-black rounded-full animate-bounce" style={{ animationDelay: '0.1s' }}></div>
+                    <div className="w-2 h-2 bg-black rounded-full animate-bounce" style={{ animationDelay: '0.2s' }}></div>
                   </div>
                 </div>
               </div>
@@ -196,7 +196,7 @@ export default function ChatBox() {
           </div>
 
           {/* Input */}
-          <div className="p-4 border-t border-gray-700">
+          <div className="p-4 border-t border-black/10">
             <div className="flex space-x-2">
               <input
                 type="text"
@@ -204,13 +204,13 @@ export default function ChatBox() {
                 onChange={(e) => setInputValue(e.target.value)}
                 onKeyPress={handleKeyPress}
                 placeholder="Type your message..."
-                className="flex-1 bg-gray-800 text-white px-3 py-2 rounded-lg border border-gray-600 focus:outline-none focus:border-blue-500 text-sm"
+                className="flex-1 bg-white text-black px-3 py-2 border border-black/30 focus:outline-none focus:border-black text-sm"
                 disabled={isTyping}
               />
               <button
                 onClick={handleSendMessage}
                 disabled={!inputValue.trim() || isTyping}
-                className="bg-blue-600 hover:bg-blue-700 disabled:bg-gray-600 text-white px-4 py-2 rounded-lg transition-colors"
+                className="bg-black hover:bg-white hover:text-black border border-black disabled:bg-gray-400 text-white px-4 py-2 transition-colors"
               >
                 <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 19l9 2-9-18-9 18 9-2zm0 0v-8" />

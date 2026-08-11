@@ -1,9 +1,16 @@
 @import "tailwindcss";
 
 :root {
-  --background: #111827;
-  --foreground: #f9fafb;
+  --background: #FAFAF8;
+  --foreground: #111111;
   --font-futura: var(--font-inter), -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+
+  /* Editorial system: pure white / black / neutral grey, no accent color */
+  --sw-bg: #FAFAF8;
+  --sw-panel: #FFFFFF;
+  --sw-ink: #111111;
+  --sw-gray: #6E6E6B;
+  --sw-line: #E4E3DE;
 }
 
 @theme inline {
@@ -97,6 +104,102 @@ code, pre, .font-mono {
 .font-righteous {
   font-family: var(--font-righteous), sans-serif !important;
   font-weight: 400;
+}
+
+/* ================================================================== */
+/* Swiss Editorial system                                              */
+/* ================================================================== */
+.sw-label {
+  font-family: var(--font-jetbrains-mono), monospace;
+  font-size: 0.75rem;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  font-weight: 500;
+}
+
+.sw-serif {
+  font-family: var(--font-serif), Georgia, serif;
+}
+
+.sw-display {
+  font-family: var(--font-serif), Georgia, serif;
+  font-weight: 500;
+  line-height: 0.98;
+  letter-spacing: -0.01em;
+}
+
+.sw-quote {
+  font-family: var(--font-serif), Georgia, serif;
+  font-style: italic;
+  font-weight: 400;
+  line-height: 1.15;
+  letter-spacing: -0.005em;
+}
+
+.sw-rule {
+  border-top: 1px solid var(--sw-line);
+}
+
+.sw-rule-v {
+  border-left: 1px solid var(--sw-line);
+}
+
+.sw-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  border-radius: 0;
+  border: 1px solid var(--sw-ink);
+  padding: 0.9rem 2rem;
+  font-family: var(--font-futura);
+  font-weight: 500;
+  font-size: 0.95rem;
+  transition: background-color 0.2s ease, color 0.2s ease, border-color 0.2s ease;
+}
+
+.sw-btn-primary {
+  background: var(--sw-ink);
+  color: var(--sw-bg);
+}
+
+.sw-btn-primary:hover {
+  background: transparent;
+  border-color: var(--sw-ink);
+  color: var(--sw-ink);
+}
+
+.sw-btn-secondary {
+  background: transparent;
+  color: var(--sw-ink);
+}
+
+.sw-btn-secondary:hover {
+  background: var(--sw-ink);
+  color: var(--sw-bg);
+}
+
+/* Subtle, elegant motion only — no bounce, no spin */
+.reveal {
+  opacity: 0;
+  transform: translateY(16px);
+  transition: opacity 0.9s cubic-bezier(0.16, 1, 0.3, 1), transform 0.9s cubic-bezier(0.16, 1, 0.3, 1);
+}
+.reveal.reveal-in {
+  opacity: 1;
+  transform: translateY(0);
+}
+.reveal-img img {
+  transform: scale(1.04);
+  transition: transform 1.6s cubic-bezier(0.16, 1, 0.3, 1);
+}
+.reveal-img.reveal-in img {
+  transform: scale(1);
+}
+
+.sw-btn-secondary:hover {
+  background: var(--sw-ink);
+  color: var(--sw-bg);
 }
 
 @keyframes gradient-x {

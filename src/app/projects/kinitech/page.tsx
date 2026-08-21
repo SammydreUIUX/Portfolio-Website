@@ -367,31 +367,19 @@ export default function KinitechCaseStudy() {
             </div>
           </div>
 
-          <div className="mt-14 grid gap-10 lg:grid-cols-2 items-center">
-            <div>
-              <p className="sw-label mb-3" style={{ color: SW_GRAY }}>Real Shipped Flow</p>
-              <p style={{ color: SW_INK }}>
-                &ldquo;Request a Quote&rdquo; opens the same short form from anywhere on the site: Full Name, Email,
-                Phone (optional), Project Type, Project Details. One step removed from the highest-intent action on
-                the site.
-              </p>
-            </div>
-            <BrowserFrame url="kinitech.ca" label="Real Quote Request Modal">
-              <div className="p-6" style={{ backgroundColor: SW_BG }}>
-                <p className="font-medium mb-1" style={{ color: SW_INK }}>Request a Quote</p>
-                <p className="text-xs mb-4" style={{ color: SW_GRAY }}>
-                  Tell us about your project and a Kinitech consultant will follow up within one business day.
-                </p>
-                <div className="space-y-2.5">
-                  {['Full Name', 'Email', 'Phone (optional)'].map((f) => (
-                    <div key={f} className="border px-3 py-2 text-xs" style={{ borderColor: SW_LINE, color: SW_GRAY, backgroundColor: SW_CARD }}>{f}</div>
-                  ))}
-                  <div className="border px-3 py-2 text-xs flex items-center justify-between" style={{ borderColor: SW_LINE, color: SW_GRAY, backgroundColor: SW_CARD }}>
-                    Project Type <Icon path={ICONS.arrowRight} className="h-3 w-3 rotate-90" />
-                  </div>
-                </div>
-                <div className="sw-btn sw-btn-primary w-full mt-3 justify-center">Submit Request</div>
-              </div>
+          <div className="mt-14">
+            <p className="sw-label mb-3 text-center" style={{ color: SW_GRAY }}>Real Shipped Flow</p>
+            <p className="text-center max-w-xl mx-auto mb-8" style={{ color: SW_INK }}>
+              &ldquo;Request a Quote&rdquo; opens the same short form from anywhere on the site: Full Name, Email,
+              Phone (optional), Project Type, Project Details. One step removed from the highest-intent action on
+              the site.
+            </p>
+            <BrowserFrame url="kinitech.ca/services" label="Real Quote Request Modal">
+              <img
+                src="/images/kinitech/quote-modal-services.jpg"
+                alt="Real Kinitech Request a Quote modal open over the Services page, with Full Name, Email, Phone, Project Type, and Project Details fields"
+                className="w-full h-auto"
+              />
             </BrowserFrame>
           </div>
         </div>

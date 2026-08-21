@@ -30,6 +30,22 @@ const selectedWork: SelectedWorkItem[] = [
     coverType: 'wordmark',
   },
   {
+    year: '2023',
+    category: 'Public Safety',
+    title: 'ZoneAid',
+    description: 'A safety-focused mobile app that revolutionizes emergency response through real-time tracking, offline functionality, and family monitoring systems.',
+    href: '/projects/zoneaid',
+    image: '/images/zoneaid/Overview.jpg',
+  },
+  {
+    year: '2022',
+    category: 'Telecom Research',
+    title: 'Airtel ODU',
+    description: 'Comprehensive user research to enhance customer experience through stakeholder interviews, usability testing, and journey mapping.',
+    href: '/projects/airtel',
+    image: '/images/960x0.webp',
+  },
+  {
     year: '2026',
     category: 'Fintech',
     title: 'PayPal Transaction Assistant',
@@ -46,28 +62,12 @@ const selectedWork: SelectedWorkItem[] = [
     image: '/images/fintra/preview.png',
   },
   {
-    year: '2023',
-    category: 'Public Safety',
-    title: 'ZoneAid',
-    description: 'A safety-focused mobile app that revolutionizes emergency response through real-time tracking, offline functionality, and family monitoring systems.',
-    href: '/projects/zoneaid',
-    image: '/images/zoneaid/Overview.jpg',
-  },
-  {
     year: '2024',
     category: 'Productivity',
     title: 'Google Calendar',
     description: 'An AI-powered scheduling redesign with a smart assistant, focus mode, and enhanced accessibility for everyday planning.',
     href: '/projects/google-calendar',
     image: '/images/google-calendar/calendar-preview.png',
-  },
-  {
-    year: '2022',
-    category: 'Telecom Research',
-    title: 'Airtel ODU',
-    description: 'Comprehensive user research to enhance customer experience through stakeholder interviews, usability testing, and journey mapping.',
-    href: '/projects/airtel',
-    image: '/images/960x0.webp',
   },
 ];
 

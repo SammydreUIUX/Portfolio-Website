@@ -23,7 +23,8 @@ export default function Navbar() {
       <div className="max-w-7xl mx-auto px-6 sm:px-8 lg:px-12">
         <div className="flex justify-between items-center h-20">
           {/* Wordmark */}
-          <Link href="/" className="text-base font-medium tracking-tight" style={{ color: SW_INK }}>
+          <Link href="/" className="flex items-center gap-2 text-base font-medium tracking-tight" style={{ color: SW_INK }}>
+            <img src="/images/sf-logo-new.png" alt="" className="h-7 w-7 object-contain" />
             Samuel Funmilayo
           </Link>
 

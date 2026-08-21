@@ -9,7 +9,26 @@ const SW_INK = '#111111';
 const SW_GRAY = '#6E6E6B';
 const SW_LINE = '#E4E3DE';
 
-const selectedWork = [
+type SelectedWorkItem = {
+  year: string;
+  category: string;
+  title: string;
+  description: string;
+  href: string;
+  image: string;
+  coverType?: 'wordmark';
+};
+
+const selectedWork: SelectedWorkItem[] = [
+  {
+    year: '2026',
+    category: 'B2B / Product Design',
+    title: 'Kinitech Engineering',
+    description: 'A real client engagement: restructuring a structural engineering firm’s single-page website into a five-destination experience built around service clarity, credibility, and inquiry.',
+    href: '/projects/kinitech',
+    image: '/images/kinitech/kinitech-logo.png',
+    coverType: 'wordmark',
+  },
   {
     year: '2026',
     category: 'Fintech',
@@ -103,7 +122,7 @@ export default function Home() {
         <div className="max-w-7xl mx-auto">
           <div className="flex items-baseline justify-between mb-20 reveal">
             <h2 className="sw-display text-4xl md:text-5xl">Selected Work</h2>
-            <p className="sw-label hidden sm:block" style={{ color: SW_GRAY }}>N&deg; 01&ndash;05</p>
+            <p className="sw-label hidden sm:block" style={{ color: SW_GRAY }}>N&deg; 01&ndash;06</p>
           </div>
 
           <div className="space-y-24 lg:space-y-32">
@@ -114,11 +133,26 @@ export default function Home() {
                   <div className={`lg:col-span-7 reveal-img reveal ${imageFirst ? 'lg:order-1' : 'lg:order-2'}`}>
                     <Link href={project.href} className="block group">
                       <div className="relative h-72 md:h-96 overflow-hidden">
-                        <img
-                          src={project.image}
-                          alt={project.title}
-                          className="w-full h-full object-cover transition-transform duration-[1.4s] ease-out group-hover:scale-[1.02]"
-                        />
+                        {project.coverType === 'wordmark' ? (
+                          <div className="relative flex h-full w-full items-center justify-center" style={{ backgroundColor: SW_INK }}>
+                            <div className="absolute inset-0 opacity-[0.15]" style={{
+                              backgroundImage: `linear-gradient(${SW_BG} 1px, transparent 1px), linear-gradient(90deg, ${SW_BG} 1px, transparent 1px)`,
+                              backgroundSize: '32px 32px',
+                            }} />
+                            <img
+                              src={project.image}
+                              alt={project.title}
+                              className="relative h-16 md:h-20 w-auto object-contain transition-transform duration-[1.4s] ease-out group-hover:scale-[1.04]"
+                              style={{ filter: 'brightness(0) invert(1)' }}
+                            />
+                          </div>
+                        ) : (
+                          <img
+                            src={project.image}
+                            alt={project.title}
+                            className="w-full h-full object-cover transition-transform duration-[1.4s] ease-out group-hover:scale-[1.02]"
+                          />
+                        )}
                       </div>
                     </Link>
                   </div>

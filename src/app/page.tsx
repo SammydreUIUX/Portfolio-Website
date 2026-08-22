@@ -41,7 +41,7 @@ const selectedWork: SelectedWorkItem[] = [
     year: '2022',
     category: 'Telecom Research',
     title: 'Airtel ODU',
-    description: 'Comprehensive user research to enhance customer experience through stakeholder interviews, usability testing, and journey mapping.',
+    description: 'Market-entry research for a new connectivity device in Nigeria: validating real demand among Lagos churches and businesses through targeted outreach before a national rollout.',
     href: '/projects/airtel',
     image: '/images/960x0.webp',
   },

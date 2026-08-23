@@ -2,6 +2,9 @@
 
 import React from 'react';
 import Link from 'next/link';
+import { Caveat } from 'next/font/google';
+
+const caveat = Caveat({ subsets: ['latin'], weight: ['500', '600', '700'] });
 
 const SW_BG = '#FAFAF8';
 const SW_CARD = '#FFFFFF';
@@ -38,25 +41,50 @@ function SectionEyebrow({ children }: { children: React.ReactNode }) {
 }
 
 /* ------------------------------------------------------------------ */
-/*  Horizontal flow diagram                                            */
+/*  Sticky note (hand-written step card)                               */
 /* ------------------------------------------------------------------ */
-function Flow({ steps }: { steps: { title: string; sub?: string }[] }) {
+const NOTE_COLORS = ['#FCE788', '#FFC9B0', '#BFE3F7'];
+const NOTE_ROTATE = [-2.5, 2, -1.5];
+const NOTE_INK = ['#3a2e07', '#4a2313', '#0f2c42'];
+
+function StickyNote({ index, title, sub }: { index: number; title: string; sub: string }) {
+  const bg = NOTE_COLORS[index % NOTE_COLORS.length];
+  const ink = NOTE_INK[index % NOTE_INK.length];
+  const rotate = NOTE_ROTATE[index % NOTE_ROTATE.length];
   return (
-    <div className="flex flex-col items-stretch gap-3 lg:flex-row lg:items-start lg:gap-0">
-      {steps.map((step, i) => (
-        <React.Fragment key={step.title}>
-          <div className="flex-1 border p-5 text-center" style={{ borderColor: SW_LINE, backgroundColor: SW_CARD }}>
-            <p className="sw-label mb-1.5" style={{ color: SW_GRAY }}>{String(i + 1).padStart(2, '0')}</p>
-            <p className="font-medium mb-1" style={{ color: SW_INK }}>{step.title}</p>
-            {step.sub && <p className="text-sm" style={{ color: SW_GRAY }}>{step.sub}</p>}
-          </div>
-          {i < steps.length - 1 && (
-            <div className="flex items-center justify-center px-1 py-1 lg:py-0">
-              <Icon path={ICONS.arrowRight} className="h-4 w-4 rotate-90 lg:rotate-0" />
-            </div>
-          )}
-        </React.Fragment>
-      ))}
+    <div
+      className="relative flex-1"
+      style={{ transform: `rotate(${rotate}deg)`, marginTop: '0.75rem' }}
+    >
+      {/* tape */}
+      <div
+        className="absolute left-1/2 h-6 w-16"
+        style={{
+          top: '-0.85rem',
+          transform: 'translateX(-50%) rotate(-4deg)',
+          backgroundColor: 'rgba(255,255,255,0.55)',
+          boxShadow: '0 1px 3px rgba(0,0,0,0.15)',
+          backdropFilter: 'blur(1px)',
+        }}
+      />
+      <div
+        className="p-6 pt-8"
+        style={{
+          backgroundColor: bg,
+          boxShadow: '0 14px 24px -10px rgba(0,0,0,0.28), 0 3px 8px rgba(0,0,0,0.12)',
+          minHeight: '190px',
+        }}
+      >
+        <p className={`${caveat.className} mb-2 text-2xl`} style={{ color: ink, opacity: 0.75 }}>
+          {String(index + 1).padStart(2, '0')}
+        </p>
+        <p className={`${caveat.className} mb-2 text-3xl leading-tight`} style={{ color: ink }}>
+          {title}
+        </p>
+        <p className={`${caveat.className} text-xl leading-snug`} style={{ color: ink, opacity: 0.85 }}>
+          {sub}
+        </p>
+      </div>
     </div>
   );
 }
@@ -194,8 +222,58 @@ export default function AirtelCaseStudy() {
             </div>
             <div className="flex flex-col items-center">
               <span className="sw-label mb-1" style={{ color: SW_GRAY }}>Duration</span>
-              <span className="font-medium">8 months</span>
+              <span className="font-medium">4 months</span>
             </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Team photo */}
+      <section className="px-4 sm:px-6 lg:px-8 pb-20">
+        <div className="max-w-5xl mx-auto">
+          <div className="relative overflow-hidden border" style={{ borderColor: SW_LINE }}>
+            <img
+              src="/images/airtelteam2.jpg"
+              alt="The Airtel ODU pilot team with the outdoor unit device"
+              className="w-full h-auto"
+            />
+            {[
+              { n: 1, left: '25%', top: '17%' },
+              { n: 2, left: '36.5%', top: '15%' },
+              { n: 3, left: '48%', top: '14%' },
+              { n: 4, left: '59%', top: '13%' },
+              { n: 5, left: '69.5%', top: '14%' },
+              { n: 6, left: '85%', top: '13%' },
+            ].map((b) => (
+              <span
+                key={b.n}
+                className="absolute flex h-6 w-6 -translate-x-1/2 -translate-y-1/2 items-center justify-center rounded-full text-xs font-bold text-white sm:h-7 sm:w-7"
+                style={{ left: b.left, top: b.top, backgroundColor: SW_INK, boxShadow: '0 1px 4px rgba(0,0,0,0.5)' }}
+              >
+                {b.n}
+              </span>
+            ))}
+          </div>
+          <p className="sw-label mt-4 mb-6 text-center" style={{ color: SW_GRAY }}>The Pilot Team</p>
+          <div className="grid grid-cols-2 gap-3 sm:grid-cols-3 sm:gap-4">
+            {[
+              { n: 1, role: 'Marketer' },
+              { n: 2, role: 'Installer' },
+              { n: 3, role: 'IT Support' },
+              { n: 4, role: 'IT Support' },
+              { n: 5, role: 'Marketer' },
+              { n: 6, role: 'Product Researcher (me)' },
+            ].map((p) => (
+              <div key={p.n} className="flex items-center gap-2.5">
+                <span
+                  className="flex h-6 w-6 flex-shrink-0 items-center justify-center rounded-full text-xs font-bold text-white"
+                  style={{ backgroundColor: SW_INK }}
+                >
+                  {p.n}
+                </span>
+                <span className="text-sm" style={{ color: SW_INK }}>{p.role}</span>
+              </div>
+            ))}
           </div>
         </div>
       </section>
@@ -231,13 +309,11 @@ export default function AirtelCaseStudy() {
             organizations that had an urgent, specific reason to need better connectivity, then use that as the
             evidence base for a national rollout.
           </p>
-          <Flow
-            steps={[
-              { title: 'Lagos Pilot', sub: 'Target real organizations, not the general public' },
-              { title: 'Segment Validation', sub: 'Two outreach campaigns, direct qualifying questions' },
-              { title: 'National Rollout', sub: 'Scale what was proven to convert' },
-            ]}
-          />
+          <div className="flex flex-col gap-12 px-2 py-4 sm:flex-row sm:gap-8 sm:px-4 sm:py-6">
+            <StickyNote index={0} title="Lagos Pilot" sub="Target real organizations, not the general public" />
+            <StickyNote index={1} title="Segment Validation" sub="Two outreach campaigns, direct qualifying questions" />
+            <StickyNote index={2} title="National Rollout" sub="Scale what was proven to convert" />
+          </div>
         </div>
       </section>
 
@@ -300,15 +376,30 @@ export default function AirtelCaseStudy() {
 
       {/* ============================= WHAT THE OUTREACH SHOWED ============================= */}
       <section className="py-20 px-4 sm:px-6 lg:px-8 border-t" style={{ borderColor: SW_LINE }}>
-        <div className="max-w-3xl mx-auto">
+        <div className="max-w-4xl mx-auto">
           <SectionEyebrow>What the Outreach Showed</SectionEyebrow>
           <h2 className="sw-display text-3xl md:text-4xl text-center mb-10">Affordability Converted Attention Into Yes</h2>
           <p className="text-lg leading-relaxed mb-6" style={{ color: SW_INK }}>
             Every organization that completed the qualifying conversation, in both segments, answered yes to
             needing internet they could depend on and afford. This is directional signal from a pilot outreach,
             not a statistically representative survey, but the pattern was consistent enough across both
-            segments to be a real finding, not a coincidence.
+            segments, and specific enough in numbers, to be a real finding, not a coincidence.
           </p>
+
+          <div className="grid grid-cols-2 gap-px mb-10 sm:grid-cols-4" style={{ backgroundColor: SW_LINE }}>
+            {[
+              { stat: '10 / 10', label: 'Churches said yes (4 mainland, 6 island)' },
+              { stat: '11', label: 'Businesses said yes, including digital marketing agencies and IT solution firms' },
+              { stat: '7+', label: 'Lagos areas covered: Ogba, Ikeja, Surulere, Awoyaya, Lekki, Victoria Island, Ikoyi' },
+              { stat: '3–4 mo', label: 'Pilot window before the model was validated enough to expand' },
+            ].map((m) => (
+              <div key={m.label} className="p-5 text-center" style={{ backgroundColor: SW_CARD }}>
+                <p className="sw-display text-3xl mb-2">{m.stat}</p>
+                <p className="text-xs leading-snug" style={{ color: SW_GRAY }}>{m.label}</p>
+              </div>
+            ))}
+          </div>
+
           <div className="border-l-4 p-5" style={{ borderColor: SW_INK, backgroundColor: SW_CARD }}>
             <p className="sw-serif italic text-lg" style={{ color: SW_INK }}>
               Signal wasn&apos;t the barrier. Every competitor already sells signal. The barrier was the upfront
@@ -316,6 +407,25 @@ export default function AirtelCaseStudy() {
               registration.
             </p>
           </div>
+        </div>
+      </section>
+
+      {/* ============================= BEYOND THE PILOT ============================= */}
+      <section className="py-20 px-4 sm:px-6 lg:px-8 border-t" style={{ borderColor: SW_LINE, backgroundColor: SW_CARD }}>
+        <div className="max-w-3xl mx-auto">
+          <SectionEyebrow>Beyond the Pilot</SectionEyebrow>
+          <h2 className="sw-display text-3xl md:text-4xl text-center mb-10">A Third Segment, Then a Life of Its Own</h2>
+          <p className="text-lg leading-relaxed mb-6" style={{ color: SW_INK }}>
+            Once the church and business segments validated the model across mainland and island Lagos, the
+            same approach was extended to a third segment: artisans, particularly farmers in remote areas,
+            where reliable connectivity was even harder to come by.
+          </p>
+          <p className="text-lg leading-relaxed" style={{ color: SW_INK }}>
+            The initiative continued to grow beyond that expansion, after my own involvement in the project
+            ended. I don&apos;t have visibility into later numbers, so I won&apos;t attach a figure to that growth
+            here, but the model outlasting the original team that built it is its own kind of evidence that it
+            worked.
+          </p>
         </div>
       </section>
 
@@ -366,12 +476,17 @@ export default function AirtelCaseStudy() {
 
           <div className="space-y-px" style={{ backgroundColor: SW_LINE }}>
             {[
-              { name: 'MTN', edge: 'Largest market share and strongest urban coverage.', gap: 'Weaker rural penetration and no equivalent indoor-signal device.' },
-              { name: 'Glo', edge: 'Lowest data pricing in the market.', gap: 'Reliability reputation is weaker, less credible for mission-critical use like a live church service.' },
-              { name: 'Smile', edge: 'Strong 4G/5G speeds in major cities.', gap: 'Limited rural and semi-urban reach, and premium pricing that excludes budget-conscious segments.' },
+              { name: 'MTN', logo: '/images/airtel/competitors/mtn.png', edge: 'Largest market share and strongest urban coverage.', gap: 'Weaker rural penetration and no equivalent indoor-signal device.' },
+              { name: 'Glo', logo: '/images/airtel/competitors/glo.webp', edge: 'Lowest data pricing in the market.', gap: 'Reliability reputation is weaker, less credible for mission-critical use like a live church service.' },
+              { name: 'Smile', logo: '/images/airtel/competitors/smile.png', edge: 'Strong 4G/5G speeds in major cities.', gap: 'Limited rural and semi-urban reach, and premium pricing that excludes budget-conscious segments.' },
             ].map((c) => (
-              <div key={c.name} className="grid grid-cols-1 sm:grid-cols-4 gap-2 sm:gap-6 p-5" style={{ backgroundColor: SW_CARD }}>
-                <p className="font-medium sm:col-span-1">{c.name}</p>
+              <div key={c.name} className="grid grid-cols-1 sm:grid-cols-4 gap-3 sm:gap-6 p-5" style={{ backgroundColor: SW_CARD }}>
+                <div className="flex items-center gap-3 sm:col-span-1">
+                  <div className="flex h-9 w-9 flex-shrink-0 items-center justify-center border" style={{ borderColor: SW_LINE }}>
+                    <img src={c.logo} alt={`${c.name} logo`} className="h-6 w-6 object-contain" />
+                  </div>
+                  <p className="font-medium">{c.name}</p>
+                </div>
                 <p className="sm:col-span-3" style={{ color: SW_GRAY }}>
                   <span style={{ color: SW_INK }}>{c.edge}</span> {c.gap}
                 </p>

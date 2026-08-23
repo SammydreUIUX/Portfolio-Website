@@ -30,7 +30,7 @@ const selectedWork: SelectedWorkItem[] = [
     coverType: 'wordmark',
   },
   {
-    year: '2023',
+    year: '2024',
     category: 'Public Safety',
     title: 'ZoneAid',
     description: 'A safety-focused mobile app that revolutionizes emergency response through real-time tracking, offline functionality, and family monitoring systems.',
@@ -38,7 +38,7 @@ const selectedWork: SelectedWorkItem[] = [
     image: '/images/zoneaid/Overview.jpg',
   },
   {
-    year: '2022',
+    year: '2021',
     category: 'Telecom Research',
     title: 'Airtel ODU',
     description: 'Market-entry research for a new connectivity device in Nigeria: validating real demand among Lagos churches and businesses through targeted outreach before a national rollout.',
@@ -62,7 +62,7 @@ const selectedWork: SelectedWorkItem[] = [
     image: '/images/fintra/preview.png',
   },
   {
-    year: '2024',
+    year: '2025',
     category: 'Productivity',
     title: 'Google Calendar',
     description: 'An AI-powered scheduling redesign with a smart assistant, focus mode, and enhanced accessibility for everyday planning.',

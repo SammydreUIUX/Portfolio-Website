@@ -179,7 +179,7 @@ code, pre, .font-mono {
   color: var(--sw-bg);
 }
 
-/* Subtle, elegant motion only — no bounce, no spin */
+/* Subtle, elegant motion only: no bounce, no spin */
 .reveal {
   opacity: 0;
   transform: translateY(16px);

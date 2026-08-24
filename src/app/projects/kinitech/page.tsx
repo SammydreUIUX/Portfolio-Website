@@ -154,7 +154,7 @@ export default function KinitechCaseStudy() {
           <div className="grid grid-cols-2 gap-8 sm:flex sm:flex-wrap sm:justify-center sm:gap-10 text-sm">
             <div className="flex flex-col items-center">
               <span className="sw-label mb-1" style={{ color: SW_GRAY }}>Role</span>
-              <span className="font-medium">Product Designer / UX Designer</span>
+              <span className="font-medium">Product Designer &amp; Front-End Developer</span>
             </div>
             <div className="flex flex-col items-center">
               <span className="sw-label mb-1" style={{ color: SW_GRAY }}>Client</span>
@@ -172,7 +172,7 @@ export default function KinitechCaseStudy() {
         </div>
       </section>
 
-      {/* Hero browser mockup — real final homepage */}
+      {/* Hero browser mockup: real final homepage */}
       <section className="px-4 sm:px-6 lg:px-8 pb-20">
         <div className="max-w-5xl mx-auto">
           <BrowserFrame url="kinitech.ca" label="Final Homepage">
@@ -196,7 +196,7 @@ export default function KinitechCaseStudy() {
           </p>
           <div className="grid gap-px sm:grid-cols-2 lg:grid-cols-3" style={{ backgroundColor: SW_LINE }}>
             {[
-              { icon: ICONS.layers, title: 'Limited Architecture', body: 'One page, minimal information — impossible to see the full scope of what Kinitech does.' },
+              { icon: ICONS.layers, title: 'Limited Architecture', body: 'One page, minimal information, made it impossible to see the full scope of what Kinitech does.' },
               { icon: ICONS.compass, title: 'Unclear Services', body: 'Capabilities, industries, and delivery process were never actually explained.' },
               { icon: ICONS.image, title: 'No Project Proof', body: 'No case-study experience, despite completed work being the strongest credibility signal available.' },
               { icon: ICONS.camera, title: 'Generic Visuals', body: 'Stock imagery and template presentation that didn’t reflect real engineering expertise.' },
@@ -310,7 +310,7 @@ export default function KinitechCaseStudy() {
             ))}
           </div>
           <p className="mt-8 text-center text-sm max-w-xl mx-auto" style={{ color: SW_GRAY }}>
-            Not just added pages — each destination was given a specific job in the client&apos;s decision journey.
+            Not just added pages: each destination was given a specific job in the client&apos;s decision journey.
           </p>
         </div>
       </section>
@@ -337,10 +337,10 @@ export default function KinitechCaseStudy() {
 
           <div className="grid gap-px sm:grid-cols-2 lg:grid-cols-3 mb-4" style={{ backgroundColor: SW_LINE }}>
             {[
-              { icon: ICONS.layers, title: 'Service Discovery', body: 'One structure — Overview, Benefits, Deliverables, Process, CTA — repeated across all five disciplines: Structural Assessment, Seismic & Wind Load, Shop Drawing Review, Site Inspections, Schedule B/C-B Letters. Understand one, understand all.' },
+              { icon: ICONS.layers, title: 'Service Discovery', body: 'One structure (Overview, Benefits, Deliverables, Process, CTA) repeated across all five disciplines: Structural Assessment, Seismic & Wind Load, Shop Drawing Review, Site Inspections, Schedule B/C-B Letters. Understand one, understand all.' },
               { icon: ICONS.building, title: 'Trust as a System', body: 'Client logos, leadership credentials, and company history distributed through the experience, not confined to one About page.' },
               { icon: ICONS.image, title: 'Project Structure', body: 'Every project follows Overview → Challenge → Solution → Outcome → Contact, so visitors see how Kinitech solves problems, not just what they built.' },
-              { icon: ICONS.compass, title: 'Engineering Process', body: 'A visible five-step process — Consultation, Assessment, Planning, Execution, Completion — that reduces uncertainty before the first call.' },
+              { icon: ICONS.compass, title: 'Engineering Process', body: 'A visible five-step process (Consultation, Assessment, Planning, Execution, Completion) that reduces uncertainty before the first call.' },
               { icon: ICONS.users, title: 'Inquiry Design', body: 'A persistent “Request a Quote” action in the navigation, opening a lightweight form instead of a new page. No dead ends on any high-intent page.' },
             ].map((d, i) => (
               <div key={i} className="flex flex-col gap-3 p-6" style={{ backgroundColor: SW_CARD }}>
@@ -441,7 +441,7 @@ export default function KinitechCaseStudy() {
                 ))}
               </div>
               <p className="text-sm mt-3" style={{ color: SW_GRAY }}>
-                A compact, token-based component set — surface and outline color roles, one type scale — kept the
+                A compact, token-based component set (surface and outline color roles, one type scale) kept the
                 expanding site consistent.
               </p>
             </div>
@@ -460,7 +460,7 @@ export default function KinitechCaseStudy() {
                 ))}
               </div>
               <p className="text-sm mt-3" style={{ color: SW_GRAY }}>
-                Five destinations, five descriptive titles — a structural foundation for discoverability, not a
+                Five destinations, five descriptive titles: a structural foundation for discoverability, not a
                 ranking claim.
               </p>
             </div>
@@ -503,7 +503,7 @@ export default function KinitechCaseStudy() {
             ))}
           </div>
           <p className="text-xs italic text-center" style={{ color: SW_GRAY }}>
-            Future measurement criteria — no analytics-based results are claimed here.
+            Future measurement criteria, no analytics-based results are claimed here.
           </p>
         </div>
       </section>

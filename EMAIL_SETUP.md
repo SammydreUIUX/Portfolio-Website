@@ -1,75 +1,22 @@
-# Contact Form Email Setup ✅
+# Contact Form Email Setup
 
-Your contact form is now **FULLY CONFIGURED** to send messages to **sdamilare72@gmail.com**!
+The contact form submits directly from the browser to [Web3Forms](https://web3forms.com), which delivers to the inbox configured for the access key. No server-side API route is involved.
 
-## ✅ What's Already Done:
+## How it works
 
-1. ✅ **Resend Package**: Installed and integrated
-2. ✅ **API Endpoint**: Complete with proper error handling
-3. ✅ **Email Template**: Professional HTML email design
-4. ✅ **Form Integration**: Contact form connected to API
-5. ✅ **Fallback System**: Works even without API key (logs submissions)
+- `src/app/contact/page.tsx` posts JSON to `https://api.web3forms.com/submit` with `access_key`, `name`, `email`, `replyto`, `subject`, and `message`.
+- A hidden `botcheck` checkbox acts as a honeypot; if a bot fills it in, the submission is silently dropped client-side before it ever reaches Web3Forms.
+- The destination inbox is set on the Web3Forms side, tied to the access key, not in this codebase.
+- The publicly displayed contact address is `contact@samuelfunmilayo.space`.
 
-## 🚀 To Enable Full Email Functionality:
+## Rotating the access key
 
-### Step 1: Get Resend API Key
-1. **Sign up at [resend.com](https://resend.com)** (FREE - 3,000 emails/month)
-2. **Verify your email address**
-3. **Get your API key** from the dashboard
+Web3Forms access keys are meant to be embedded in client-side code (they only authorize submissions to the pre-configured destination, nothing sensitive is exposed). If it ever needs to change:
 
-### Step 2: Add Environment Variable to Vercel
-1. **Go to your [Vercel Dashboard](https://vercel.com/dashboard)**
-2. **Select your portfolio project**
-3. **Go to Settings → Environment Variables**
-4. **Add new variable:**
-   - **Name**: `RESEND_API_KEY`
-   - **Value**: `your_api_key_from_resend`
-   - **Environment**: Production (and Preview if desired)
+1. Get a new key at [web3forms.com](https://web3forms.com)
+2. Update `WEB3FORMS_ACCESS_KEY` in `src/app/contact/page.tsx`
+3. Commit and deploy
 
-### Step 3: Set Up Domain (Optional but Recommended)
-- **From domain**: Currently set to `contact@samuelfunmilayo.space`
-- **You can use**: `onboarding@resend.dev` for testing
-- **For production**: Set up your own domain in Resend
+## Testing
 
-### Step 4: Deploy
-```bash
-git add .
-git commit -m "Add Resend email integration"
-git push origin master
-```
-
-## Option 2: Using EmailJS (Client-side, easier setup)
-
-1. **Sign up at [emailjs.com](https://www.emailjs.com/)**
-2. **Create an email service and template**
-3. **Install EmailJS:**
-   ```bash
-   npm install @emailjs/browser
-   ```
-
-4. **Update contact form to use EmailJS directly**
-
-## Option 3: Using Nodemailer with Gmail SMTP
-
-1. **Install nodemailer:**
-   ```bash
-   npm install nodemailer
-   npm install @types/nodemailer
-   ```
-
-2. **Set up Gmail App Password**
-3. **Add environment variables to Vercel**
-4. **Use SMTP to send emails**
-
-## Current Status
-
-✅ Contact form UI is complete
-✅ API endpoint is created at `/api/contact`
-✅ Form validation is implemented
-✅ Error handling is in place
-
-⚠️ **Next Step:** Choose one of the email service options above to enable actual email sending.
-
-## Quick Test
-
-The current setup will log form submissions to the console. Check your Vercel function logs to see submissions until you implement one of the email services above.
+Submit the form and check the destination inbox tied to the Web3Forms access key (including spam folder on first send). Web3Forms also shows recent submissions in its own dashboard.

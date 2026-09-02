@@ -1,11 +1,33 @@
 'use client';
 
-import { useState } from 'react';
+import { useRef, useState } from 'react';
 
 const SW_BG = '#FAFAF8';
 const SW_INK = '#111111';
 const SW_GRAY = '#6E6E6B';
 const SW_LINE = '#E4E3DE';
+
+// Web3Forms access keys are meant to be embedded in client-side code:
+// https://docs.web3forms.com/ - they only authorize submissions to the
+// destination inbox configured for this key, nothing sensitive is exposed.
+const WEB3FORMS_ACCESS_KEY = '20429895-edb3-4f0b-9580-2d04681bb135';
+
+const SUBJECT_LABELS: Record<string, string> = {
+  project: 'Project Inquiry',
+  collaboration: 'Collaboration',
+  job: 'Job Opportunity',
+  other: 'Other',
+};
+
+const EMAIL_REGEX = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+
+function validate(data: { name: string; email: string; subject: string; message: string }): string | null {
+  if (!data.name.trim()) return 'Please enter your name.';
+  if (!data.email.trim() || !EMAIL_REGEX.test(data.email.trim())) return 'Please enter a valid email address.';
+  if (!data.subject) return 'Please select a subject.';
+  if (!data.message.trim() || data.message.trim().length < 10) return 'Please enter a message of at least 10 characters.';
+  return null;
+}
 
 export default function Contact() {
   const [formData, setFormData] = useState({
@@ -17,6 +39,8 @@ export default function Contact() {
 
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [submitStatus, setSubmitStatus] = useState<'idle' | 'success' | 'error'>('idle');
+  const [errorMessage, setErrorMessage] = useState('');
+  const honeypotRef = useRef<HTMLInputElement>(null);
 
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) => {
     const { name, value } = e.target;
@@ -28,27 +52,54 @@ export default function Contact() {
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
+
+    // Honeypot: real visitors never see this field, so any value in it means
+    // a bot filled the form. Fail silently rather than tipping it off.
+    if (honeypotRef.current?.value) {
+      return;
+    }
+
+    const validationError = validate(formData);
+    if (validationError) {
+      setSubmitStatus('error');
+      setErrorMessage(validationError);
+      return;
+    }
+
     setIsSubmitting(true);
     setSubmitStatus('idle');
+    setErrorMessage('');
 
     try {
-      const response = await fetch('/api/contact', {
+      const response = await fetch('https://api.web3forms.com/submit', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
+          Accept: 'application/json',
         },
-        body: JSON.stringify(formData),
+        body: JSON.stringify({
+          access_key: WEB3FORMS_ACCESS_KEY,
+          name: formData.name.trim(),
+          email: formData.email.trim(),
+          replyto: formData.email.trim(),
+          subject: `Portfolio Contact: ${SUBJECT_LABELS[formData.subject] ?? formData.subject}`,
+          message: formData.message.trim(),
+        }),
       });
 
-      if (response.ok) {
+      const result = await response.json();
+
+      if (response.ok && result.success) {
         setSubmitStatus('success');
         setFormData({ name: '', email: '', subject: '', message: '' });
       } else {
         setSubmitStatus('error');
+        setErrorMessage(result.message || 'Something went wrong while sending your message. Please try again.');
       }
     } catch (error) {
       console.error('Form submission error:', error);
       setSubmitStatus('error');
+      setErrorMessage('Network error. Please check your connection and try again.');
     } finally {
       setIsSubmitting(false);
     }
@@ -74,19 +125,34 @@ export default function Contact() {
       {/* Form */}
       <section className="px-6 sm:px-8 lg:px-12 pb-24 border-t" style={{ borderColor: SW_LINE }}>
         <div className="max-w-2xl mx-auto pt-20">
-          {submitStatus === 'success' && (
-            <div className="mb-8 p-4 border" style={{ borderColor: SW_INK }}>
-              <p>Thank you for your message! I&apos;ll get back to you soon.</p>
-            </div>
-          )}
+          <div role="status" aria-live="polite">
+            {submitStatus === 'success' && (
+              <div className="mb-8 p-4 border" style={{ borderColor: SW_INK }}>
+                <p>Thank you for your message! I&apos;ll get back to you soon.</p>
+              </div>
+            )}
 
-          {submitStatus === 'error' && (
-            <div className="mb-8 p-4 border" style={{ borderColor: SW_INK }}>
-              <p>Something went wrong. Please try again.</p>
-            </div>
-          )}
+            {submitStatus === 'error' && (
+              <div className="mb-8 p-4 border" style={{ borderColor: SW_INK }}>
+                <p>{errorMessage || 'Something went wrong. Please try again.'}</p>
+              </div>
+            )}
+          </div>
 
-          <form onSubmit={handleSubmit} className="space-y-8">
+          <form onSubmit={handleSubmit} className="space-y-8" noValidate>
+            {/* Honeypot field: hidden from real visitors and assistive tech, left
+                empty by humans but often auto-filled by simple spam bots. */}
+            <input
+              type="text"
+              name="botcheck"
+              ref={honeypotRef}
+              className="hidden"
+              style={{ display: 'none' }}
+              tabIndex={-1}
+              autoComplete="off"
+              aria-hidden="true"
+            />
+
             <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
               <div>
                 <label htmlFor="name" className="sw-label block mb-2" style={{ color: SW_GRAY }}>
@@ -99,6 +165,7 @@ export default function Contact() {
                   value={formData.name}
                   onChange={handleInputChange}
                   required
+                  aria-required="true"
                   className={inputClasses}
                   style={{ borderColor: SW_LINE, color: SW_INK }}
                   placeholder="Your name"
@@ -115,6 +182,7 @@ export default function Contact() {
                   value={formData.email}
                   onChange={handleInputChange}
                   required
+                  aria-required="true"
                   className={inputClasses}
                   style={{ borderColor: SW_LINE, color: SW_INK }}
                   placeholder="your.email@example.com"
@@ -132,6 +200,7 @@ export default function Contact() {
                 value={formData.subject}
                 onChange={handleInputChange}
                 required
+                aria-required="true"
                 className={inputClasses}
                 style={{ borderColor: SW_LINE, color: SW_INK }}
               >
@@ -153,6 +222,7 @@ export default function Contact() {
                 value={formData.message}
                 onChange={handleInputChange}
                 required
+                aria-required="true"
                 rows={5}
                 className={inputClasses}
                 style={{ borderColor: SW_LINE, color: SW_INK }}
@@ -163,6 +233,7 @@ export default function Contact() {
             <button
               type="submit"
               disabled={isSubmitting}
+              aria-busy={isSubmitting}
               className="sw-btn sw-btn-primary w-full disabled:opacity-50 disabled:cursor-not-allowed"
             >
               {isSubmitting ? 'Sending...' : 'Send Message'}

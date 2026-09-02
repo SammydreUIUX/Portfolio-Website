@@ -350,7 +350,7 @@ export default function About() {
           </p>
 
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
-            <a href="mailto:sdamilare72@gmail.com" className="sw-btn sw-btn-primary">
+            <a href="mailto:contact@samuelfunmilayo.space" className="sw-btn sw-btn-primary">
               Get In Touch
             </a>
             <a

@@ -267,7 +267,7 @@ export default function Home() {
               Say Hello
             </h2>
           </Link>
-          <p className="sw-label mt-10" style={{ color: SW_GRAY }}>sdamilare72@gmail.com</p>
+          <p className="sw-label mt-10" style={{ color: SW_GRAY }}>contact@samuelfunmilayo.space</p>
         </div>
       </section>
 

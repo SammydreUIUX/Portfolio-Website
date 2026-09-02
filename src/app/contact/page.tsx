@@ -174,8 +174,8 @@ export default function Contact() {
       {/* Quiet details strip */}
       <section className="px-6 sm:px-8 lg:px-12 py-10 border-t" style={{ borderColor: SW_LINE }}>
         <div className="max-w-2xl mx-auto flex flex-col sm:flex-row items-center justify-between gap-4 text-center sm:text-left">
-          <a href="mailto:sdamilare72@gmail.com" className="sw-label hover:opacity-60 transition-opacity" style={{ color: SW_GRAY }}>
-            sdamilare72@gmail.com
+          <a href="mailto:contact@samuelfunmilayo.space" className="sw-label hover:opacity-60 transition-opacity" style={{ color: SW_GRAY }}>
+            contact@samuelfunmilayo.space
           </a>
           <span className="sw-label" style={{ color: SW_GRAY }}>Vancouver, BC, Canada</span>
           <span className="sw-label" style={{ color: SW_GRAY }}>Available for new projects</span>

@@ -44,7 +44,7 @@ export async function POST(request: NextRequest) {
       // Send email using Resend
       await resend!.emails.send({
         from: 'contact@samuelfunmilayo.space', // Replace with your domain
-        to: 'sdamilare72@gmail.com',
+        to: 'contact@samuelfunmilayo.space',
         subject: `Portfolio Contact: ${subject}`,
         replyTo: email,
         html: `

@@ -121,6 +121,44 @@ function BeforeAfter({ title, before, after, note }: {
   );
 }
 
+/* ------------------------------------------------------------------ */
+/*  Numbered step in the booking journey                               */
+/* ------------------------------------------------------------------ */
+function StepHeading({ n, title }: { n: number; title: string }) {
+  return (
+    <div className="text-center mb-4">
+      <p className="sw-label mb-2" style={{ color: SW_GRAY }}>Step {String(n).padStart(2, '0')}</p>
+      <h3 className="sw-display text-2xl md:text-3xl">{title}</h3>
+    </div>
+  );
+}
+
+function JourneyStep({ n, title, body, src, alt, url, flip = false, narrow = false }: {
+  n: number;
+  title: string;
+  body: string;
+  src: string;
+  alt: string;
+  url: string;
+  flip?: boolean;
+  narrow?: boolean;
+}) {
+  return (
+    <div className="grid gap-10 lg:grid-cols-5 items-center">
+      <div className={`lg:col-span-2 ${flip ? 'lg:order-2' : ''}`}>
+        <p className="sw-label mb-2" style={{ color: SW_GRAY }}>Step {String(n).padStart(2, '0')}</p>
+        <h3 className="sw-display text-2xl md:text-3xl mb-4">{title}</h3>
+        <p className="leading-relaxed" style={{ color: SW_GRAY }}>{body}</p>
+      </div>
+      <div className={`lg:col-span-3 ${flip ? 'lg:order-1' : ''} ${narrow ? 'max-w-lg w-full mx-auto' : ''}`}>
+        <BrowserFrame url={url}>
+          <img src={src} alt={alt} className="w-full h-auto" loading="lazy" />
+        </BrowserFrame>
+      </div>
+    </div>
+  );
+}
+
 /* ==================================================================== */
 /*  MAIN PAGE                                                            */
 /* ==================================================================== */
@@ -148,12 +186,13 @@ export default function SmrpCaseStudy() {
 
           <p className="sw-label mb-6" style={{ color: SW_GRAY }}>SMRP Resort &middot; San Miguel River Park</p>
           <h1 className="sw-display text-4xl md:text-6xl mb-8">
-            From a Template Site to a Resort Guests Can Book and Pay
+            From Phone-Call Bookings to Online Booking and Payment
           </h1>
           <p className="text-lg md:text-xl leading-relaxed max-w-2xl mx-auto mb-12" style={{ color: SW_GRAY }}>
-            A riverside glamping and adventure resort in Catanduanes, Philippines, was running on a template site
-            full of placeholder text. I led the design of a new website and booking platform: real content, online
-            payment, inventory that can&apos;t double-book, and a CMS the staff run themselves.
+            Guests at a riverside glamping and adventure resort in Catanduanes, Philippines, had to call or message
+            to book, and nothing could be paid online. I led the design of a new website and booking platform: live
+            availability, PayMongo checkout with GCash, Maya, QR Ph and cards, and inventory rules that can&apos;t
+            double-book.
           </p>
 
           <div className="mb-14">
@@ -300,6 +339,152 @@ export default function SmrpCaseStudy() {
         </div>
       </section>
 
+      {/* ============================= BOOKING SYSTEM ============================= */}
+      <section className="py-20 px-4 sm:px-6 lg:px-8 border-t" style={{ borderColor: SW_LINE, backgroundColor: SW_CARD }}>
+        <div className="max-w-5xl mx-auto">
+          <SectionEyebrow>Booking &amp; Payment</SectionEyebrow>
+          <h2 className="sw-display text-3xl md:text-4xl text-center mb-6">From a Phone Call to a Paid Booking</h2>
+          <p className="text-lg leading-relaxed max-w-2xl mx-auto text-center mb-6" style={{ color: SW_GRAY }}>
+            This was the heart of the project. Before, every reservation started with a call or a message and nothing
+            was paid in advance. Now a guest can find a free room, see the exact price, and pay with a card, GCash,
+            Maya or QR Ph in one sitting.
+          </p>
+          <p className="text-center max-w-2xl mx-auto mb-20" style={{ color: SW_GRAY }}>
+            A double-booked room hurts a small resort more than having no online booking at all, so every step below
+            was designed around one rule: a booking that looks confirmed has to be.
+          </p>
+
+          <div className="space-y-24">
+            <JourneyStep
+              n={1}
+              title="Search by Date"
+              body="The search on the homepage takes dates and guests first. Results mark every room Available, Booked out or “Max N guests”, so a guest learns about a mismatch before filling in anything."
+              src="/images/smrp/new-home.jpg"
+              alt="Homepage search bar with check-in, check-out and guest fields over the river hero"
+              url={SITE_HOST}
+            />
+            <JourneyStep
+              n={2}
+              title="Compare the Room, Price Included"
+              body="Every room page shows the full weekday, weekend and holiday rates, the extra-guest fee, check-in times and what’s included. Online bookings are charged at the weekday rate and any difference is settled at the front desk, which keeps checkout to one clear price without hiding the full rate table."
+              src="/images/smrp/new-room-rates.jpg"
+              alt="Family Dome page: weekday, weekend and holiday rates, inclusions, and the Check Availability form"
+              url={`${SITE_HOST}/accommodations/family-dome`}
+              flip
+            />
+            <JourneyStep
+              n={3}
+              title="See What’s Free"
+              body="The room calendar crosses out past and booked-out nights. Behind it is real inventory: each room has a “units available” count (the Junior Cabin has two, the others one), a night is booked out only when every unit is taken, and check-out day stays free for the next guest."
+              src="/images/smrp/new-availability.jpg"
+              alt="Family Dome availability calendar for October 2026, with past and booked-out nights crossed out"
+              url={`${SITE_HOST}/accommodations/family-dome`}
+              narrow
+            />
+            <JourneyStep
+              n={4}
+              title="Book With a Live Total"
+              body="The booking form sits beside the room details and updates the total as dates change (here, 1 night × ₱1,800), so the guest knows exactly what they’ll pay before they leave the page."
+              src="/images/smrp/booking-form.jpg"
+              alt="Family Dome page with the booking form filled in, showing 1 night × ₱1,800 above the Book Now button"
+              url={`${SITE_HOST}/accommodations/family-dome`}
+              flip
+            />
+
+            <div>
+              <StepHeading n={5} title="Stopped Before Checkout, Not At It" />
+              <p className="text-center max-w-2xl mx-auto mb-10" style={{ color: SW_GRAY }}>
+                Problems surface in the form, in plain language, instead of after a guest has paid. The guest count is
+                capped at the room’s maximum, and clashing dates are named one by one with the button disabled.
+              </p>
+              <div className="grid gap-8 md:grid-cols-2 items-start">
+                <BrowserFrame url={`${SITE_HOST}/accommodations/family-dome`} label="Guest Count Capped at 7">
+                  <img src="/images/smrp/booking-guest-cap.jpg" alt="Family Dome booking form with the guest field showing: value must be less than or equal to 7" className="w-full h-auto" loading="lazy" />
+                </BrowserFrame>
+                <BrowserFrame url={`${SITE_HOST}/accommodations/family-dome`} label="Booked-Out Nights Named">
+                  <img src="/images/smrp/booking-fully-booked.jpg" alt="Family Dome booking form showing: Fully booked on Oct 22 to Oct 27, please choose different dates, with the button reading Unavailable for these dates" className="w-full h-auto" loading="lazy" />
+                </BrowserFrame>
+              </div>
+            </div>
+
+            <div>
+              <StepHeading n={6} title="Pay the Way Guests Already Pay" />
+              <p className="text-center max-w-2xl mx-auto mb-10" style={{ color: SW_GRAY }}>
+                Payment hands off to PayMongo checkout with the booking and total carried over. Alongside cards it
+                accepts the local options GCash, Maya and QR Ph, so guests don&apos;t need a credit card to book.
+              </p>
+              <div className="grid gap-8 md:grid-cols-2 items-start">
+                <BrowserFrame url="checkout.paymongo.com" label="Booking and Total Carried Over">
+                  <img src="/images/smrp/paymongo-details.jpg" alt="PayMongo checkout for Family Dome (8 nights), ₱14,400, with customer information fields" className="w-full h-auto" loading="lazy" />
+                </BrowserFrame>
+                <BrowserFrame url="checkout.paymongo.com" label="Card, GCash, Maya or QR Ph">
+                  <img src="/images/smrp/paymongo-checkout.jpg" alt="PayMongo payment methods: QR Ph, card, GCash and Maya" className="w-full h-auto" loading="lazy" />
+                </BrowserFrame>
+              </div>
+            </div>
+
+            <div>
+              <StepHeading n={7} title="Hold, Then Confirm or Release" />
+              <p className="text-center max-w-2xl mx-auto mb-10" style={{ color: SW_GRAY }}>
+                The part guests never see, and the part that took the most thought.
+              </p>
+              <div className="mb-12">
+                <Flow
+                  steps={[
+                    { title: 'Save & Re-check', sub: 'Availability checked again right after saving' },
+                    { title: 'Hold 60 Minutes', sub: 'Room held while the guest pays' },
+                    { title: 'Ask PayMongo', sub: 'Each expired hold is checked' },
+                    { title: 'Confirm or Release', sub: 'Paid: confirmed. Unpaid: link closed, room freed' },
+                  ]}
+                />
+              </div>
+              <div className="grid gap-px md:grid-cols-2" style={{ backgroundColor: SW_LINE }}>
+                {[
+                  { title: 'Overbooking Protection', body: 'Availability is checked again right after a booking is saved, so two guests paying at the same moment can’t both get the last room. Bookings staff add by hand follow the same rule.' },
+                  { title: 'Why Not Just a Timer?', body: 'PayMongo checkout links don’t expire on their own. Releasing a hold on a timer alone could cancel a booking that had just been paid, so the system asks PayMongo about each expired hold before deciding.' },
+                  { title: 'Paid Holds Are Confirmed', body: 'If the guest paid, even at the last minute, the booking is confirmed and the room stays theirs.' },
+                  { title: 'Unpaid Holds Are Released', body: 'If not, the payment link is closed so it can’t be paid later, and the room goes back on sale.' },
+                ].map((r) => (
+                  <div key={r.title} className="p-6" style={{ backgroundColor: SW_CARD }}>
+                    <h4 className="font-medium mb-2">{r.title}</h4>
+                    <p className="text-sm leading-relaxed" style={{ color: SW_GRAY }}>{r.body}</p>
+                  </div>
+                ))}
+              </div>
+            </div>
+          </div>
+
+          <div className="mt-24 grid gap-10 lg:grid-cols-5 items-center">
+            <div className="lg:col-span-2">
+              <p className="sw-label mb-3" style={{ color: SW_GRAY }}>Adventures Book the Same Way</p>
+              <p className="mb-4" style={{ color: SW_INK }}>
+                Kayak, river tubing, stand-up paddle board and ATV run on the same booking and payment flow, with
+                package options and a live total: SUP for 1 hour (₱300) or 2 hours (₱600) per board, tubing at ₱250
+                per tube.
+              </p>
+              <p style={{ color: SW_GRAY }}>
+                Practical details (times, minimum age, start and end points, gear, guides) sit next to the form, so
+                guests can decide without asking first.
+              </p>
+            </div>
+            <div className="lg:col-span-3">
+              <BrowserFrame url={`${SITE_HOST}/adventures/river-tubing`} label="Book This Adventure">
+                <img src="/images/smrp/adventure-booking.jpg" alt="River tubing details beside the Book This Adventure form: package, date, quantity and a 1 × ₱250 total" className="w-full h-auto" loading="lazy" />
+              </BrowserFrame>
+            </div>
+          </div>
+
+          <div className="mt-24">
+            <BeforeAfter
+              title="Room Page"
+              before={{ src: '/images/smrp/old-room-calendar.jpg', alt: 'Old Deluxe Yurt page with a template booking calendar and truncated details' }}
+              after={{ src: '/images/smrp/new-room-rates.jpg', alt: 'New Family Dome page with weekday, weekend and holiday rates, inclusions and a Check Availability form' }}
+              note="The 5 rooms (Family, Deluxe and Superior Domes; Junior and Couple’s Cabins) were rebuilt from the official brochures, with photo galleries, full rate tables and amenities as real text, and booking built into every page."
+            />
+          </div>
+        </div>
+      </section>
+
       {/* ============================= KEY DECISIONS ============================= */}
       <section className="py-20 px-4 sm:px-6 lg:px-8 border-t" style={{ borderColor: SW_LINE }}>
         <div className="max-w-6xl mx-auto">
@@ -345,103 +530,6 @@ export default function SmrpCaseStudy() {
         </div>
       </section>
 
-      {/* ============================= BOOKING SYSTEM ============================= */}
-      <section className="py-20 px-4 sm:px-6 lg:px-8 border-t" style={{ borderColor: SW_LINE, backgroundColor: SW_CARD }}>
-        <div className="max-w-5xl mx-auto">
-          <SectionEyebrow>The Booking System</SectionEyebrow>
-          <h2 className="sw-display text-3xl md:text-4xl text-center mb-6">A Booking That Looks Confirmed Has to Be</h2>
-          <p className="text-lg leading-relaxed max-w-2xl mx-auto text-center mb-14" style={{ color: SW_GRAY }}>
-            Most of the product thinking went here. A double-booked room hurts a small resort more than having no
-            online booking at all, so each edge case got a clear rule before it got code.
-          </p>
-
-          <div className="mb-16">
-            <Flow
-              steps={[
-                { title: 'Search', sub: 'Available, Booked out or “Max N guests”' },
-                { title: 'Save & Re-check', sub: 'Availability checked again after saving' },
-                { title: 'Hold 60 Minutes', sub: 'Room held while the guest pays' },
-                { title: 'Confirm or Release', sub: 'Expired holds checked with PayMongo' },
-              ]}
-            />
-          </div>
-
-          <div className="grid gap-px md:grid-cols-2 mb-16" style={{ backgroundColor: SW_LINE }}>
-            {[
-              { title: 'Real Inventory', body: 'Each room has a “units available” count. The Junior Cabin has two; the others have one. A night is booked out only when every unit is taken, and check-out day is free for the next guest.' },
-              { title: 'Availability Up Front', body: 'The date search labels every room before a guest starts a form. The room calendar crosses out booked-out nights, and the booking form blocks unavailable dates and caps the guest count.' },
-              { title: 'Overbooking Protection', body: 'Availability is checked again right after a booking is saved, so two guests paying at the same moment can’t both get the last room. Bookings staff add by hand follow the same rule.' },
-              { title: 'Holds That Clean Up', body: 'PayMongo checkout links don’t expire on their own, so releasing a hold on a timer could cancel a booking that had just been paid. Instead, each expired hold is checked with PayMongo: paid holds are confirmed; unpaid ones have their link closed and the room released.' },
-            ].map((r) => (
-              <div key={r.title} className="p-6" style={{ backgroundColor: SW_CARD }}>
-                <h4 className="font-medium mb-2">{r.title}</h4>
-                <p className="text-sm leading-relaxed" style={{ color: SW_GRAY }}>{r.body}</p>
-              </div>
-            ))}
-          </div>
-
-          <div className="grid gap-8 md:grid-cols-5 items-start mb-16">
-            <div className="md:col-span-3">
-              <BrowserFrame url={`${SITE_HOST}/accommodations/family-dome`} label="Room Availability Calendar">
-                <img
-                  src="/images/smrp/new-availability.jpg"
-                  alt="Family Dome availability calendar for October 2026, with past and booked-out nights crossed out"
-                  className="w-full h-auto"
-                  loading="lazy"
-                />
-              </BrowserFrame>
-            </div>
-            <div className="md:col-span-2 space-y-8">
-              <div>
-                <div className="overflow-hidden border" style={{ borderColor: SW_LINE }}>
-                  <img
-                    src="/images/smrp/new-fully-booked.jpg"
-                    alt="Booking form message: Fully booked on Oct 22 to Oct 27, please choose different dates, with the button disabled"
-                    className="w-full h-auto"
-                    loading="lazy"
-                  />
-                </div>
-                <p className="sw-label mt-4 text-center" style={{ color: SW_GRAY }}>Blocked Dates, Named</p>
-              </div>
-              <p className="text-sm leading-relaxed" style={{ color: SW_GRAY }}>
-                When dates clash, the form names the exact nights that are full and disables the button, instead of
-                failing at checkout.
-              </p>
-            </div>
-          </div>
-
-          <div className="grid gap-10 lg:grid-cols-2 items-center mb-16">
-            <BrowserFrame url="checkout.paymongo.com" label="PayMongo Checkout">
-              <img
-                src="/images/smrp/paymongo-checkout.jpg"
-                alt="PayMongo checkout for a Family Dome booking, offering QR Ph, card, GCash and Maya"
-                className="w-full h-auto"
-                loading="lazy"
-              />
-            </BrowserFrame>
-            <div>
-              <p className="sw-label mb-3" style={{ color: SW_GRAY }}>Payments</p>
-              <p className="mb-4" style={{ color: SW_INK }}>
-                Payment runs through PayMongo checkout, which accepts cards as well as the local options GCash,
-                Maya and QR Ph.
-              </p>
-              <p style={{ color: SW_GRAY }}>
-                Online bookings are charged at the weekday rate, and any weekend, holiday or extra-guest difference is
-                settled at the front desk. That kept checkout to one clear price, with the full rate table shown on
-                every room page.
-              </p>
-            </div>
-          </div>
-
-          <BeforeAfter
-            title="Room Page"
-            before={{ src: '/images/smrp/old-room-calendar.jpg', alt: 'Old Deluxe Yurt page with a template booking calendar and truncated details' }}
-            after={{ src: '/images/smrp/new-room-rates.jpg', alt: 'New Family Dome page with weekday, weekend and holiday rates, inclusions and a Check Availability form' }}
-            note="The 5 rooms (Family, Deluxe and Superior Domes; Junior and Couple’s Cabins) were rebuilt from the official brochures, with photo galleries, full rate tables and amenities as real text."
-          />
-        </div>
-      </section>
-
       {/* ============================= BEYOND ROOMS ============================= */}
       <section className="py-20 px-4 sm:px-6 lg:px-8 border-t" style={{ borderColor: SW_LINE }}>
         <div className="max-w-5xl mx-auto">
@@ -464,7 +552,7 @@ export default function SmrpCaseStudy() {
 
           <div className="grid gap-px sm:grid-cols-2 lg:grid-cols-3 mb-14" style={{ backgroundColor: SW_LINE }}>
             {[
-              { title: 'River Adventures', body: 'Kayak, river tubing, stand-up paddle board and ATV, each bookable with package options, such as SUP for 1 hour (₱300) or 2 hours (₱600) per board. The zip line is listed as “Coming Soon”.' },
+              { title: 'Zip Line, Coming Soon', body: 'Listed on the adventures page as “Coming Soon”, so guests know it’s on the way without being able to book it early.' },
               { title: 'Food Ordering', body: 'Guests add dishes from the menu and order to their dome or cabin, to their table, or for pickup. Room service carries a 10% charge, shown up front on every room page.' },
               { title: 'Table Reservations', body: 'A short “Reserve a Table” form (party size, date, time and contact details) that staff confirm by email or phone.' },
               { title: 'Events & Tickets', body: 'Events the resort hosts, with tickets managed from the CMS.' },

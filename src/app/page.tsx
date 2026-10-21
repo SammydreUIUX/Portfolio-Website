@@ -24,7 +24,7 @@ const selectedWork: SelectedWorkItem[] = [
     year: '2026',
     category: 'Hospitality / Booking',
     title: 'SMRP Resort',
-    description: 'A real client engagement: replacing a riverside resort’s placeholder template site with a website and booking platform guests can book and pay on, and staff can run themselves.',
+    description: 'A real client engagement: taking a riverside resort from phone-call reservations to online booking and payment, with live availability, PayMongo checkout and inventory rules that prevent double-booking.',
     href: '/projects/smrp',
     image: '/images/smrp/new-home.jpg',
   },

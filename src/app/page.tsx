@@ -22,6 +22,14 @@ type SelectedWorkItem = {
 const selectedWork: SelectedWorkItem[] = [
   {
     year: '2026',
+    category: 'Hospitality / Booking',
+    title: 'SMRP Resort',
+    description: 'A real client engagement: replacing a riverside resort’s placeholder template site with a website and booking platform guests can book and pay on, and staff can run themselves.',
+    href: '/projects/smrp',
+    image: '/images/smrp/new-home.jpg',
+  },
+  {
+    year: '2026',
     category: 'B2B / Product Design',
     title: 'Kinitech Engineering',
     description: 'A real client engagement: restructuring a structural engineering firm’s single-page website into a five-destination experience built around service clarity, credibility, and inquiry.',
@@ -122,7 +130,7 @@ export default function Home() {
         <div className="max-w-7xl mx-auto">
           <div className="flex items-baseline justify-between mb-20 reveal">
             <h2 className="sw-display text-4xl md:text-5xl">Selected Work</h2>
-            <p className="sw-label hidden sm:block" style={{ color: SW_GRAY }}>N&deg; 01&ndash;06</p>
+            <p className="sw-label hidden sm:block" style={{ color: SW_GRAY }}>N&deg; 01&ndash;07</p>
           </div>
 
           <div className="space-y-24 lg:space-y-32">

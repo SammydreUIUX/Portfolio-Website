@@ -205,7 +205,7 @@ export default function SmrpCaseStudy() {
           <div className="grid grid-cols-2 gap-8 sm:flex sm:flex-wrap sm:justify-center sm:gap-10 text-sm">
             <div className="flex flex-col items-center">
               <span className="sw-label mb-1" style={{ color: SW_GRAY }}>Role</span>
-              <span className="font-medium">Product Designer</span>
+              <span className="font-medium">Product Designer &amp; Builder</span>
             </div>
             <div className="flex flex-col items-center">
               <span className="sw-label mb-1" style={{ color: SW_GRAY }}>Client</span>

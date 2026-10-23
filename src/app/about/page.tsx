@@ -1,6 +1,7 @@
 'use client';
 
 import { useState } from 'react';
+import Link from 'next/link';
 
 const SW_BG = '#FAFAF8';
 const SW_INK = '#111111';
@@ -196,6 +197,36 @@ export default function About() {
               </div>
             ))}
           </div>
+        </div>
+      </section>
+
+      {/* Mentorship Section */}
+      <section className="py-24 px-6 sm:px-8 lg:px-12 border-t" style={{ borderColor: SW_LINE }}>
+        <div className="max-w-7xl mx-auto">
+          <p className="sw-label mb-3" style={{ color: SW_GRAY }}>Mentorship</p>
+          <h2 className="sw-display text-5xl lg:text-6xl mb-6">I Mentor People on Design</h2>
+          <p className="text-lg max-w-3xl mb-16" style={{ color: SW_GRAY }}>
+            I help people shape how they present their work: finding their positioning, structuring a portfolio
+            around what they do best, and reviewing every iteration until it&apos;s ready to launch. The work stays
+            theirs; my job is to help them make the right calls.
+          </p>
+
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-px mb-12" style={{ backgroundColor: SW_LINE }}>
+            {[
+              { title: 'Positioning', body: 'Getting clear on who they are, who the work is for, and what to lead with.' },
+              { title: 'Structure & Content', body: 'Deciding what to show and how, so real thinking and outcomes come through.' },
+              { title: 'Review to Launch', body: 'Short, honest feedback rounds on the live work until it ships.' },
+            ].map((item) => (
+              <div key={item.title} className="p-8" style={{ backgroundColor: SW_BG }}>
+                <h3 className="text-lg font-bold mb-4 pb-4 border-b" style={{ borderColor: SW_LINE }}>{item.title}</h3>
+                <p className="leading-relaxed" style={{ color: SW_GRAY }}>{item.body}</p>
+              </div>
+            ))}
+          </div>
+
+          <Link href="/#mentorship" className="sw-btn sw-btn-secondary inline-flex">
+            See a Mentorship Case Study
+          </Link>
         </div>
       </section>
 

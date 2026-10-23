@@ -79,6 +79,17 @@ const selectedWork: SelectedWorkItem[] = [
   },
 ];
 
+const mentorship: SelectedWorkItem[] = [
+  {
+    year: '2026',
+    category: 'Mentorship',
+    title: 'Racheal Popoola',
+    description: 'Mentoring a brand storyteller and creative strategist through a personal portfolio that shows strategy and outcomes, not just visuals, while keeping confidential client work protected.',
+    href: '/projects/racheal-popoola',
+    image: '/images/racheal-popoola/hero.jpg',
+  },
+];
+
 const capabilities = [
   { n: '01', title: 'UX Strategy', description: 'Framing ambiguous problems into a clear, sequenced plan before a single screen is drawn.' },
   { n: '02', title: 'Research', description: 'Grounding decisions in real user behavior, not assumption or internal opinion.' },
@@ -87,6 +98,55 @@ const capabilities = [
   { n: '05', title: 'AI Workflows', description: 'Figma AI, Google Stitch, Claude Code, Claude, and ChatGPT, used to prototype faster and refine sharper.' },
   { n: '06', title: 'Interaction Design', description: 'The small, precise details (timing, hierarchy, feedback) that make an interface feel considered.' },
 ];
+
+function WorkRow({ project, imageFirst }: { project: SelectedWorkItem; imageFirst: boolean }) {
+  return (
+    <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-16 items-center">
+      <div className={`lg:col-span-7 reveal-img reveal ${imageFirst ? 'lg:order-1' : 'lg:order-2'}`}>
+        <Link href={project.href} className="block group">
+          <div className="relative h-72 md:h-96 overflow-hidden">
+            {project.coverType === 'wordmark' ? (
+              <div className="relative flex h-full w-full items-center justify-center" style={{ backgroundColor: SW_INK }}>
+                <div className="absolute inset-0 opacity-[0.15]" style={{
+                  backgroundImage: `linear-gradient(${SW_BG} 1px, transparent 1px), linear-gradient(90deg, ${SW_BG} 1px, transparent 1px)`,
+                  backgroundSize: '32px 32px',
+                }} />
+                <img
+                  src={project.image}
+                  alt={project.title}
+                  className="relative h-16 md:h-20 w-auto object-contain transition-transform duration-[1.4s] ease-out group-hover:scale-[1.04]"
+                  style={{ filter: 'brightness(0) invert(1)' }}
+                />
+              </div>
+            ) : (
+              <img
+                src={project.image}
+                alt={project.title}
+                className="w-full h-full object-cover transition-transform duration-[1.4s] ease-out group-hover:scale-[1.02]"
+              />
+            )}
+          </div>
+        </Link>
+      </div>
+
+      <div className={`lg:col-span-5 reveal ${imageFirst ? 'lg:order-2' : 'lg:order-1'}`}>
+        <p className="sw-label mb-4" style={{ color: SW_GRAY }}>
+          {project.year} &middot; {project.category}
+        </p>
+        <h3 className="text-3xl md:text-4xl font-medium mb-5 tracking-tight">
+          {project.title}
+        </h3>
+        <p className="leading-relaxed mb-8 max-w-md" style={{ color: SW_GRAY }}>
+          {project.description}
+        </p>
+        <Link href={project.href} className="group inline-flex items-center gap-2 font-medium">
+          <span className="border-b border-current pb-0.5">View Case Study</span>
+          <span className="transition-transform duration-300 group-hover:translate-x-1">&rarr;</span>
+        </Link>
+      </div>
+    </div>
+  );
+}
 
 function useReveal() {
   const ref = useRef<HTMLDivElement>(null);
@@ -134,55 +194,22 @@ export default function Home() {
           </div>
 
           <div className="space-y-24 lg:space-y-32">
-            {selectedWork.map((project, index) => {
-              const imageFirst = index % 2 === 0;
-              return (
-                <div key={project.title} className="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-16 items-center">
-                  <div className={`lg:col-span-7 reveal-img reveal ${imageFirst ? 'lg:order-1' : 'lg:order-2'}`}>
-                    <Link href={project.href} className="block group">
-                      <div className="relative h-72 md:h-96 overflow-hidden">
-                        {project.coverType === 'wordmark' ? (
-                          <div className="relative flex h-full w-full items-center justify-center" style={{ backgroundColor: SW_INK }}>
-                            <div className="absolute inset-0 opacity-[0.15]" style={{
-                              backgroundImage: `linear-gradient(${SW_BG} 1px, transparent 1px), linear-gradient(90deg, ${SW_BG} 1px, transparent 1px)`,
-                              backgroundSize: '32px 32px',
-                            }} />
-                            <img
-                              src={project.image}
-                              alt={project.title}
-                              className="relative h-16 md:h-20 w-auto object-contain transition-transform duration-[1.4s] ease-out group-hover:scale-[1.04]"
-                              style={{ filter: 'brightness(0) invert(1)' }}
-                            />
-                          </div>
-                        ) : (
-                          <img
-                            src={project.image}
-                            alt={project.title}
-                            className="w-full h-full object-cover transition-transform duration-[1.4s] ease-out group-hover:scale-[1.02]"
-                          />
-                        )}
-                      </div>
-                    </Link>
-                  </div>
+            {selectedWork.map((project, index) => (
+              <WorkRow key={project.title} project={project} imageFirst={index % 2 === 0} />
+            ))}
+          </div>
 
-                  <div className={`lg:col-span-5 reveal ${imageFirst ? 'lg:order-2' : 'lg:order-1'}`}>
-                    <p className="sw-label mb-4" style={{ color: SW_GRAY }}>
-                      {project.year} &middot; {project.category}
-                    </p>
-                    <h3 className="text-3xl md:text-4xl font-medium mb-5 tracking-tight">
-                      {project.title}
-                    </h3>
-                    <p className="leading-relaxed mb-8 max-w-md" style={{ color: SW_GRAY }}>
-                      {project.description}
-                    </p>
-                    <Link href={project.href} className="group inline-flex items-center gap-2 font-medium">
-                      <span className="border-b border-current pb-0.5">View Case Study</span>
-                      <span className="transition-transform duration-300 group-hover:translate-x-1">&rarr;</span>
-                    </Link>
-                  </div>
-                </div>
-              );
-            })}
+          <div id="mentorship" className="mt-28 lg:mt-36 pt-16 lg:pt-20 border-t scroll-mt-24" style={{ borderColor: SW_LINE }}>
+            <div className="flex items-baseline justify-between mb-16 reveal">
+              <h3 className="sw-display text-3xl md:text-4xl">Mentorship</h3>
+              <p className="sw-label hidden sm:block" style={{ color: SW_GRAY }}>N&deg; 01</p>
+            </div>
+
+            <div className="space-y-24 lg:space-y-32">
+              {mentorship.map((project, index) => (
+                <WorkRow key={project.title} project={project} imageFirst={index % 2 === 0} />
+              ))}
+            </div>
           </div>
         </div>
       </section>

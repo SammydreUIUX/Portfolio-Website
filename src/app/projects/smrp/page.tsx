@@ -106,7 +106,7 @@ function BeforeAfter({ title, before, after, note }: {
   return (
     <div>
       <p className="font-medium text-center mb-6">{title}</p>
-      <div className="grid gap-6 md:grid-cols-2 items-start">
+      <div className="grid grid-cols-1 gap-6 md:grid-cols-2 items-start">
         {[{ tag: 'Before', ...before }, { tag: 'After', ...after }].map((shot) => (
           <div key={shot.tag} className="border p-4" style={{ borderColor: SW_LINE, backgroundColor: SW_CARD }}>
             <p className="sw-label mb-3 text-center" style={{ color: SW_GRAY }}>{shot.tag}</p>
@@ -144,7 +144,7 @@ function JourneyStep({ n, title, body, src, alt, url, flip = false, narrow = fal
   narrow?: boolean;
 }) {
   return (
-    <div className="grid gap-10 lg:grid-cols-5 items-center">
+    <div className="grid grid-cols-1 gap-10 lg:grid-cols-5 items-center">
       <div className={`lg:col-span-2 ${flip ? 'lg:order-2' : ''}`}>
         <p className="sw-label mb-2" style={{ color: SW_GRAY }}>Step {String(n).padStart(2, '0')}</p>
         <h3 className="sw-display text-2xl md:text-3xl mb-4">{title}</h3>
@@ -259,7 +259,7 @@ export default function SmrpCaseStudy() {
             The old WordPress site wasn&apos;t helping the resort sell. Its booking form came from a template plugin,
             so guests still called or messaged to book, and the resort couldn&apos;t take payment online.
           </p>
-          <div className="grid gap-px sm:grid-cols-2 lg:grid-cols-3 mb-16" style={{ backgroundColor: SW_LINE }}>
+          <div className="grid grid-cols-1 gap-px sm:grid-cols-2 lg:grid-cols-3 mb-16" style={{ backgroundColor: SW_LINE }}>
             {[
               { icon: ICONS.text, title: 'Placeholder Copy', body: 'The homepage, restaurant and menu headers, and even the footer were still in lorem-style filler text.' },
               { icon: ICONS.image, title: 'Generic Imagery', body: 'Every dish on the menu used the same restaurant logo, and the footer’s Instagram grid showed stock photos of other resorts.' },
@@ -314,7 +314,7 @@ export default function SmrpCaseStudy() {
             />
           </div>
 
-          <div className="grid gap-10 lg:grid-cols-2 items-center">
+          <div className="grid grid-cols-1 gap-10 lg:grid-cols-2 items-center">
             <div>
               <p className="sw-label mb-3" style={{ color: SW_GRAY }}>Visual Direction</p>
               <p className="mb-4" style={{ color: SW_INK }}>
@@ -397,7 +397,7 @@ export default function SmrpCaseStudy() {
                 Problems surface in the form, in plain language, instead of after a guest has paid. The guest count is
                 capped at the room’s maximum, and clashing dates are named one by one with the button disabled.
               </p>
-              <div className="grid gap-8 md:grid-cols-2 items-start">
+              <div className="grid grid-cols-1 gap-8 md:grid-cols-2 items-start">
                 <BrowserFrame url={`${SITE_HOST}/accommodations/family-dome`} label="Guest Count Capped at 7">
                   <img src="/images/smrp/booking-guest-cap.jpg" alt="Family Dome booking form with the guest field showing: value must be less than or equal to 7" className="w-full h-auto" loading="lazy" />
                 </BrowserFrame>
@@ -413,7 +413,7 @@ export default function SmrpCaseStudy() {
                 Payment hands off to PayMongo checkout with the booking and total carried over. Alongside cards it
                 accepts the local options GCash, Maya and QR Ph, so guests don&apos;t need a credit card to book.
               </p>
-              <div className="grid gap-8 md:grid-cols-2 items-start">
+              <div className="grid grid-cols-1 gap-8 md:grid-cols-2 items-start">
                 <BrowserFrame url="checkout.paymongo.com" label="Booking and Total Carried Over">
                   <img src="/images/smrp/paymongo-details.jpg" alt="PayMongo checkout for Family Dome (8 nights), ₱14,400, with customer information fields" className="w-full h-auto" loading="lazy" />
                 </BrowserFrame>
@@ -438,7 +438,7 @@ export default function SmrpCaseStudy() {
                   ]}
                 />
               </div>
-              <div className="grid gap-px md:grid-cols-2" style={{ backgroundColor: SW_LINE }}>
+              <div className="grid grid-cols-1 gap-px md:grid-cols-2" style={{ backgroundColor: SW_LINE }}>
                 {[
                   { title: 'Overbooking Protection', body: 'Availability is checked again right after a booking is saved, so two guests paying at the same moment can’t both get the last room. Bookings staff add by hand follow the same rule.' },
                   { title: 'Why Not Just a Timer?', body: 'PayMongo checkout links don’t expire on their own. Releasing a hold on a timer alone could cancel a booking that had just been paid, so the system asks PayMongo about each expired hold before deciding.' },
@@ -454,7 +454,7 @@ export default function SmrpCaseStudy() {
             </div>
           </div>
 
-          <div className="mt-24 grid gap-10 lg:grid-cols-5 items-center">
+          <div className="mt-24 grid grid-cols-1 gap-10 lg:grid-cols-5 items-center">
             <div className="lg:col-span-2">
               <p className="sw-label mb-3" style={{ color: SW_GRAY }}>Adventures Book the Same Way</p>
               <p className="mb-4" style={{ color: SW_INK }}>
@@ -491,7 +491,7 @@ export default function SmrpCaseStudy() {
           <SectionEyebrow>Key Design Decisions</SectionEyebrow>
           <h2 className="sw-display text-3xl md:text-4xl text-center mb-16">Five Calls, and What Each One Cost</h2>
 
-          <div className="grid gap-px sm:grid-cols-2 lg:grid-cols-3 mb-20" style={{ backgroundColor: SW_LINE }}>
+          <div className="grid grid-cols-1 gap-px sm:grid-cols-2 lg:grid-cols-3 mb-20" style={{ backgroundColor: SW_LINE }}>
             {[
               { icon: ICONS.edit, title: 'Everything Editable, Not Some of It', body: 'Modelling every content type up front took longer than hard-coding pages. I took that trade on purpose: prices, menus and offerings change, and every hard-coded value becomes a call to a developer.' },
               { icon: ICONS.star, title: 'Only Real Reviews', body: 'The reviews section shows only reviews staff approve. I chose not to publish AI-generated testimonials, because fake reviews would mislead the guests the resort wants to welcome. The cost is a thin section at launch, so it invites real reviews instead.' },
@@ -550,7 +550,7 @@ export default function SmrpCaseStudy() {
             </BrowserFrame>
           </div>
 
-          <div className="grid gap-px sm:grid-cols-2 lg:grid-cols-3 mb-14" style={{ backgroundColor: SW_LINE }}>
+          <div className="grid grid-cols-1 gap-px sm:grid-cols-2 lg:grid-cols-3 mb-14" style={{ backgroundColor: SW_LINE }}>
             {[
               { title: 'Zip Line, Coming Soon', body: 'Listed on the adventures page as “Coming Soon”, so guests know it’s on the way without being able to book it early.' },
               { title: 'Food Ordering', body: 'Guests add dishes from the menu and order to their dome or cabin, to their table, or for pickup. Room service carries a 10% charge, shown up front on every room page.' },
@@ -596,7 +596,7 @@ export default function SmrpCaseStudy() {
               />
             </BrowserFrame>
           </div>
-          <div className="grid gap-8 md:grid-cols-2 items-start">
+          <div className="grid grid-cols-1 gap-8 md:grid-cols-2 items-start">
             <BrowserFrame url={`${SITE_HOST}/admin/globals/site-settings`} label="Property Rules, Edited by Staff">
               <img
                 src="/images/smrp/cms-property-rules.jpg"
@@ -622,7 +622,7 @@ export default function SmrpCaseStudy() {
         <div className="max-w-5xl mx-auto">
           <SectionEyebrow>Responding to Client Feedback</SectionEyebrow>
           <h2 className="sw-display text-3xl md:text-4xl text-center mb-14">Changes Without Breaking History</h2>
-          <div className="grid gap-px md:grid-cols-3" style={{ backgroundColor: SW_LINE }}>
+          <div className="grid grid-cols-1 gap-px md:grid-cols-3" style={{ backgroundColor: SW_LINE }}>
             {[
               { icon: ICONS.layers, title: 'Retired the Yurts', body: 'When the resort stopped offering yurts, I unpublished them rather than deleting them, so existing booking records stay intact.' },
               { icon: ICONS.shield, title: 'New Logo, Everywhere', body: 'Swapped in the client’s new SMRP Resort logo through the shared logo component, made a favicon from its emblem, and updated the contact details.' },
@@ -645,7 +645,7 @@ export default function SmrpCaseStudy() {
         <div className="max-w-5xl mx-auto">
           <SectionEyebrow>Outcome &amp; Next Steps</SectionEyebrow>
           <h2 className="sw-display text-3xl md:text-4xl text-center mb-16">Live, With the Last Steps in View</h2>
-          <div className="grid gap-8 md:grid-cols-2 mb-10">
+          <div className="grid grid-cols-1 gap-8 md:grid-cols-2 mb-10">
             <div className="border-2 p-6" style={{ borderColor: SW_INK }}>
               <p className="mb-4 text-center font-bold">SHIPPED</p>
               <ul className="space-y-2.5 text-sm">
@@ -685,7 +685,7 @@ export default function SmrpCaseStudy() {
             the precision of my decisions and the care of my review, not the speed of the implementation.
           </p>
 
-          <div className="grid gap-px sm:grid-cols-2 mb-16" style={{ backgroundColor: SW_LINE }}>
+          <div className="grid grid-cols-1 gap-px sm:grid-cols-2 mb-16" style={{ backgroundColor: SW_LINE }}>
             {[
               { title: 'Rules before code', body: 'Every booking edge case needed a plain-language rule first. The rule was the design.' },
               { title: 'Direction is the craft', body: 'With AI doing the implementation, clear specs and careful review are what make the work good.' },

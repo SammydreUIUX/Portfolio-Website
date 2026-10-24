@@ -168,7 +168,7 @@ export default function RachealPopoolaMentorship() {
 
       {/* ============================= MENTEE & ROLE ============================= */}
       <section className="py-20 px-4 sm:px-6 lg:px-8 border-t" style={{ borderColor: SW_LINE, backgroundColor: SW_CARD }}>
-        <div className="max-w-5xl mx-auto grid gap-px md:grid-cols-2" style={{ backgroundColor: SW_LINE }}>
+        <div className="max-w-5xl mx-auto grid grid-cols-1 gap-px md:grid-cols-2" style={{ backgroundColor: SW_LINE }}>
           <div className="p-8" style={{ backgroundColor: SW_CARD }}>
             <p className="sw-label mb-3" style={{ color: SW_GRAY }}>The Mentee</p>
             <p className="leading-relaxed" style={{ color: SW_INK }}>
@@ -196,7 +196,7 @@ export default function RachealPopoolaMentorship() {
             A typical portfolio is built for visual work. Racheal&apos;s strongest work is strategy, communications
             and results, and most of it lived in PDFs, slide decks and spreadsheets.
           </p>
-          <div className="grid gap-px sm:grid-cols-3" style={{ backgroundColor: SW_LINE }}>
+          <div className="grid grid-cols-1 gap-px sm:grid-cols-3" style={{ backgroundColor: SW_LINE }}>
             {[
               { icon: ICONS.document, title: 'Show the Thinking', body: 'The portfolio had to make strategy and outcomes visible, not just finished visuals.' },
               { icon: ICONS.eye, title: 'Clear at a Glance', body: 'A visitor had to grasp who Racheal is and what Racheal delivers within seconds.' },
@@ -292,7 +292,7 @@ export default function RachealPopoolaMentorship() {
           </div>
 
           <div className="space-y-16">
-            <div className="grid gap-8 md:grid-cols-2 items-start">
+            <div className="grid grid-cols-1 gap-8 md:grid-cols-2 items-start">
               <BrowserFrame url={SITE_HOST} label="01 · Outcome First">
                 <img
                   src="/images/racheal-popoola/case-map.jpg"
@@ -310,7 +310,7 @@ export default function RachealPopoolaMentorship() {
                 />
               </BrowserFrame>
             </div>
-            <div className="grid gap-8 md:grid-cols-2 items-start">
+            <div className="grid grid-cols-1 gap-8 md:grid-cols-2 items-start">
               <BrowserFrame url={SITE_HOST} label="03 · The Strategy Blog">
                 <img
                   src="/images/racheal-popoola/strategy-blog.jpg"
@@ -337,7 +337,7 @@ export default function RachealPopoolaMentorship() {
         <div className="max-w-5xl mx-auto">
           <SectionEyebrow>What We Shipped</SectionEyebrow>
           <h2 className="sw-display text-3xl md:text-4xl text-center mb-16">Live, and Racheal&apos;s Own</h2>
-          <div className="grid gap-12 md:grid-cols-5 items-center">
+          <div className="grid grid-cols-1 gap-12 md:grid-cols-5 items-center">
             <div className="md:col-span-3">
               <ul className="space-y-3 mb-10">
                 {[

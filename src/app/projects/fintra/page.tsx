@@ -241,7 +241,7 @@ export default function FintraCaseStudy() {
             knows there&apos;s a problem.
           </p>
 
-          <div className="grid animate-on-scroll fade-in gap-4 sm:grid-cols-2">
+          <div className="grid grid-cols-1 animate-on-scroll fade-in gap-4 sm:grid-cols-2">
             {[
               { icon: ICONS.alert, title: 'Unexpected charges', body: 'Adding a teammate silently changes the bill with no warning.' },
               { icon: ICONS.users, title: 'Unclear seat pricing', body: 'Admins can’t tell what the next seat will actually cost.' },
@@ -265,7 +265,7 @@ export default function FintraCaseStudy() {
       {/* ============================= FEATURE 1: LIVE SEAT MANAGEMENT ============================= */}
       <section className="border-t px-4 py-20 sm:px-6 lg:px-8" style={{ borderColor: FT_BORDER, background: FT_BG }}>
         <div className="mx-auto max-w-6xl">
-          <div className="grid items-center gap-12 lg:grid-cols-2">
+          <div className="grid grid-cols-1 items-center gap-12 lg:grid-cols-2">
             <div className="order-2 animate-on-scroll slide-left lg:order-1">
               <h3 className="sw-display mb-5 text-2xl" style={{ color: FT_DARK }}>1. Live Seat Management</h3>
               <p className="mb-5 text-sm" style={{ color: FT_SUBTEXT }}>A &quot;seat&quot; is just one paid spot for a teammate. Add a person, add a seat, and the bill changes.</p>
@@ -333,7 +333,7 @@ export default function FintraCaseStudy() {
       {/* ============================= FEATURE 2: BILLING DASHBOARD ============================= */}
       <section className="border-t px-4 py-20 sm:px-6 lg:px-8" style={{ borderColor: FT_BORDER }}>
         <div className="mx-auto max-w-6xl">
-          <div className="grid items-center gap-12 lg:grid-cols-2">
+          <div className="grid grid-cols-1 items-center gap-12 lg:grid-cols-2">
             <div className="animate-on-scroll scale-in">
               <BrowserFrame url="app.fintra.io/billing" label="Screen 02 &middot; Billing Dashboard">
                 <div className="p-6">
@@ -390,7 +390,7 @@ export default function FintraCaseStudy() {
       {/* ============================= FEATURE 3: INVOICE HISTORY ============================= */}
       <section className="border-t px-4 py-20 sm:px-6 lg:px-8" style={{ borderColor: FT_BORDER, background: FT_BG }}>
         <div className="mx-auto max-w-6xl">
-          <div className="grid items-center gap-12 lg:grid-cols-2">
+          <div className="grid grid-cols-1 items-center gap-12 lg:grid-cols-2">
             <div className="order-2 animate-on-scroll slide-left lg:order-1">
               <h3 className="sw-display mb-5 text-2xl" style={{ color: FT_DARK }}>3. Invoice History</h3>
               <IssueFix
@@ -450,7 +450,7 @@ export default function FintraCaseStudy() {
       {/* ============================= FEATURE 4: PAYMENT FAILURE RECOVERY ============================= */}
       <section className="border-t px-4 py-20 sm:px-6 lg:px-8" style={{ borderColor: FT_BORDER }}>
         <div className="mx-auto max-w-6xl">
-          <div className="grid items-center gap-12 lg:grid-cols-2">
+          <div className="grid grid-cols-1 items-center gap-12 lg:grid-cols-2">
             <div className="animate-on-scroll scale-in">
               <BrowserFrame url="app.fintra.io/billing" label="Screen 04 &middot; Failed Payment Banner + Grace Period">
                 <div className="p-6">
@@ -485,7 +485,7 @@ export default function FintraCaseStudy() {
       {/* ============================= FEATURE 5: FIRST-TIME BILLING SETUP ============================= */}
       <section className="border-t px-4 py-20 sm:px-6 lg:px-8" style={{ borderColor: FT_BORDER, background: FT_BG }}>
         <div className="mx-auto max-w-6xl">
-          <div className="grid items-center gap-12 lg:grid-cols-2">
+          <div className="grid grid-cols-1 items-center gap-12 lg:grid-cols-2">
             <div className="order-2 animate-on-scroll slide-left lg:order-1">
               <h3 className="sw-display mb-5 text-2xl" style={{ color: FT_DARK }}>5. First-Time Billing Setup</h3>
               <IssueFix
@@ -543,7 +543,7 @@ export default function FintraCaseStudy() {
           <h2 className="sw-display animate-on-scroll slide-up mb-16 text-center text-4xl" style={{ color: FT_DARK }}>
             Same Failed Card, Different Outcome
           </h2>
-          <div className="grid gap-8 md:grid-cols-2">
+          <div className="grid grid-cols-1 gap-8 md:grid-cols-2">
             <div className="animate-on-scroll slide-left border p-6" style={{ borderColor: FT_BORDER }}>
               <p className="mb-4 text-center font-bold" style={{ color: FT_SUBTEXT }}>BEFORE</p>
               <ol className="space-y-3 text-sm">
@@ -584,7 +584,7 @@ export default function FintraCaseStudy() {
             an explanation. Those are exactly what this is built to intercept. These are estimates for a concept, not
             measured results.
           </p>
-          <div className="grid animate-on-scroll fade-in gap-8 sm:grid-cols-3">
+          <div className="grid grid-cols-1 animate-on-scroll fade-in gap-8 sm:grid-cols-3">
             {[
               { stat: '42%', label: 'fewer billing support tickets' },
               { stat: '63%', label: 'faster recovery from failed payments' },
